@@ -1,0 +1,29 @@
+.searchContent {
+    height:250px;
+    width:100%;
+    background-color: #0e3149;
+    padding-top: 50px;
+}
+.tag {
+    display: inline-block;
+    line-height: 20px;
+    border-radius: 5px;
+    padding: 0px 5px;
+    margin-right: 10px;
+    background-color: #2183f8;
+    color:white;
+}
+
+.pagination {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.loading {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    margin-top: 30px;
+}

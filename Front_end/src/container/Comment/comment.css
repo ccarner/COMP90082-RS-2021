@@ -1,0 +1,32 @@
+.imgSize {
+    height: 80px;
+    width: 80px;
+    margin-right: 30px;
+}
+.smImgSize {
+    height: 60px;
+    width: 60px;
+    margin-right: 20px;
+}
+
+.boardTitle {
+    font-size: 30px;
+    font-weight: 600;
+    /* margin-left: 15%; */
+    margin-bottom: 28px;
+    margin-top: 20px;
+    color: #0c4774;
+}
+
+.line {
+    border-top: 1px solid #ced4da;
+    width: 695px;
+    margin-left: 29.5%;
+    margin-bottom: 20px;
+}
+.wordwrap
+{
+word-wrap:break-word;
+word-break:break-all;
+overflow: hidden;
+}

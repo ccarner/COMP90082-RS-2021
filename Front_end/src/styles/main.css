@@ -1,0 +1,162 @@
+  .App {
+    /* text-align: center; */
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+/* NavBar */
+.nav-bar {
+  background-color: #094183;
+  color: white;
+}
+.navbar-brand{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.navbar-home{
+  color: white;
+}
+
+.nav-search{
+  margin-right: 5px;
+}
+.padding-articles-button{
+  float: right;
+}
+
+.edit-button {
+  float: right;
+  margin-right: 2rem;
+  margin-top: 0.5rem;
+  /* padding-top: 50px;
+  padding-right: 300px;
+  padding-bottom: 50px;
+  padding-left: 80px; */
+}
+
+  
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+ 
+body, html{
+  font-family: 'Open Sans', sans-serif;
+  margin:0px;
+  height:100%;
+}
+
+/* Define an animation behavior */
+@keyframes spinner {
+  to { transform: rotate(360deg); }
+}
+/* This is the class name given by the Font Awesome component when icon contains 'spinner' */
+.fa-spinner {
+  /* Apply 'spinner' keyframes looping once every second (1s)  */
+  animation: spinner 1s linear infinite;
+}
+
+footer{
+  background-color: #064675;
+  color: aliceblue;
+  left: 0;
+  bottom: 0;
+}
+
+#page-content {
+  min-height: 100vh ;
+}
+/*tag styling*/
+div.ReactTags__tagInput {
+    width: 200px;
+    border-radius: 2px;
+    display: inline-block;
+}
+div.ReactTags__tagInput input.ReactTags__tagInputField,
+div.ReactTags__tagInput input.ReactTags__tagInputField:focus {
+    height: 31px;
+    margin: 0;
+    font-size: 13px;
+    width: 100%;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 0 8px;
+}
+
+/* Styles for selected tags */
+div.ReactTags__selected span.ReactTags__tag {
+    border: 1px solid #ddd;
+    background: #eee;
+    font-size: 13px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px;
+    margin: 0 5px;
+    cursor: move;
+    border-radius: 10px;
+}
+div.ReactTags__selected a.ReactTags__remove {
+    color: #000000;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* Styles for suggestions */
+div.ReactTags__suggestions {
+    position: absolute;
+}
+div.ReactTags__suggestions ul {
+    list-style-type: none;
+    box-shadow: .05em .01em .5em rgba(0,0,0,.2);
+    background: white;
+    width: 200px;
+}
+div.ReactTags__suggestions li {
+    border-bottom: 1px solid #ddd;
+    padding: 5px 10px;
+    margin: 0;
+}
+div.ReactTags__suggestions li mark {
+    text-decoration: underline;
+    background: none;
+    font-weight: 600;
+}
+div.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
+    background: #b7cfe0;
+    cursor: pointer;
+}
+/*end tag styling*/
+.article-editor-content-section {
+  margin-top: 2rem;
+}

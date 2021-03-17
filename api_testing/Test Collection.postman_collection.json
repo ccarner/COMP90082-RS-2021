@@ -1,0 +1,1042 @@
+{
+	"info": {
+		"_postman_id": "b4a512ed-b7c9-4b57-9302-a7560af33be6",
+		"name": "Test Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f598b66-4176-4225-a467-69e98704844e",
+						"exec": [
+							"",
+							"    pm.test(\"Your test name\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(pm.response.code).to.be.oneOf([201, 202,200]);",
+							"        pm.expect(jsonData.success).to.eql(true);",
+							"",
+							"        pm.environment.set(\"admin_token\", jsonData.token);",
+							"    });",
+							"",
+							";"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "be7b558f-2b21-4373-8e52-e60e88e84529",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"account\" : \"kaung\",\n\t\"password\" : 1234\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "student login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cdd8adcd-b267-4b6e-ab35-66f36b4dc5ab",
+						"exec": [
+							"",
+							"    pm.test(\"Your test name\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(pm.response.code).to.be.oneOf([201, 202,200]);",
+							"        pm.expect(jsonData.success).to.eql(true);",
+							"",
+							"        pm.environment.set(\"student_token\", jsonData.token);",
+							"    });",
+							"",
+							";"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ef292611-f18e-48b4-b08e-04707dadc887",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"account\" : \"student\",\n\t\"password\" : 123\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moderator home page",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/user/home",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"home"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Student home page",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/user/home",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"home"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Subejct",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/subject/SWEN90009",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"SWEN90009"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "moderator publish",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bac68ace-d628-45ef-a29f-05ca40fe3ea8",
+						"exec": [
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d70a107b-8f35-41a6-aea9-8d2fe66d82e8",
+						"exec": [
+							"",
+							"    pm.test(\"Check login status true and status code correct\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(pm.response.code).to.be.oneOf([201, 202,200]);",
+							"        pm.expect(jsonData.success).to.eql(true);",
+							"",
+							"        pm.environment.set(\"article_id\", jsonData.article_id);",
+							"        ",
+							"    });",
+							"",
+							";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "{{$randomCompanyName}}",
+							"type": "text"
+						},
+						{
+							"key": "tags",
+							"value": "[\"SWEN90009\",\"java\",\"hello\"]",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "a",
+							"type": "text"
+						},
+						{
+							"key": "subjects",
+							"value": "[\"SWEN90009\"]",
+							"type": "text"
+						},
+						{
+							"key": "tools",
+							"value": "[\"Java\"]",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/article/publish",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"publish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "student publish Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d39de30-3ac9-4176-ad5a-b164ba925670",
+						"exec": [
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "263773ba-4030-40d5-b785-e6afd3a5ed94",
+						"exec": [
+							"",
+							"    pm.test(\"Check login status true and status code correct\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(pm.response.code).to.be.oneOf([201, 202,200]);",
+							"        pm.expect(jsonData.success).to.eql(true);",
+							"",
+							"        pm.environment.set(\"pending_article_id\", jsonData.article_id);",
+							"        ",
+							"    });",
+							"",
+							";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"type": "text",
+						"value": "{{student_token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "{{$randomCompanyName}}",
+							"type": "text"
+						},
+						{
+							"key": "tags",
+							"value": "[\"SWEN90009\",\"java\",\"hello\"]",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "content_test",
+							"type": "text"
+						},
+						{
+							"key": "subjects",
+							"value": "[\"SWEN90009\"]",
+							"type": "text"
+						},
+						{
+							"key": "tools",
+							"value": "[\"Java\"]",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/article/publish",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"publish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "moderator get an article",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6886f8f6-4d60-4cee-bd22-64fff635437e",
+						"exec": [
+							"",
+							"    pm.test(\"Check article_id true, status true and status code correct\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(pm.response.code).to.be.oneOf([201, 202,200]);",
+							"        pm.expect(jsonData.success).to.eql(true);",
+							"",
+							"        ",
+							"        ",
+							"    });",
+							"",
+							";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/article/get/{{article_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"get",
+						"{{article_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "student get an article Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4c847a5c-3763-4102-8c63-31a9b31e0781",
+						"exec": [
+							"",
+							"    pm.test(\"Check article_id true, status true and status code correct\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(pm.response.code).to.be.oneOf([201, 202,200]);",
+							"        pm.expect(jsonData.success).to.eql(true);",
+							"",
+							"        ",
+							"        ",
+							"    });",
+							"",
+							";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{student_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/article/get/{{article_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"get",
+						"{{article_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get approve article id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fd984b98-053d-4a89-b346-8d9c79ce5b38",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8fa80ef5-dfe3-4d27-849d-c7e3ca564db7",
+						"exec": [
+							"",
+							"    pm.test(\"Check article_id true, status true and status code correct\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(pm.response.code).to.be.oneOf([201, 202,200]);",
+							"        ",
+							"        pm.expect(jsonData.success).to.eql(true);",
+							"",
+							"        ",
+							"        ",
+							"    });",
+							"",
+							";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"type": "text",
+						"value": "{{student_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/article/get/{{approve_article_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"get",
+						"{{approve_article_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all names articles Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/article/getNamesOfArticles/{{SubjectCode}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"getNamesOfArticles",
+						"{{SubjectCode}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all names articles Copy 2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/article/getNamesOfPendingArticles/{{SubjectCode}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"getNamesOfPendingArticles",
+						"{{SubjectCode}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pending Article Moderator",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/article/getPendingArticle/{{pending_article_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"getPendingArticle",
+						"{{pending_article_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Article",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{url}}//article/edit/{{article_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"",
+						"article",
+						"edit",
+						"{{article_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moderator Article Delete",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}//article/delete/{{article_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"",
+						"article",
+						"delete",
+						"{{article_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "approve a pending article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9240a199-6a3c-408b-aa11-8934941b08ea",
+						"exec": [
+							"",
+							"    pm.test(\"Check login status true and status code correct\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(pm.response.code).to.be.oneOf([201, 202,200]);",
+							"        pm.expect(jsonData.success).to.eql(true);",
+							"",
+							"        pm.environment.set(\"approve_article_id\", jsonData.article._id);",
+							"       ",
+							"    });",
+							"",
+							";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/article/pendingArticle/approve/{{pending_article_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"pendingArticle",
+						"approve",
+						"{{pending_article_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reject a pending article Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjMyMmMyZTU0ZjA4NzY2MzRkZjM5YjEiLCJfbW9kZXJhdG9yIjp0cnVlLCJpYXQiOjE1OTc0OTU5MTF9.UtbhAGijAtwaOESfcUvC1gSBRXjOtDq_rWL8s7kMRcY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/article/pendingArticle/reject/{{pending_article_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"article",
+						"pendingArticle",
+						"reject",
+						"{{pending_article_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "basic searching Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/search/query/?q=a&type=React",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"search",
+						"query",
+						""
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "a"
+						},
+						{
+							"key": "type",
+							"value": "React"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add section Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"subject_code\": \"{{SubjectCode}}\",\r\n    \"name\": \"Comments\",\r\n    \"type\": \"Comments\",\r\n    \"description\": \"This is description1213\",\r\n    \"owner\": \"5f43a8cd8fa9d53f50226126\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/section/add",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"section",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete section Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"_id\": \"5f37ea8cf8eb210614fe7c4f\",\r\n        \"subject_code\": \"SWEN90013\",\r\n        \"type\": \"tools\",\r\n        \"description\": \"This is description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/section/delete",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"section",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"MASTER3\",\r\n    \"subject_code\": \"swen9002\",\r\n    \"description\": \"This is description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/subject/search",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Subject Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/subject/{{SubjectCode}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"{{SubjectCode}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add subject Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d41097bd-23aa-4f04-9900-2486b5fbb4e4",
+						"exec": [
+							"  pm.test(\"Your test name\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(pm.response.code).to.be.oneOf([201, 202,200]);",
+							"        pm.expect(jsonData.success).to.eql(true);",
+							"",
+							"        pm.environment.set(\"subject_id\", jsonData.subject._id);",
+							"        pm.environment.set(\"SubjectCode\", jsonData.subject.subject_code);",
+							"        pm.environment.set(\"subject_name\", jsonData.subject.name);",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{$randomFullName}}\",\r\n    \"subject_code\": \"{{$randomFullName}}\",\r\n    \"description\": \"This is description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/subject/add",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update subject Copy",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "auth-token",
+						"type": "text",
+						"value": "{{admin_token}}"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"{{subject_id}}\",\r\n    \"name\": \"{{subject_name}}\",\r\n    \"subject_code\": \"{{SubjectCode}}\",\r\n    \"description\": \"This is description\",\r\n        \"sections\" : [ \r\n        \"5f4294e677fbf33264060fab\", \r\n        \"5f42985cd8717a41988a207b\", \r\n        \"5f42985dd8717a41988a207c\", \r\n        \"5f42985ed8717a41988a207d\"\r\n    ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/subject/patch",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"patch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete subject Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\" : \"{{subject_id}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/subject/delete",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"subject",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

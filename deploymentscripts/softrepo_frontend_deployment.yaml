@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  softrepofrontend
+  labels:
+    name:  softrepofrontend
+    type: app
+spec:
+  selector:
+    matchLabels:
+      name: softrepofrontend
+  
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+
+  replicas: 2  
+  template:
+    metadata:
+      labels:
+        name:  softrepofrontend
+    spec:
+    
+     
+
+      containers: 
+        
+      - image:  docker.pkg.github.com/matt01671/swen90013_rs/frontimage:latest
+        imagePullPolicy: Always
+        name:  frontendport
+        ports:
+          - containerPort: 3000
+
+        stdin: true  
+      imagePullSecrets:
+        - name: regsecret   
+      restartPolicy: Always
+      

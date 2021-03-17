@@ -1,0 +1,43 @@
+
+.card-section{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.card-sub{
+    margin-top: 20px;
+    /* margin-bottom: 20px; */
+}
+.subject-card{
+    cursor: pointer;
+}
+
+.main-section{
+    padding: 2rem 1rem;
+}
+
+.hr-home{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 3px solid rgba(0, 0, 0, 0.1);
+}
+
+.unsubcribes-message{
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}

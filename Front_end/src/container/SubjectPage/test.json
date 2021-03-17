@@ -1,0 +1,18 @@
+{
+    "type": "article",
+    "articles": [
+        {
+            "id": 1,
+            "title": "React",
+            "des": "maybe put a link to react here",
+            "suggested": "Professor"
+        },
+        {
+            "id": 2,
+            "title": "Material UI",
+            "des": "a different description of the other thing",
+            "suggested": "Tutor"
+        }
+    ]
+    
+}

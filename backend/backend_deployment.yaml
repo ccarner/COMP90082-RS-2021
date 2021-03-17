@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  softrepobackend
+  labels:
+    name:  softrepobackend
+    type: app
+spec:
+  selector:
+    matchLabels:
+      name: softrepobackend
+  
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+
+  replicas: 2  
+  template:
+    metadata:
+      labels:
+        name:  softrepobackend
+    spec:
+    
+     
+
+      containers: 
+     
+      - image: docker.pkg.github.com/matt01671/swen90013_rs/backend_image:latest
+        imagePullPolicy: Always
+        env:
+          - name: MONGODB_URI
+            value: "mongodb://mongo:27017"
+       
+        name:  softrepobackendport
+        ports:
+          - containerPort: 4000
+        
+
+          
+      
+      imagePullSecrets:
+        - name: regsecret   
+      restartPolicy: Always
+      
