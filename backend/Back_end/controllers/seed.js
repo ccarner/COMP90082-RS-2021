@@ -1,8 +1,8 @@
 var User = require('../proxies/user');
 
 var user = {
-    account: "admin2",
-    password: "admin2",
+    account: "admin",
+    password: "admin",
     student_number: 845462,
     is_moderator: true,
     is_admin: true

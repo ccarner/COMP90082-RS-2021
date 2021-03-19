@@ -15,7 +15,7 @@ import { Link } from "react-router-dom"
 import Comment from "../Comment/Comment"
 import Editor from "./EditorComponent.jsx"
 
-const baseURL = "http://167.172.11.217/"
+const baseURL = "http://localhost:4000/"
 
 class App extends React.Component {
   constructor(props) {

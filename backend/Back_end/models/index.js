@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var dbRoute = process.env.MONGODB_URI||'mongodb+srv://admin:1@cluster0-b9h95.mongodb.net/test?retryWrites=true&w=majority'
+var dbRoute = process.env.MONGODB_URI||'mongodb+srv://root:root@cluster0.uhlwx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 
 mongoose.connect(dbRoute, {

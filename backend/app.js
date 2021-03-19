@@ -48,12 +48,9 @@ app.use(bodyParser.urlencoded({extended:true})) ;
 
 // Connect to the mongodb
 // Cluster0, database: test
-// const url = 'mongodb+srv://admin:1@cluster0-b9h95.mongodb.net/test?retryWrites=true&w=majority'
-const url =
-    process.env.MONGOLAB_URI ||
-    process.env.MONGOHQ_URL || process.env.MONGODB_URI ||
-    'mongodb+srv://admin:1@cluster0-b9h95.mongodb.net/test?retryWrites=true&w=majority';
-mongoose.connect(url, { useNewUrlParser: true });
+// const url = 'mongodb+srv://root:<password>@cluster0.iqrqw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const url = process.env.MONGODB_URI||'mongodb+srv://root:root@cluster0.uhlwx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
