@@ -1,5 +1,5 @@
-const models = require('../models');
-const Tool = models.Tool;
+const {Tool} = require('../models/tool');
+
 const mongoose = require('mongoose');
 
 /**

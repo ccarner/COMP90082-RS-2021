@@ -1,6 +1,6 @@
-const models = require('../models');
-const User = models.User;
-const Subject = models.Subject;
+const {User} = require('../models/user');
+const {Subject} = require('../models/subject');
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 

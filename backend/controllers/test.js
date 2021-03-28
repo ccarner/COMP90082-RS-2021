@@ -1,8 +1,8 @@
-var User     = require('../proxies').User;
-var Subject  = require('../proxies').Subject;
-var Tool     = require('../proxies').Tool;
-var Article  = require('../proxies').Aritcle;
-var Comment  = require('../proxies').Comment;
+var User     = require('../proxies/__index').User;
+var Subject  = require('../proxies/__index').Subject;
+var Tool     = require('../proxies/__index').Tool;
+var Article  = require('../proxies/__index').Aritcle;
+var Comment  = require('../proxies/__index').Comment;
 
 // http:localhost:4000/user/add
 exports.addUser = function (req, res, next) {

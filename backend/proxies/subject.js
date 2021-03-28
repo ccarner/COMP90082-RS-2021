@@ -1,5 +1,4 @@
-const models = require('../models');
-const Subject = models.Subject;
+const {Subject} = require('../models/subject');
 const mongoose = require('mongoose');
 
 /**

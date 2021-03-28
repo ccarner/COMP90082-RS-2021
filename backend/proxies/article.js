@@ -1,8 +1,4 @@
-
-
-const models = require('../models');
-const Article = models.Article;
-const PendingArticle = models.PendingArticle;
+const {Article, PendingArticle} = require('../models/article');
 const mongoose = require('mongoose');
 
 /**

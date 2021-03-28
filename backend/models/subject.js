@@ -34,4 +34,5 @@ SubjectSchema.pre('save', async function(next) {
 
 
 
-module.exports = mongoose.model('Subject', SubjectSchema)
+const Subject = new mongoose.model('Subject',SubjectSchema)
+exports.Subject = Subject;

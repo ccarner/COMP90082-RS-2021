@@ -8,4 +8,5 @@ var NotificationSchema = new Schema({
     create_at: { type: Date, default: Date.now },
   });
 
-  mongoose.model('Notification', NotificationSchema);
+const Notification = new mongoose.model('Notification', NotificationSchema);
+exports.Notification = Notification;

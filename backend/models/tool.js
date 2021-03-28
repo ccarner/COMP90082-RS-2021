@@ -23,4 +23,5 @@ ToolSchema.pre('remove', async function(next) {
 //   next()
 // })
 
-mongoose.model('Tool', ToolSchema);
+const Tool = new mongoose.model('Tool', ToolSchema);
+exports.Tool = Tool;

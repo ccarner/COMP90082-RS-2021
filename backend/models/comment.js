@@ -1,6 +1,4 @@
 var mongoose  = require('mongoose');
-
-
 var Schema    = mongoose.Schema;
 var Section = require('./section')
 var User = require('./user')
@@ -60,4 +58,5 @@ CommentSchema.pre('remove', async function (next) {
 })
 
 
-module.exports = mongoose.model('Comment', CommentSchema);
+const Comment = new mongoose.model('Comment', CommentSchema);
+exports.Comment = Comment;

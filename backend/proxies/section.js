@@ -1,5 +1,4 @@
-const models = require('../models');
-const Section = models.Section;
+const {Section} = require('../models/section');
 const mongoose = require('mongoose');
 /**
  * Add a new section to the database
