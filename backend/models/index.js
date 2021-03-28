@@ -1,5 +1,6 @@
+const config = require('config');
 var mongoose = require('mongoose');
-var dbRoute = process.env.MONGODB_URI||'mongodb://localhost/rs_tests'
+var dbRoute = config.get('db');
 
 
 mongoose.connect(dbRoute, {

@@ -1,0 +1,4 @@
+{
+    "name" :"COMP90082 - RS", 
+    "db" : "mongodb://localhost/rs_test"
+}

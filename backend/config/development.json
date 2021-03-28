@@ -1,0 +1,4 @@
+{
+    "name" :"COMP90082 - RS - development mode", 
+    "db" : "mongodb://localhost/rs_dev"
+}

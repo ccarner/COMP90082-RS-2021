@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path')
 const session = require('express-session');
+const config = require('config');
 
 // const routes = require('./router')
 // const seed = require('./controllers/seed')
@@ -40,7 +41,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true})) ;
 
-const db ='mongodb://localhost/rs_tests';
+const db = config.get('db');
 mongoose.connect(db,{ useNewUrlParser: true,useUnifiedTopology: true, useCreateIndex: true })
         .then(()=>console.log(`Connected to ${db}..`));
 
