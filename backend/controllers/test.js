@@ -1,8 +1,16 @@
-var User     = require('../proxies/__index').User;
-var Subject  = require('../proxies/__index').Subject;
-var Tool     = require('../proxies/__index').Tool;
-var Article  = require('../proxies/__index').Aritcle;
-var Comment  = require('../proxies/__index').Comment;
+// var User     = require('../proxies/__index').User;
+// var Subject  = require('../proxies/__index').Subject;
+// var Tool     = require('../proxies/__index').Tool;
+// var Article  = require('../proxies/__index').Aritcle;
+// var Comment  = require('../proxies/__index').Comment;
+
+const User = require('../models/user');
+const Subject = require('../models/user');
+const Tool = require('../models/tool');
+const Article = require('../models/article');
+const Comment = require('../models/comment');
+
+
 
 // http:localhost:4000/user/add
 exports.addUser = function (req, res, next) {
