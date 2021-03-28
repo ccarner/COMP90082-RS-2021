@@ -54,7 +54,7 @@ app.use(session({
     }
 }));
 
-let auth = require('./routes/auth');
+let login = require('./routes/login');
 let register = require('./routes/register');
 let verify = require('./middlewares/verifyToken');
 let user = require('./routes/user');
@@ -65,7 +65,7 @@ let tool = require('./routes/tool');
 let search = require('./routes/search');
 let comment = require('./routes/comment');
 
-app.use('/login',auth);
+app.use('/login',login);
 app.use('/register',register);
 app.use(verify.verify);
 app.use('/user',user);
