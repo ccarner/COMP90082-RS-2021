@@ -52,7 +52,7 @@ app.use(bodyParser.urlencoded({extended:true})) ;
 const url =
     process.env.MONGOLAB_URI ||
     process.env.MONGOHQ_URL || process.env.MONGODB_URI ||
-    'mongodb+srv://admin:1@cluster0-b9h95.mongodb.net/test?retryWrites=true&w=majority';
+    'mongodb://localhost/rs_tests';
 mongoose.connect(url, { useNewUrlParser: true });
 const connection = mongoose.connection;
 connection.once('open', function() {
