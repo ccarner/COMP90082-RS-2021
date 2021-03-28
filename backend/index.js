@@ -57,6 +57,8 @@ app.use(session({
 let login = require('./routes/login');
 let register = require('./routes/register');
 let verify = require('./middlewares/verifyToken');
+let auth = require('./middlewares/auth');
+
 let user = require('./routes/user');
 let subject = require('./routes/subject');
 let article = require('./routes/article');
@@ -67,14 +69,14 @@ let comment = require('./routes/comment');
 
 app.use('/login',login);
 app.use('/register',register);
-app.use(verify.verify);
+// app.use(verify.verify);
 app.use('/user',user);
-app.use('/subject',subject);
-app.use('/article',article);
-app.use('/section', section);
-app.use('/tool', tool);
-app.use('/search', search);
-app.use('/comment', comment);
+// app.use('/subject',subject);
+// app.use('/article',article);
+// app.use('/section', section);
+// app.use('/tool', tool);
+// app.use('/search', search);
+// app.use('/comment', comment);
 
 
 app.post('/upload', function (request, response, next) {
@@ -93,3 +95,6 @@ const port = process.env.PORT || 3000;
 const server = app.listen(port,()=>console.log(`Listening on port ${port}`));
 
 console.log('hello world');
+
+
+module.exports = server;

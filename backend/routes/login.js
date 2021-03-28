@@ -4,9 +4,10 @@ const router = express.Router();
 const User = require('../proxies/user');
 const bcryt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const config = require('config');
 
 // this value should be secret and saved somewhere else
-const TOKEN_SECRET = 'THIS_IS_SECRET'
+const TOKEN_SECRET = config.get('jwtPrivateKey');
 
 // login page
 router.post('/', async (req, res) =>{
