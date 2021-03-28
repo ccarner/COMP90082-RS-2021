@@ -1,4 +1,4 @@
 {
     "name" :"COMP90082 - RS", 
-    "db" : "mongodb://localhost/rs"
+    "db" : "mongodb+srv://admin:1@cluster0-b9h95.mongodb.net/test?retryWrites=true&w=majority"
 }

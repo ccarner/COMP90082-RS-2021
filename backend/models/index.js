@@ -2,11 +2,11 @@ const config = require('config');
 var mongoose = require('mongoose');
 var dbRoute = config.get('db');
 
-
 mongoose.connect(dbRoute, {
     poolSize: 20,
     useCreateIndex: true,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 }, function (err) {
     if (err) {
     console.log(err.stack);

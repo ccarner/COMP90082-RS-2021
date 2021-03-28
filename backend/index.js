@@ -9,18 +9,17 @@ const config = require('config');
 // const routes = require('./router')
 // const seed = require('./controllers/seed')
 
-
-
 const mongoose = require('mongoose');
 require('dotenv').config();
 const aws = require('aws-sdk');
 
 const multer = require('multer');
 const multerS3 = require('multer-s3');
+require('dotenv').config({path: __dirname + '/.env'});
+
+
 const spacesEndpoint = new aws.Endpoint('https://nyc3.digitaloceanspaces.com');
-const s3 = new aws.S3({
-  endpoint: spacesEndpoint
-});
+const s3 = new aws.S3({ endpoint: spacesEndpoint });
 
 // Change bucket property to your Space name
 const upload = multer({
@@ -34,9 +33,8 @@ const upload = multer({
       }
     })
   }).array('upload', 1);
+
   
-  
-require('dotenv').config({path: __dirname + '/.env'})
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true})) ;
@@ -57,14 +55,27 @@ app.use(session({
 }));
 
 let auth = require('./routes/auth');
-app.use('/login',auth);
-
-
 let register = require('./routes/register');
-app.use('/register',register);
-
 let verify = require('./middlewares/verifyToken');
+let user = require('./routes/user');
+let subject = require('./routes/subject');
+let article = require('./routes/article');
+let section = require('./routes/section');
+let tool = require('./routes/tool');
+let search = require('./routes/search');
+let comment = require('./routes/comment');
+
+app.use('/login',auth);
+app.use('/register',register);
 app.use(verify.verify);
+app.use('/user',user);
+app.use('/subject',subject);
+app.use('/article',article);
+app.use('/section', section);
+app.use('/tool', tool);
+app.use('/search', search);
+app.use('/comment', comment);
+
 
 app.post('/upload', function (request, response, next) {
     upload(request, response, function (error) {
@@ -77,28 +88,6 @@ app.post('/upload', function (request, response, next) {
     return response.json("{status:ok}")
     });
   });
-
-let user = require('./routes/user');
-app.use('/user',user);
-
-let subject = require('./routes/subject');
-app.use('/subject',subject);
-
-let article = require('./routes/article');
-app.use('/article',article);
-
-let section = require('./routes/section');
-app.use('/section', section);
-
-
-let tool = require('./routes/tool');
-app.use('/tool', tool);
-
-let search = require('./routes/search');
-app.use('/search', search);
-
-let comment = require('./routes/comment');
-app.use('/comment', comment)
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port,()=>console.log(`Listening on port ${port}`));
