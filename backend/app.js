@@ -5,10 +5,10 @@ const cors = require('cors');
 const path = require('path')
 const PORT = 4000;
 const session = require('express-session');
-const routes = require('./Back_end/router')
+const routes = require('./router')
 const mongoose = require('mongoose');
 
-const seed = require('./Back_end/controllers/seed')
+const seed = require('./controllers/seed')
 
 mongoose.set('useNewUrlParser', true);
 require('dotenv').config();
@@ -75,15 +75,15 @@ app.use(session({
 
 
 
-let auth = require('./Back_end/routes/auth');
+let auth = require('./routes/auth');
 app.use('/login',auth);
 
-let register = require('./Back_end/routes/register');
+let register = require('./routes/register');
 app.use('/register',register);
 //
 
 // middleware to check whether logged in
-let verify = require('./Back_end/middlewares/verifyToken');
+let verify = require('./middlewares/verifyToken');
 app.use(verify.verify);
 app.post('/upload', function (request, response, next) {
     upload(request, response, function (error) {
@@ -98,28 +98,28 @@ app.post('/upload', function (request, response, next) {
     });
   });
 
-let user = require('./Back_end/routes/user');
+let user = require('./routes/user');
 app.use('/user',user);
 
 // app.use('/', routes);
 
-let subject = require('./Back_end/routes/subject');
+let subject = require('./routes/subject');
 app.use('/subject',subject);
 
-let article = require('./Back_end/routes/article');
+let article = require('./routes/article');
 app.use('/article',article);
 
-let section = require('./Back_end/routes/section');
+let section = require('./routes/section');
 app.use('/section', section);
 
 
-let tool = require('./Back_end/routes/tool');
+let tool = require('./routes/tool');
 app.use('/tool', tool);
 
-let search = require('./Back_end/routes/search');
+let search = require('./routes/search');
 app.use('/search', search);
 
-let comment = require('./Back_end/routes/comment');
+let comment = require('./routes/comment');
 app.use('/comment', comment)
 
 app.listen(PORT, function() {
