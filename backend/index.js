@@ -71,7 +71,7 @@ app.use('/login',login);
 app.use('/register',register);
 // app.use(verify.verify);
 app.use('/user',user);
-// app.use('/subject',subject);
+app.use('/subject',subject);
 // app.use('/article',article);
 // app.use('/section', section);
 // app.use('/tool', tool);
