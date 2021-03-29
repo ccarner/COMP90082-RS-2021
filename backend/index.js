@@ -44,6 +44,8 @@ mongoose.connect(db,{ useNewUrlParser: true,useUnifiedTopology: true, useCreateI
         .then(()=>console.log(`Connected to ${db}..`));
 
 
+require('./startup/root')();
+
 app.use(session({
     secret: 'chyingp',
     // store: new FileStore(),
@@ -72,11 +74,11 @@ app.use('/register',register);
 // app.use(verify.verify);
 app.use('/user',user);
 app.use('/subject',subject);
-// app.use('/article',article);
-// app.use('/section', section);
-// app.use('/tool', tool);
-// app.use('/search', search);
-// app.use('/comment', comment);
+app.use('/article',article);
+app.use('/section', section);
+app.use('/tool', tool);
+app.use('/search', search);
+app.use('/comment', comment);
 
 
 app.post('/upload', function (request, response, next) {
