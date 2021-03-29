@@ -8,8 +8,8 @@ const UserSchema = new mongoose.Schema({
     account: { type: String, unique: true, required: true},
     password: {type: String, required: true},
     student_number: { type: String,trim: true, index: true, unique: true, sparse: true},
-    is_moderator: { type: Boolean, default: false},
-    is_admin: {type: Boolean, default: false},
+    is_moderator: { type: Boolean, default: false, required: true},
+    is_admin: {type: Boolean, default: false, required : true},
     avatar: {type: String},
     subscribed_tools: [{type: Schema.Types.ObjectId, ref: 'Tool'}],
     subscribed_subjects: [{type: Schema.Types.ObjectId, ref: 'Subject'}],
@@ -21,7 +21,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({_id: user.id, _moderator: user.is_moderator, _admin: isAdmin}, config.get("jwtPrivateKey"));
+  const token = jwt.sign({_id: user.id, _moderator: user.is_moderator, _admin: user.is_admin}, config.get("jwtPrivateKey"));
 
   return token;
 };
