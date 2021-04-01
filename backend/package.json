@@ -43,5 +43,8 @@
   },
   "devDependencies": {
     "cookie-parser": "^1.4.5"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
