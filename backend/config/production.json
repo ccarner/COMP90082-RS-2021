@@ -1,5 +1,5 @@
 {
     "name" :"COMP90082 - RS", 
-    "db" : "mongodb+srv://admin:1@cluster0-b9h95.mongodb.net/test?retryWrites=true&w=majority",
+    "db" : "mongodb+srv://root:root@cluster0.uhlwx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     "jwtPrivateKey": "unsecureKey"
 }
