@@ -12,7 +12,7 @@ describe('/login', () => {
             const server = require('../../index');
             const res = await request(server)
                         .post('/login')
-                        .send({ account : "admin2", password : "admin2" }); 
+                        .send({ account : "abc", password : "abc" }); 
 
             expect(res.status).toBe(200);
             await User.remove({});
