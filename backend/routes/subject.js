@@ -8,7 +8,7 @@ const {Subject} = require('../models/subject');
 
 
 // moderator creates a subject
-router.post('/add', verify.verify, subjectController.addSubject)
+router.post('/add', auth, subjectController.addSubject)
 // moderator delete a subject
 router.delete('/delete', verify.verify, subjectController.deleteSubject)
 
