@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
 
 // this value should be secret and saved somewhere else
-const TOKEN_SECRET = 'THIS_IS_SECRET'
+// const TOKEN_SECRET = 'THIS_IS_SECRET'
+const config = require("config");
+const TOKEN_SECRET = config.get('jwtPrivateKey');
 
 
 exports.verify = function(req,res, next){

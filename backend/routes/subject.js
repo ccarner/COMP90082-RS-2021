@@ -55,7 +55,7 @@ router.get('/all', auth, async (req, res) => {
 router.get('/search', subjectController.searchSubject)
 
 // usear gets a subject
-router.get('/:subject_code', subjectController.getSubjectbyCode)
+router.get('/:subject_code', auth, subjectController.getSubjectbyCode)
 
 // user gets a subject
 router.get('/', subjectController.getSubjectById)
