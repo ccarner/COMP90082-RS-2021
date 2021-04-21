@@ -7,7 +7,7 @@ import { withRouter } from "react-router";
 import request from "../../utils/request"
 const accessToken = localStorage.getItem("accessToken")
 
-const baseURL = "http://127.0.0.1/"
+const baseURL = "http://api.cervidae.com.au:4000"
 
 class PendingArticle extends React.Component{
 	constructor() {
