@@ -8,11 +8,10 @@ const {Subject} = require('../models/subject');
 const {User} = require('../models/user');
 
 // moderator creates a subject
-if(process.env.NODE_ENV ==='development'){
+if(process.env.NODE_ENV !== 'production'){
     router.post('/add', auth, async (req, res) =>{
 
         try{
-            console.warn('you are using development mode code')
 
             if(!req.user._moderator)
                 return res.status(403).send('you are not the moderator');
