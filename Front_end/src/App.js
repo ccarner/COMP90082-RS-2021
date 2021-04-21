@@ -128,7 +128,7 @@ function App() {
         <Switch>
           <PublicRoute exact path="/" component={WelcomePage} />
           <PublicRoute path="/login" component={Login} />
-          <PublicRoute path="/register" component={Register} />
+            <PublicRoute path="/register" component={Register} />
           <PrivateRoute path="/home" component={HomePage} />
           {/** this is just a placeholder page, loading pages should be done programmatically not hardcoded* */}
           <Route path="/subject/:code">
