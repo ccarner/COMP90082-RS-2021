@@ -28,14 +28,15 @@ if(process.env.NODE_ENV !== 'production'){
                 created_by : [req.user._id]
             });
 
-            const subject_create_user = await User.findOne({_id: req.user._id});
-            if(!subject_create_user.moderated_subjects)
-                subject_create_user.moderated_subjects = []
-            subject_create_user.moderated_subjects.push(subject._id);
-            await subject.save();
-            await subject_create_user.save();
+            let subject_creator = await User.findOne({_id: req.user._id});
+            subject_creator.moderated_subjects = [];
 
-            return res.send(subject);
+            subject_creator.moderated_subjects.push(subject._id);
+
+            await subject_creator.save();
+            await subject.save();
+
+            return res.status(200).send(subject);
         }catch (e) {
             console.error(e.message);
             res.status(400).send('something wrong');
