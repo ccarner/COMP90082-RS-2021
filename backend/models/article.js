@@ -1,7 +1,7 @@
 var mongoose  = require('mongoose');
-var Schema    = mongoose.Schema;
-var User = require('./user')
-var Section = require('./section')
+const Schema    = mongoose.Schema;
+const {User} = require('./user')
+const {Section} = require('./section')
 
 var ArticleSchema = new Schema({
     title: { type: String, unique: true, required: true},
@@ -51,10 +51,9 @@ var PendingArticleSchema = new Schema({
     //reject_reason: { type: String},
 });
 
-const Article = new mongoose.model('Article', ArticleSchema);
 const PendingArticle = new mongoose.model('PendingArticle', PendingArticleSchema);
 
 
-exports.Article = Article;
+exports.Article = new mongoose.model('Article', ArticleSchema);
 exports.PendingArticle = PendingArticle;
 
