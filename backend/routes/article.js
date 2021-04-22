@@ -25,7 +25,7 @@ if(process.env.NODE_ENV === "development"){
             is_pending : false
         });
         await article.save();
-        res.status(200).send(article);
+        res.status(200).send({ success: true, article_id: article._id, auth_token: req.header('auth-token')});
 
     });
 }else{
