@@ -29,7 +29,8 @@ if(process.env.NODE_ENV !== 'production'){
             });
 
             let subject_creator = await User.findOne({_id: req.user._id});
-            subject_creator.moderated_subjects = [];
+            if(!subject_creator.moderated_subjects)
+                subject_creator.moderated_subjects = [];
 
             subject_creator.moderated_subjects.push(subject._id);
 

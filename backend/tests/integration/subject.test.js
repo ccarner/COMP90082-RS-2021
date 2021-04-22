@@ -39,6 +39,41 @@ describe('/subject', () => {
             await server.close(); 
         });
 
+        it('should have 2 subjects after adding a new subject if there existed a subject', async() =>{
+            let moderator = new User({
+                account: 'moderator',
+                password: generator.generate(),
+                is_moderator: true
+            });
+
+            const token = moderator.generateAuthToken();
+            await moderator.save();
+            await request(server)
+                .post('/subject/add')
+                .set('auth-token', token)
+                .send({
+                    name : "SPM",
+                    subject_code : "swen90016",
+                    description : "fundamental course"
+                });
+
+            const res = await request(server)
+                .post('/subject/add')
+                .set('auth-token', token)
+                .send({
+                    name : "Distributed System",
+                    subject_code : "comp90015",
+                    description : "fundamental course"
+                });
+
+            moderator = await User.findOne({account: 'moderator'});
+
+            expect(res.status).toBe(200);
+            expect(moderator).toHaveProperty('moderated_subjects');
+            expect(moderator.moderated_subjects.length).toBe(2);
+
+        });
+
         it('should return 400 if the subject has been existed', async () => {
             let moderator = new User({
                 account: 'moderator',
