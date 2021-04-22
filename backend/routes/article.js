@@ -8,11 +8,11 @@ const auth = require('../middlewares/auth');
 const verify = require('../middlewares/verifyToken');
 
 
-if(process.env.NODE_ENV === "development"){
+if(process.env.NODE_ENV !== "production"){
     router.post('/publish',auth, async (req,res)=>{
         console.log('the user id is in publish the article',req.user._id);
         // First create pending article
-        let data = req.body;
+
         req.body.editor_id = req.user._id; // editor_id for pending article
         req.body.is_pending= false;
 
@@ -48,8 +48,21 @@ router.get('/create',auth, ArticleController.CreateAnArticle);
 /**
  *  description: get a article
  */
-router.get('/get/:id', auth,ArticleController.getTheArticle);
 
+if(process.env.NODE_ENV !== "production"){
+    router.get('/get/:id', auth, async (req, res)=>{
+
+        let article = await Article.findById(req.params.id)
+                            .populate({ path: 'comment_section', populate: { path: 'comments', populate: { path: 'leaf_comments'}}}).exec();
+
+        article.like_number = article.likes.length
+        article.is_like = article.likes.includes(req.user._id);
+
+        return res.status(200).send(article);
+    });
+}else{
+    router.get('/get/:id', verify.verify,ArticleController.getTheArticle);
+}
 /**
  *  description: delete a article
  */
