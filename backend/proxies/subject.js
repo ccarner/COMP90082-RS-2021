@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
  * @param {Function} callback     the callback function
  */
 exports.newAndSave = function (name, subject_code, description = undefined, creator_id, callback) {
-    var subject            = new Subject();
+    let subject            = new Subject();
     subject.name           = name;
     subject.subject_code   = subject_code.toUpperCase();
     subject.description    = description;

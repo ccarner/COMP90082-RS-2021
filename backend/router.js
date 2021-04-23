@@ -1,8 +1,8 @@
-var express = require('express');
+let express = require('express');
 
-var test = require('./controllers/test');
+let test = require('./controllers/test');
 
-var router = express.Router();
+let router = express.Router();
 
 // test adding an user 
 router.post('/user/add', test.addUser);

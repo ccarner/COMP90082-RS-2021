@@ -9,7 +9,7 @@ module.exports = function(req, res, next) {
 
     try{
         const verified = jwt.verify(token, TOKEN_SECRET)
-        var mtoken = jwt.decode(token);
+        let mtoken = jwt.decode(token);
         req.user = verified;
         next();
     }catch(e){

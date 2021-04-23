@@ -1,8 +1,8 @@
-var mongoose  = require('mongoose')
-var Schema    = mongoose.Schema
-var Section = require('./section')
+let mongoose  = require('mongoose')
+let Schema    = mongoose.Schema
+let Section = require('./section')
 
-var SubjectSchema = new Schema({
+let SubjectSchema = new Schema({
     name: { type: String, unique: true, required: true},
     subject_code: { type: String, unique: true, required: true},
     description:{type:String},

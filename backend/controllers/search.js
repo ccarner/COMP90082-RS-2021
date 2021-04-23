@@ -23,7 +23,7 @@ exports.query = (req,res,callback) =>{
             return res.json({success:false, error_info:'No articles2', auth_token: req.header('auth-token')});
         }
 
-        var levenshtein = require('fast-levenshtein');
+        let levenshtein = require('fast-levenshtein');
         
         for (const article of articles) {
             let terms = []
@@ -52,7 +52,7 @@ exports.query = (req,res,callback) =>{
 
                 for (const term of terms) {
                     
-                    var distance = levenshtein.get(word.toLowerCase(), term);
+                    let distance = levenshtein.get(word.toLowerCase(), term);
                     if (distance < 3) {
                         let returnValuesForSearch = {};
                         returnValuesForSearch._id = article._id;

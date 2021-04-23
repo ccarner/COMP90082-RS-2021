@@ -1,9 +1,9 @@
-var mongoose  = require('mongoose');
-var Schema    = mongoose.Schema;
-var Section = require('./section')
-var User = require('./user')
+let mongoose  = require('mongoose');
+let Schema    = mongoose.Schema;
+let Section = require('./section')
+let User = require('./user')
 
-var CommentSchema = new Schema({
+let CommentSchema = new Schema({
     author_id : {type: Schema.Types.ObjectId, required: true}, // the _id of the author of this comment
     author_name: {type: String},
     user_avatat: {type: String},

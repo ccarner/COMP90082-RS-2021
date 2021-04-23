@@ -18,7 +18,7 @@ const fs = require('fs');
 exports.upload= function(req, res){
   const spacesEndpoint = new aws.Endpoint('https://nyc3.digitaloceanspaces.com');
   const authtoken = req.header('auth-token');
-  var mtoken = jwt.decode(authtoken);
+  let mtoken = jwt.decode(authtoken);
   
     aws.config.setPromisesDependency();
     aws.config.update({
@@ -30,7 +30,7 @@ exports.upload= function(req, res){
     const s3 = new aws.S3({
       endpoint: spacesEndpoint
     });
-    var params = {
+    let params = {
       ACL: 'public-read',
       Bucket: "soft-repo-team",
       Body: fs.createReadStream(req.file.path),
@@ -146,11 +146,11 @@ exports.studentRegister = function(req, res) {
         res.json({ success: false, error_info: 'empty username or password or student id'});
     }
     else{
-        var name = req.body.name;
-        var account = req.body.username;
-        var password = req.body.password;
-        var student_number = req.body.studentId;
-        var is_moderator = false;
+        let name = req.body.name;
+        let account = req.body.username;
+        let password = req.body.password;
+        let student_number = req.body.studentId;
+        let is_moderator = false;
 
 
         User.newAndSave2(name, account, student_number, password, is_moderator, function (err, user) {

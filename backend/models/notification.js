@@ -1,7 +1,7 @@
-var mongoose  = require('mongoose');
-var Schema    = mongoose.Schema;
+let mongoose  = require('mongoose');
+let Schema    = mongoose.Schema;
 
-var NotificationSchema = new Schema({
+let NotificationSchema = new Schema({
     article: {type: Schema.Types.ObjectId}, 
     user: {type: Schema.Types.ObjectId},
     content: {type: Schema.Types.ObjectId},

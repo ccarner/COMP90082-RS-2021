@@ -1,8 +1,8 @@
-var mongoose  = require('mongoose')
-var Schema    = mongoose.Schema
-var Section = require('./section')
+let mongoose  = require('mongoose')
+let Schema    = mongoose.Schema
+let Section = require('./section')
 
-var ToolSchema = new Schema({
+let ToolSchema = new Schema({
     name: { type: String, unique: true, required: true},
     articles: [Schema.Types.ObjectId],
     description:{type: String},

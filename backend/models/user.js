@@ -1,5 +1,5 @@
 const mongoose  = require('mongoose');
-var Schema    = mongoose.Schema;
+let Schema    = mongoose.Schema;
 const config = require('config');
 const jwt = require("jsonwebtoken");
 
