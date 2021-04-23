@@ -1,9 +1,9 @@
-var mongoose  = require('mongoose');
+let mongoose  = require('mongoose');
 const Schema    = mongoose.Schema;
 const {User} = require('./user')
 const {Section} = require('./section')
 
-var ArticleSchema = new Schema({
+let ArticleSchema = new Schema({
     title: { type: String, unique: true, required: true},
     author_id: {type: Schema.Types.ObjectId},
     content: { type: String},
@@ -34,7 +34,7 @@ ArticleSchema.pre('save', async function(next){
     next()
 })
 
-var PendingArticleSchema = new Schema({
+let PendingArticleSchema = new Schema({
     title: { type: String, required: true},
     editor_id: { type: Schema.Types.ObjectId },
     content: { type: String},
