@@ -1,6 +1,7 @@
 const request = require('supertest');
 const { User } = require('../../models/user');
 const mongoose = require('mongoose');
+const generator = require('generate-password');
 
 
 describe('/register', () => {
@@ -15,7 +16,7 @@ describe('/register', () => {
                         .send({ 
                             name : "Michael Jackson",
                             username : "MJackson",
-                            password :"abc123",
+                            password :generator.generate(),
                             studentId : "1123456"
                         }); 
 

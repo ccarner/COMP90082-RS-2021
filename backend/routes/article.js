@@ -1,14 +1,40 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const {Article} = require('../models/article')
 
 const ArticleController = require('../controllers/article');
 const verify = require('../middlewares/verifyToken');
+const auth = require('../middlewares/auth');
 
+if(process.env.NODE_ENV === "development"){
+    router.post('/publish',auth, async (req,res)=>{
+        console.log('the user id is in publish the article',req.user._id);
+        // First create pending article
+        let data = req.body;
+        req.body.editor_id = req.user._id; // editor_id for pending article
+        req.body.is_pending= false;
 
-/**
- *  description: publish an article
- */
-router.post('/publish',verify.verify,ArticleController.publishTheArticle);
+        const article = new Article({
+            title     : req.body.title,
+            author_id : mongoose.Types.ObjectId(req.body.author_id),
+            tags      : req.body.tags,
+            content   : req.body.content,
+            subjects  : req.body.subjects,
+            tools     : req.body.tools,
+            is_pending : false
+        });
+        await article.save();
+        res.status(200).send({ success: true, article_id: article._id, auth_token: req.header('auth-token')});
+
+    });
+}else{
+    /**
+     *  description: publish an article
+     */
+    router.post('/publish',verify.verify, ArticleController.publishTheArticle);
+}
+
 
 
 
