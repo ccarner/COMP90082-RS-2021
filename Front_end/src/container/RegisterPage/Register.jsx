@@ -119,6 +119,12 @@ export default class Register extends Component {
                             onClick={() => this.regist()}>
                             Confirm
                         </Button>{" "}
+
+                        <Button
+                            id="btnBack"
+                            onClick={() => this.routeChange("login")}>
+                            Back
+                        </Button>
                     </Form>
                 </div>
             </div>
