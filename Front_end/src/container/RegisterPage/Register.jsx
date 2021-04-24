@@ -60,12 +60,11 @@ export default class Register extends Component {
                 <div className="nav">
                     < img src={UnimelbLogo} alt="UnimelbLogo"/>
                     <div>
-                        <a className="root">
-                            <span className="glyphicon glyphicon-home" />
-                            The University of Melbourne
+                        <a href="login" className="root" >
+                            Login
                         </a >
                         <span> / </span>
-                        <a className="root" title="Register">
+                        <a href="register" className="root" title="Register">
                             Register
                         </a >
                     </div>
