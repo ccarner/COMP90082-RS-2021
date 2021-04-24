@@ -58,7 +58,7 @@ export default class Register extends Component {
         return (
             <div>
                 <div className="nav">
-                    < img src={UnimelbLogo} />
+                    < img src={UnimelbLogo} alt="UnimelbLogo"/>
                     <div>
                         <a className="root">
                             <span className="glyphicon glyphicon-home" />
