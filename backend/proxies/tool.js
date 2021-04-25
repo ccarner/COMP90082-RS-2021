@@ -65,7 +65,13 @@ exports.getAllTools = async (callback) => {
  * @param {function} callback  the call back function
  */
 exports.deleteTool = async (tool_id, callback) => {
-    await Tool.find(tool_id).remove(callback)
+    Tool.deleteOne({_id: tool_id}, function(err, result){
+        if(err || !result.deletedCount ) {
+            callback(err, result)
+        } else {
+            callback(undefined, "Successfully delete the tool")
+        }
+    })
 }
 /**
  * updates a tool by its ID
