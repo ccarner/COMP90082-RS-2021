@@ -1,7 +1,7 @@
 var mongoose  = require('mongoose');
 var Schema    = mongoose.Schema;
-var User = require('./user')
-var Section = require('./section')
+var {User} = require('./user')
+var {Section} = require('./section')
 
 var ArticleSchema = new Schema({
     title: { type: String, unique: true, required: true},
