@@ -1,6 +1,6 @@
 var mongoose  = require('mongoose')
 var Schema    = mongoose.Schema
-var Section = require('./section')
+var {Section} = require('./section')
 
 var SubjectSchema = new Schema({
     name: { type: String, unique: true, required: true},
