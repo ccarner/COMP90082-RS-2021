@@ -35,7 +35,7 @@ router.post('/add', auth, async (req, res) =>{
 
 
 // moderator delete a subject
-router.delete('/delete', verify.verify, subjectController.deleteSubject)
+router.delete('/delete', auth, subjectController.deleteSubject)
 
 // user get all subjects
 router.get('/all', auth, async (req, res) => {
@@ -55,12 +55,12 @@ router.get('/all', auth, async (req, res) => {
 router.get('/search', subjectController.searchSubject)
 
 // usear gets a subject
-router.get('/:subject_code', subjectController.getSubjectbyCode)
+router.get('/:subject_code', auth,subjectController.getSubjectbyCode)
 
 // user gets a subject
 router.get('/', subjectController.getSubjectById)
 
 // moderator updates a subject
-router.patch('/patch', verify.verify, subjectController.updateSubject)
+router.patch('/patch', auth, subjectController.updateSubject)
 
 module.exports = router;
