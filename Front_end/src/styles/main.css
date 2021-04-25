@@ -160,3 +160,8 @@ div.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
 .article-editor-content-section {
   margin-top: 2rem;
 }
+
+#btnCancel{
+  float: right;
+  background-color: #118914;
+}

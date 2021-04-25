@@ -151,8 +151,12 @@ class App extends React.Component {
 								<Button className="edit-button" disabled={this.state.hasPending} variant="info" onClick={this.saveFunc.bind(this)}>
 									{this.state.buttonText}
 								</Button>
+								
+								<Button id="btnCancel" className="edit-button" onClick={this.props.history.goBack}>
+									Cancel
+								</Button>
 							</Col>
-						</Form.Row>
+						</Form.Row>	
 					</Form>
 				</h1>
 				<hr></hr>
