@@ -2,57 +2,58 @@ const express = require('express');
 const router = express.Router();
 
 const ArticleController = require('../controllers/article');
+const auth = require('../middlewares/auth');
 const verify = require('../middlewares/verifyToken');
 
 
 /**
  *  description: publish an article
  */
-router.post('/publish',verify.verify,ArticleController.publishTheArticle);
+router.post('/publish',auth,ArticleController.publishTheArticle);
 
 
 
 /**
  *  description: create a new article
  */
-router.get('/create',verify.verify, ArticleController.CreateAnArticle);
+router.get('/create',auth, ArticleController.CreateAnArticle);
 
 
 /**
  *  description: get a article
  */
-router.get('/get/:id', verify.verify,ArticleController.getTheArticle);
+router.get('/get/:id', auth,ArticleController.getTheArticle);
 
 /**
  *  description: delete a article
  */
-router.get('/delete/:id', verify.verify,ArticleController.deleteTheArticle);
+router.get('/delete/:id', auth,ArticleController.deleteTheArticle);
 
 /**
  *  description: edit a article
  */
-router.get('/edit/:id', verify.verify,ArticleController.editTheArticle);
+router.get('/edit/:id', auth,ArticleController.editTheArticle);
 
 /**
  *  description: edit a pending
  */
-router.get('/editPendingArticle/:id', verify.verify,ArticleController.editThePendingArticle);
+router.get('/editPendingArticle/:id', auth,ArticleController.editThePendingArticle);
 
 /**
  *  description:get all name of article
  */
-router.get('/getNamesOfArticles/:subject_code_Or_Tool_name', verify.verify, ArticleController.getAllNamesOfTheArticles);
+router.get('/getNamesOfArticles/:subject_code_Or_Tool_name', auth, ArticleController.getAllNamesOfTheArticles);
 
-router.get('/pendingArticle/reject/:pending_id', verify.verify, ArticleController.rejectPendingArticle);
+router.get('/pendingArticle/reject/:pending_id', auth, ArticleController.rejectPendingArticle);
 
-router.get('/pendingArticle/approve/:pending_id', verify.verify, ArticleController.approvePendingArticle);
+router.get('/pendingArticle/approve/:pending_id', auth, ArticleController.approvePendingArticle);
 
-router.get('/getPendingArticle/:id', verify.verify,ArticleController.getThePendingArticle);
+router.get('/getPendingArticle/:id', auth,ArticleController.getThePendingArticle);
 
-router.get('/getNamesOfPendingArticles/:subject_code_Or_Tool_name', verify.verify, ArticleController.getNamesOfPendingArticles);
+router.get('/getNamesOfPendingArticles/:subject_code_Or_Tool_name', auth, ArticleController.getNamesOfPendingArticles);
 
-router.get('/getAllPendingArticlesByUserId', verify.verify, ArticleController.getPendingArticlesByUserId);
+router.get('/getAllPendingArticlesByUserId', auth, ArticleController.getPendingArticlesByUserId);
 
-router.get('/getAllPublishedArticlesByUserId', verify.verify, ArticleController.getPublishedArticlesByUserId);
+router.get('/getAllPublishedArticlesByUserId', auth, ArticleController.getPublishedArticlesByUserId);
 
 module.exports = router;
