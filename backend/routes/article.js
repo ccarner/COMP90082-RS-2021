@@ -6,7 +6,7 @@ const {Article} = require('../models/article')
 const ArticleController = require('../controllers/article');
 const auth = require('../middlewares/auth');
 const verify = require('../middlewares/verifyToken');
-const auth = require('../middlewares/auth');
+
 
 if(process.env.NODE_ENV === "development"){
     router.post('/publish',auth, async (req,res)=>{
