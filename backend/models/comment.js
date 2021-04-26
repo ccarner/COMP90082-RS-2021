@@ -1,7 +1,7 @@
-let mongoose  = require('mongoose');
-let Schema    = mongoose.Schema;
-let Section = require('./section')
-let User = require('./user')
+var mongoose  = require('mongoose');
+var Schema    = mongoose.Schema;
+var {Section} = require('./section')
+var {User} = require('./user')
 
 let CommentSchema = new Schema({
     author_id : {type: Schema.Types.ObjectId, required: true}, // the _id of the author of this comment
@@ -24,8 +24,8 @@ CommentSchema.pre('save', async function(next){
   this.update_at = Date.now()
   try{
     const current_user = await User.findById(this.author_id)
-    this.author_name = current_user.name || 'testName'
-    this.user_avatat = current_user.avatar || 'testAvatar'
+    this.author_name = 'testName'
+    this.user_avatat = 'testAvatar'
     
   } catch(err){
     console.log(err)
