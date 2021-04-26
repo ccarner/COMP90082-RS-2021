@@ -33,7 +33,7 @@ if(process.env.NODE_ENV === "development"){
     /**
      *  description: publish an article
      */
-    router.post('/publish',verify.verify, ArticleController.publishTheArticle);
+    router.post('/publish',auth, ArticleController.publishTheArticle);
 }
 
 
