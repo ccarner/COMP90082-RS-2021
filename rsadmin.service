@@ -2,7 +2,7 @@
 Description=RS Server Admin API
 
 [Service]
-ExecStart=python manage.py runserver 0:8000
+ExecStart=python3 manage.py runserver 0:8000
 Restart=always
 User=nobody
 Group=nogroup
