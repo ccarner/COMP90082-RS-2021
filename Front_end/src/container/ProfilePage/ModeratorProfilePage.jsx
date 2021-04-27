@@ -1,10 +1,12 @@
 import React from 'react';
 import '../../styles/main.css';
-import {Col, Row, Container} from 'react-bootstrap';
+import {Col, Row, Container, Button} from 'react-bootstrap';
 import request from "../../utils/request"
 
 import ProfilePendingArticleComponent from './ProfilePendingArticleComponent.jsx'
-import {withRouter} from "react-router";
+import {withRouter} from "react-router"
+import profile_pic from '/Users/tianmi/Documents/GitHub/COMP90082-RS-2021/Front_end/src/container/ProfilePage/images/profile_pic.png'
+import AuthService from "../../utils/AuthService";
 
 const accessToken = localStorage.getItem("accessToken")
 //using this to test getting html files
@@ -51,6 +53,50 @@ class App extends React.Component {
 		console.log("clicked on a published article (as a moderator)")
 		this.props.history.push(`/article/${article.id}`)
 	}
+
+	editPreferredNameButton(){
+		if(AuthService.userIsModerator()){
+			return (
+				<Button
+					className="edit_new_preferred_name_button"
+					variant="btn btn-outline-primary"
+					onClick={""}
+				>
+					Edit Name
+				</Button>
+			)
+		}
+	}
+	
+		
+
+		editBioButton(){
+			if(AuthService.userIsModerator()){
+				return (
+					<Button
+						className="edit-io-button"
+						variant="btn btn-outline-primary"
+						onClick={""}
+					>
+						Edit Bio
+					</Button>
+				)
+			}
+		}
+
+		changeProfilepicButton(){
+			if(AuthService.userIsModerator()){
+				return (
+					<Button
+						className="change-profile-pic-button"
+						variant="btn btn-outline-primary"
+						onClick={""}
+					>
+						Change profile pic
+					</Button>
+				)
+			}
+		}
 	
 	render () {
 		//only attempt render the articles if they exist
@@ -61,6 +107,40 @@ class App extends React.Component {
 		    		<Col>
 						<hr></hr>
 						<h1>Welcome to the moderator profile page</h1>
+						<hr></hr>
+						<Row>
+							<img src = {profile_pic} alt=""/>
+						</Row>
+						<Row>
+							<Col sm={3}>
+								{this.changeProfilepicButton()}
+							</Col>
+						</Row>
+						<p></p>
+						<Row>
+							<Col>
+							<h5>Username: </h5>
+							</Col>
+						</Row>
+						<p></p>
+						<Row>
+							<Col sm={4}>
+								<h5>Preferred name: </h5>
+							</Col>							
+							<Col sm={5}>
+								{this.editPreferredNameButton()}
+							</Col>
+						</Row>
+						<p></p>
+						<Row>
+							<Col sm={4}>
+								<h5>Bio: </h5>
+							</Col>
+							<Col sm={5}>
+								{this.editBioButton()}
+							</Col>
+						</Row>
+						<hr></hr>
 				    	<h1>List of your published articles</h1>
 				    	<hr></hr>
 					</Col>
@@ -85,6 +165,39 @@ class App extends React.Component {
 		    <div className="container">
 				<hr></hr>
 				<h1>Welcome to the moderator profile page</h1>
+				<hr></hr>
+				<Row>
+					<img src = {profile_pic} alt=""/>
+				</Row>
+				<Row>
+					<Col sm={3}>
+						{this.changeProfilepicButton()}
+					</Col>
+				</Row>
+				<p></p>
+				<Row>
+					<Col>
+					<h5>Username: </h5>
+					</Col>
+				</Row>
+				<p></p>
+				<Row>
+					<Col sm={4}>
+						<h5>Preferred name: </h5>
+					</Col>							
+					<Col sm={5}>
+						{this.editPreferredNameButton()}
+					</Col>
+				</Row>
+				<p></p>
+				<Row>
+					<Col sm={4}>
+						<h5>Bio: </h5>
+					</Col>
+					<Col sm={5}>
+						{this.editBioButton()}
+					</Col>
+				</Row>
 				<hr></hr>
 				<p>You don't currently have any published articles, you can help contribute by adding articles in a subject or tool page!</p>
 			</div>
