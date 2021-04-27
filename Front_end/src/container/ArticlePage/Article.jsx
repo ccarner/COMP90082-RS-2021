@@ -14,6 +14,7 @@ import { withRouter } from "react-router"
 import { Link } from "react-router-dom"
 import Comment from "../Comment/Comment"
 import Editor from "./EditorComponent.jsx"
+import Bookmark from './Bookmark.jsx'
 
 const baseURL = "http://api.cervidae.com.au:4000"
 
@@ -116,7 +117,7 @@ class App extends React.Component {
               <Col sm={9}>
                 <h1>{this.state.title}</h1>
               </Col>
-              <Col sm={3}>
+              <Col sm={3}>                
                 <Link
                   disabled={this.state.hasPending}
                   to={{ pathname: `/editpage/${this.state.id}` }}
@@ -132,6 +133,10 @@ class App extends React.Component {
               </Col>
             </Row>
             {this.renderEditor()}
+
+            {/* add the bookmark button; see Bookmark.jsx for detail */}
+            <Bookmark/>  
+            
           </Container>
         </div>
         <div className="App article-editor-content-section">
