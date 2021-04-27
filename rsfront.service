@@ -1,0 +1,14 @@
+[Unit]
+Description=RS Repo Frontend
+
+[Service]
+ExecStart=npm start
+Restart=always
+User=nobody
+Group=nogroup
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/var/node/Front_end
+
+[Install]
+WantedBy=multi-user.target
