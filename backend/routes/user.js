@@ -15,7 +15,7 @@ router.get('/home',auth, UserController.getUserHomePage)
 // list all users
 router.get('/allUsers', UserController.getAllUsers)
 
-router.get('/images', UserController.getAllImages);
+router.get('/images',auth, UserController.getAllImages);
 
 // test adding a user 
 router.post('/add',auth, UserController.addUser);

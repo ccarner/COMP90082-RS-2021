@@ -75,7 +75,7 @@ exports.updateComment = (req, res) => {
         if(err){
             res.json({ success: false, error: 'failed to find the comment' })
         } else {
-            const compareResult = String(req.user.id).localeCompare(String(result._id))
+            const compareResult = String(req.user._id).localeCompare(String(result.author_id))
             if(!compareResult){
                 Comment.updateComment(req.body, (err, result) => {
                     if(err){

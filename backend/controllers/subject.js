@@ -79,10 +79,8 @@ exports.getAllSubjects = (req, res) => {
 
 exports.getSubjectbyCode = (req,res) => {
     let subject_code = req.params.subject_code || req.body.subject_code
-    
     Subject.getSubjectbyCode(subject_code, (err, result) => {
         if(err){
-            console.log(err)
             res.json({ success: false, error: 'failed to find the subject' })
         } else{
             let is_subscribed = false
@@ -90,14 +88,18 @@ exports.getSubjectbyCode = (req,res) => {
                 if(err){
                     res.json({ success: false, error: 'failed to get the subject' })
                 }
-                console.log("result: "+ userResult)
-                console.log("result subject id: "+ result._id)
+                if(userResult===null){
+                    res.json({ success: false, error: 'failed to get the user' })
+                }
+                else{
                 if(userResult.subscribed_subjects.includes(result._id)){
                     is_subscribed = true
                     res.json({success: true, subject: result, is_subscribed: is_subscribed})
                 }
                 else{
                     res.json({success: true, subject: result, is_subscribed: is_subscribed})
+                }
+
                 }
             })
         }

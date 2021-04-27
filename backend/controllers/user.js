@@ -114,7 +114,7 @@ exports.getAllUsers = function (req, res) {
 }
 
 exports.subscribe_subject = function(req, res) {
-  let subjectid = req.body.subjbect_id
+  let subjectid = req.body.subject_id
   User.updateSubscribedSubject(subjectid, req.user._id, (error, result) => {
     if(error){
       res.json({ success: false, error: 'failed to subscribe the subject' + error })
