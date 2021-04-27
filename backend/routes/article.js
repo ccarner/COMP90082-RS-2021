@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const {Article} = require('../models/article')
+const {Article, PendingArticle} = require('../models/article')
 
 const ArticleController = require('../controllers/article');
 const auth = require('../middlewares/auth');
@@ -9,6 +9,7 @@ const verify = require('../middlewares/verifyToken');
 
 
 if(process.env.NODE_ENV !== "production"){
+    console.warn("you are using development mode code")
     router.post('/publish',auth, async (req,res)=>{
         console.log('the user id is in publish the article',req.user._id);
         // First create pending article
@@ -16,17 +17,44 @@ if(process.env.NODE_ENV !== "production"){
         req.body.editor_id = req.user._id; // editor_id for pending article
         req.body.is_pending= false;
 
-        const article = new Article({
-            title     : req.body.title,
-            author_id : mongoose.Types.ObjectId(req.body.author_id),
-            tags      : req.body.tags,
-            content   : req.body.content,
-            subjects  : req.body.subjects,
-            tools     : req.body.tools,
-            is_pending : false
-        });
-        await article.save();
-        res.status(200).send({ success: true, article_id: article._id, auth_token: req.header('auth-token')});
+        if(req.user._moderator){
+
+            if(req.body.article_id){
+                try{
+                    await Article.findByIdAndUpdate(req.body.article_id, req.body);
+                    console.log('new article submitted');
+
+                    await PendingArticle.deleteOne({published_article: req.body.article_id});
+
+                    return res.status(200).json({ success: true, article_id: req.body.article_id, auth_token: req.header('auth-token')});
+                }catch (err){
+                    return res.status(400).json({ success: false, error_info: err, auth_token: req.header('auth-token')});
+                }
+            }else{
+
+                try{
+                    const article = new Article({
+                        title     : req.body.title,
+                        author_id : mongoose.Types.ObjectId(req.body.author_id),
+                        tags      : req.body.tags,
+                        content   : req.body.content,
+                        subjects  : req.body.subjects,
+                        tools     : req.body.tools,
+                        is_pending : false
+                    });
+                    await article.save();
+
+                    return res.status(200).json({ success: true, article_id: article._id, auth_token: req.header('auth-token')});
+                }catch (err) {
+                    return res.status(400).json({ success: false, error_info: err, auth_token: req.header('auth-token')});
+                }
+
+
+            }
+        }else{
+
+        }
+
 
     });
 }else{
@@ -58,7 +86,7 @@ if(process.env.NODE_ENV !== "production"){
         article.like_number = article.likes.length
         article.is_like = article.likes.includes(req.user._id);
 
-        return res.status(200).send(article);
+        return res.status(200).send({success:true, returnValuesForArticle: article, auth_token: req.header('auth-token')});
     });
 }else{
     router.get('/get/:id', verify.verify,ArticleController.getTheArticle);
