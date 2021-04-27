@@ -106,7 +106,7 @@ class App extends React.Component {
   updateContent(value) {
     this.setState({ content: value })
   }
-
+  
   render() {
     return (
       <>
@@ -129,6 +129,17 @@ class App extends React.Component {
                     disabled={this.state.hasPending}
                   >
                     {this.state.buttonText}
+                  </Button>
+                </Link>
+
+                {/* currently not find a good way to back to the subject page, 
+                therefore back to the home page instead */}
+                <Link to="/home/"> 
+                  <Button
+                    className="edit-button"
+                    variant="success"
+                  >
+                    Back
                   </Button>
                 </Link>
               </Col>
