@@ -42,20 +42,46 @@ if(process.env.NODE_ENV !== "production"){
                         tools     : req.body.tools,
                         is_pending : false
                     });
+
                     await article.save();
 
                     return res.status(200).json({ success: true, article_id: article._id, auth_token: req.header('auth-token')});
                 }catch (err) {
                     return res.status(400).json({ success: false, error_info: err, auth_token: req.header('auth-token')});
                 }
-
-
             }
         }else{
+            if(req.body.article_id){
+                try{
+                    await Article.findByIdAndUpdate(req.body.article_id, { is_pending : true });
 
+                    return res.status(200).json({ success: false, auth_token: req.header('auth-token')});
+                }
+                catch (error) {
+                    return res.status(400).json({ success: false, error_info: error, auth_token: req.header('auth-token')});
+                }
+            }else{
+
+                try{
+                    const newPendingArticle = new PendingArticle({
+                        title     : req.body.title,
+                        author_id : mongoose.Types.ObjectId(req.body.author_id),
+                        tags      : req.body.tags,
+                        content   : req.body.content,
+                        subjects  : req.body.subjects,
+                        tools     : req.body.tools,
+                        article_id : req.body.article_id ? mongoose.Types.ObjectId(req.body.article_id): null
+                    });
+
+                    await newPendingArticle.save();
+
+                    return res.status(200).json({ success: true, article_id: newPendingArticle._id, auth_token: req.header('auth-token')});
+                }
+                catch (err) {
+                    return res.status(400).json({ success: false, error_info: err, auth_token: req.header('auth-token')});
+                }
+            }
         }
-
-
     });
 }else{
     /**
