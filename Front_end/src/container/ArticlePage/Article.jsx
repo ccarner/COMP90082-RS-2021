@@ -15,6 +15,7 @@ import { Link } from "react-router-dom"
 import Comment from "../Comment/Comment"
 import Editor from "./EditorComponent.jsx"
 import Bookmark from './Bookmark.jsx'
+import LikeButton from './LikeButton.jsx'
 
 const baseURL = "http://api.cervidae.com.au:4000"
 
@@ -135,8 +136,10 @@ class App extends React.Component {
             {this.renderEditor()}
 
             {/* add the bookmark button; see Bookmark.jsx for detail */}
-            <Bookmark/>  
-            
+            <Bookmark/> 
+            {/* add the like button; see LikeButton.jsx for detail */}
+            <LikeButton/> 
+
           </Container>
         </div>
         <div className="App article-editor-content-section">
