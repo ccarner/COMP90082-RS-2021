@@ -25,7 +25,7 @@ exports.deleteComment = (req, res) => {
                 return res.json({ success: false, error: 'failed to find the comment' })
             }
             const compareResult = String(req.user._id).localeCompare(String(result.author_id))
-            if(compareResult || req.user.is_moderator){
+            if(compareResult===0 || req.user.is_moderator){
                 Comment.deleteComment(req.body._id, (err, result) => {
                     if(err){
                         res.json({ success: false, error: 'failed to delete the comment' })
