@@ -14,7 +14,7 @@ sudo ufw allow 4000
 sudo ufw allow 3000
 
 echo "A. Cloning from Github Source."
-git clone git@github.com:ccarner/COMP90082-RS-2021.git
+git clone https://github.com/ccarner/COMP90082-RS-2021.git
 
 
 echo "B. Installing dependencies."
