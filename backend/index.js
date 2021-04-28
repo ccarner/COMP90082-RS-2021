@@ -40,7 +40,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true})) ;
 
 const db = config.get('db');
-mongoose.connect(db,{ useNewUrlParser: true,useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(db,{ useNewUrlParser: true,useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
         .then(()=>console.log(`Connected to ${db}..`));
 
 

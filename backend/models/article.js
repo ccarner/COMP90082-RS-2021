@@ -51,9 +51,7 @@ let PendingArticleSchema = new Schema({
     //reject_reason: { type: String},
 });
 
-const PendingArticle = new mongoose.model('PendingArticle', PendingArticleSchema);
-
 
 exports.Article = new mongoose.model('Article', ArticleSchema);
-exports.PendingArticle = PendingArticle;
+exports.PendingArticle = new mongoose.model('PendingArticle', PendingArticleSchema);
 
