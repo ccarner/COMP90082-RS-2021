@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-sudo rm -rf /var/node
-sudo mkdir /var/node
-sudo cd /var/node || return
+rm -rf /var/node
+mkdir /var/node
+cd /var/node || return
 
 echo "Configuring firewall."
 sudo iptables -I INPUT -p tcp --dport 8000 -j ACCEPT
