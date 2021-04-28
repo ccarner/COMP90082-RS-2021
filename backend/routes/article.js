@@ -65,7 +65,7 @@ if(process.env.NODE_ENV !== "production"){
                 try{
                     const newPendingArticle = new PendingArticle({
                         title     : req.body.title,
-                        author_id : mongoose.Types.ObjectId(req.body.author_id),
+                        editor_id : req.body.editor_id,
                         tags      : req.body.tags,
                         content   : req.body.content,
                         subjects  : req.body.subjects,
@@ -127,10 +127,36 @@ router.get('/delete/:id', auth,ArticleController.deleteTheArticle);
  */
 router.get('/edit/:id', auth,ArticleController.editTheArticle);
 
-/**
- *  description: edit a pending
- */
-router.get('/editPendingArticle/:id', auth,ArticleController.editThePendingArticle);
+if(process.env.NODE_ENV !== 'production'){
+    router.get('/editPendingArticle/:id', auth, async (req,res)=>{
+
+        console.log(req.params.id);
+        try{
+            const pendingArticle = await PendingArticle.findOne({_id : req.params.id});
+            if(pendingArticle.editor_id && pendingArticle.editor_id.toString() === req.user._id.toString()){
+                const returnValuesForArticle = {
+                    title : pendingArticle.title,
+                    content : pendingArticle.content,
+                    id : req.params.id
+                }
+                return res.status(200).json({success:true,returnValuesForArticle, auth_token: req.header('auth-token')})
+            }else{
+                return res.status(401).json({success:false,error_info:"only the creator of this article can edit", auth_token: req.header('auth-token')});
+            }
+        }
+        catch (error) {
+            return res.status(400).send('something wrong...')
+        }
+
+
+    })
+}else{
+    /**
+     *  description: edit a pending
+     */
+    router.get('/editPendingArticle/:id', auth,ArticleController.editThePendingArticle);
+}
+
 
 /**
  *  description:get all name of article
