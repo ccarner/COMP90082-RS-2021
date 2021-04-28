@@ -3,9 +3,11 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const {Article, PendingArticle} = require('../models/article')
 
+const {User} = require('../models/user')
 const ArticleController = require('../controllers/article');
 const auth = require('../middlewares/auth');
 const verify = require('../middlewares/verifyToken');
+const _ = require('lodash')
 
 
 if(process.env.NODE_ENV !== "production"){
@@ -31,11 +33,10 @@ if(process.env.NODE_ENV !== "production"){
                     return res.status(400).json({ success: false, error_info: err, auth_token: req.header('auth-token')});
                 }
             }else{
-
                 try{
                     const article = new Article({
                         title     : req.body.title,
-                        author_id : mongoose.Types.ObjectId(req.body.author_id),
+                        author_id : mongoose.Types.ObjectId(req.user._id),
                         tags      : req.body.tags,
                         content   : req.body.content,
                         subjects  : req.body.subjects,
@@ -61,7 +62,6 @@ if(process.env.NODE_ENV !== "production"){
                     return res.status(400).json({ success: false, error_info: error, auth_token: req.header('auth-token')});
                 }
             }else{
-
                 try{
                     const newPendingArticle = new PendingArticle({
                         title     : req.body.title,
@@ -173,6 +173,31 @@ router.get('/getNamesOfPendingArticles/:subject_code_Or_Tool_name', auth, Articl
 
 router.get('/getAllPendingArticlesByUserId', auth, ArticleController.getPendingArticlesByUserId);
 
-router.get('/getAllPublishedArticlesByUserId', auth, ArticleController.getPublishedArticlesByUserId);
+
+if (process.env.NODE_ENV !== 'production'){
+    router.get('/getAllPublishedArticlesByUserId', auth, async (req, res)=>{
+
+        const user = await User.findById(req.user._id);
+        if(!user)
+            return res.status(400).send('invalid user!');
+
+        const articles = await Article.find({author_id: req.user._id});
+
+        if(!articles)
+            return res.status(400).json({success:false, error_info:"cannot get all published articles for this user", auth_token: req.header('auth-token')})
+
+        const articleInfo = _.map(articles, article => _.pick(article, ['title', 'id']))
+                                .map(function(article){
+                                    return { name : article.title, id : article.id }
+                                })
+
+        return res.status(200).json({success:true, articles : articleInfo, auth_token : req.header('auth-token')});
+
+    });
+
+}else{
+    router.get('/getAllPublishedArticlesByUserId', auth, ArticleController.getPublishedArticlesByUserId);
+
+}
 
 module.exports = router;
