@@ -21,10 +21,10 @@ exports.deleteTool = (req,res) => {
         res.json({ success: false, error : "Only moderator can add a new tool" })
     } else {
         Tool.deleteTool(req.body._id, (err, result) => {
-            if(err){
-                console.log(err)
+            console.log(result)
+            if(err||!result.deletedCount){
                 res.json({ success: false, error: 'failed to delete a tool' })
-            } else {
+            }else {
                 res.json({ success: true, tool: result })
             }
         })
