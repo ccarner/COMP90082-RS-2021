@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/main.css';
-import {Col, Row, Container, Button} from 'react-bootstrap';
+import {Col, Row, Container, Button,InputGroup,FormControl} from 'react-bootstrap';
 import request from "../../utils/request"
 
 import ProfilePendingArticleComponent from './ProfilePendingArticleComponent.jsx'
@@ -48,6 +48,7 @@ class App extends React.Component {
 			console.log("error")})
 	}
 
+
 	//function to route to published article once article is clicked
 	clickedArticle(article) {
 		console.log("clicked on a published article (as a moderator)")
@@ -58,45 +59,44 @@ class App extends React.Component {
 		if(AuthService.userIsModerator()){
 			return (
 				<Button
-					className="edit_new_preferred_name_button"
+					className="edit_preferred_name_button"
 					variant="btn btn-outline-primary"
-					onClick={""}
+					onClick={" "}
 				>
-					Edit Name
+					Edit preferred name
 				</Button>
 			)
 		}
 	}
-	
-		
+			
 
-		editBioButton(){
-			if(AuthService.userIsModerator()){
-				return (
-					<Button
-						className="edit-io-button"
-						variant="btn btn-outline-primary"
-						onClick={""}
-					>
-						Edit Bio
-					</Button>
-				)
-			}
+	editBioButton(){
+		if(AuthService.userIsModerator()){
+			return (
+				<Button
+					className="edit-io-button"
+					variant="btn btn-outline-primary"
+					onClick={""}
+				>
+					Edit Bio
+				</Button>
+			)
 		}
+	}
 
-		changeProfilepicButton(){
-			if(AuthService.userIsModerator()){
-				return (
-					<Button
-						className="change-profile-pic-button"
-						variant="btn btn-outline-primary"
-						onClick={""}
-					>
-						Change profile pic
-					</Button>
-				)
-			}
+	changeProfilepicButton(){
+		if(AuthService.userIsModerator()){
+			return (
+				<Button
+					className="change-profile-pic-button"
+					variant="btn btn-outline-primary"
+					onClick={" "}
+				>
+					Change profile pic
+				</Button>
+			)
 		}
+	}
 	
 	render () {
 		//only attempt render the articles if they exist
@@ -117,6 +117,7 @@ class App extends React.Component {
 							</Col>
 						</Row>
 						<p></p>
+						<hr></hr>
 						<Row>
 							<Col>
 							<h5>Username: </h5>
@@ -124,21 +125,49 @@ class App extends React.Component {
 						</Row>
 						<p></p>
 						<Row>
-							<Col sm={4}>
+							<Col sm={2}>
 								<h5>Preferred name: </h5>
-							</Col>							
+							</Col>
+							<Col sm={3}>
+								<InputGroup
+									className='name'
+									style={{width:"100%", marginRight:"100%"}}
+								>
+									<FormControl
+										placeholder="Preferrd name"
+										aria-label="name"
+										aria-describedby="name"
+										//onChange={""}
+										id="js-input"
+									/>
+								</InputGroup>
+						    </Col>			
 							<Col sm={5}>
 								{this.editPreferredNameButton()}
 							</Col>
 						</Row>
 						<p></p>
 						<Row>
-							<Col sm={4}>
+							<Col sm={1}>
 								<h5>Bio: </h5>
 							</Col>
 							<Col sm={5}>
+								<InputGroup
+									className='Bio'
+									style={{width:"100%", marginRight:"100%"}}
+								>
+									<FormControl
+										placeholder="BIO"
+										aria-label="BIO"
+										aria-describedby="BIO"
+										//onChange={""}
+										id="js-input"
+									/>
+								</InputGroup>
+						    </Col>
+							<Col sm={4}>
 								{this.editBioButton()}
-							</Col>
+						    </Col>
 						</Row>
 						<hr></hr>
 				    	<h1>List of your published articles</h1>
@@ -175,26 +204,55 @@ class App extends React.Component {
 					</Col>
 				</Row>
 				<p></p>
+				<hr></hr>
 				<Row>
 					<Col>
-					<h5>Username: </h5>
-					</Col>
+	  					<h5>Username: </h5>
+					</Col>	
 				</Row>
 				<p></p>
 				<Row>
-					<Col sm={4}>
-						<h5>Preferred name: </h5>
-					</Col>							
-					<Col sm={5}>
-						{this.editPreferredNameButton()}
-					</Col>
+				<Col sm={2}>
+					<h5>Preferred name: </h5>
+				</Col>
+				<Col sm={3}>
+					<InputGroup
+						className='name'
+						style={{width:"100%", marginRight:"100%"}}
+					>
+						<FormControl
+							placeholder="Preferrd name"
+							aria-label="name"
+							aria-describedby="name"
+							//onChange={""}
+							id="js-input"
+						/>
+					</InputGroup>
+			    </Col>			
+				<Col sm={5}>
+					{this.editPreferredNameButton()}
+				</Col>
 				</Row>
 				<p></p>
 				<Row>
-					<Col sm={4}>
+					<Col sm={1}>
 						<h5>Bio: </h5>
 					</Col>
 					<Col sm={5}>
+						<InputGroup
+							className='Bio'
+							style={{width:"100%", marginRight:"100%"}}
+						>
+					    	<FormControl
+								placeholder="BIO"
+								aria-label="BIO"
+								aria-describedby="BIO"
+										//onChange={""}
+								id="js-input"
+							/>
+						</InputGroup>
+					    </Col>
+					<Col sm={4}>
 						{this.editBioButton()}
 					</Col>
 				</Row>

@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/main.css';
-import { Col, Row, Container} from 'react-bootstrap';
+import { Col, Row, Container, Button, InputGroup, FormControl} from 'react-bootstrap';
 
 import request from "../../utils/request"
 
@@ -82,7 +82,7 @@ class App extends React.Component {
 		this.props.history.push(`/article/${article.id}`)
 	}
 
-/*	editUserPreferredNameButton(){
+editUserPreferredNameButton(){
 		if(AuthService.userIsAuthenticated()){
 			return (
 				<Button
@@ -125,7 +125,7 @@ class App extends React.Component {
 			)
 		}
 	}
-*/
+
 
 	render () {
 		return (
@@ -138,12 +138,13 @@ class App extends React.Component {
 					<Row>
 						<img src = {profile_pic} alt=""/>
 					</Row>
-				 {/*  <Row>
+				    <Row>
 						<Col sm={3}>
 							{this.changeUserProfilepicButton()}
 						</Col>
-				 </Row> */}
+				    </Row> 
 					<p></p>
+					<hr></hr>
 					<Row>
 						<Col>
 							<h5>Username: </h5>
@@ -151,21 +152,48 @@ class App extends React.Component {
 					</Row>
 					<p></p>
 					<Row>
-						<Col sm={4}>
+						<Col sm={2}>
 							<h5>Preferred name: </h5>
+						</Col>
+						<Col sm={3}>
+							<InputGroup
+								className='name'
+								style={{width:"100%", marginRight:"100%"}}
+							>
+								<FormControl
+									placeholder="Preferrd name"
+									aria-label="name"
+									aria-describedby="name"
+									//onChange={""}
+									id="js-input"
+								/>
+							</InputGroup>
 						</Col>							
-					{/*	<Col sm={5}>
+						<Col sm={5}>
 							{this.editUserPreferredNameButton()}
-				</Col>*/}
+				        </Col>
 					</Row>
 					<p></p>
 					<Row>
-						<Col sm={4}>
+						<Col sm={1}>
 							<h5>Bio: </h5>
 						</Col>
-					{/*	<Col sm={5}>
+						<Col sm={5}>
+								<InputGroup
+									className='Bio'
+									style={{width:"100%", marginRight:"100%"}}
+								>
+									<FormControl										placeholder="BIO"
+									aria-label="BIO"
+									aria-describedby="BIO"
+									//onChange={""}
+									id="js-input"
+								/>
+							</InputGroup>
+						</Col>
+						<Col sm={4}>
 							{this.editUserBioButton()}
-			</Col> */}
+			    		</Col> 
 					</Row>
 					<hr></hr>
 					<h2>Here is a list of your articles currently that are under review</h2>
