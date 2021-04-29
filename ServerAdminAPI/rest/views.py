@@ -15,7 +15,7 @@ def info(request):
 def check(request):
     bash = "systemctl show rsrepo.service | grep ActiveState"
     result = subprocess.check_output(bash, shell=True)
-    if result == b"ActiveState=active":
+    if result == b'ActiveState=active\n':
         return HttpResponse(1, content_type="text/plain; charset=utf-8")
     else:
         return HttpResponse(0, content_type="text/plain; charset=utf-8")
