@@ -1,33 +1,87 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const {Article} = require('../models/article')
+const {Article, PendingArticle} = require('../models/article')
 
+const {User} = require('../models/user')
 const ArticleController = require('../controllers/article');
 const auth = require('../middlewares/auth');
 const verify = require('../middlewares/verifyToken');
+const _ = require('lodash')
 
 
-if(process.env.NODE_ENV === "development"){
+if(process.env.NODE_ENV !== "production"){
+    console.warn("you are using development mode code")
     router.post('/publish',auth, async (req,res)=>{
         console.log('the user id is in publish the article',req.user._id);
         // First create pending article
-        let data = req.body;
+
         req.body.editor_id = req.user._id; // editor_id for pending article
         req.body.is_pending= false;
 
-        const article = new Article({
-            title     : req.body.title,
-            author_id : mongoose.Types.ObjectId(req.body.author_id),
-            tags      : req.body.tags,
-            content   : req.body.content,
-            subjects  : req.body.subjects,
-            tools     : req.body.tools,
-            is_pending : false
-        });
-        await article.save();
-        res.status(200).send({ success: true, article_id: article._id, auth_token: req.header('auth-token')});
+        if(req.user._moderator){
 
+            if(req.body.article_id){
+                try{
+                    await Article.findByIdAndUpdate(req.body.article_id, req.body);
+                    console.log('new article submitted');
+
+                    await PendingArticle.deleteOne({published_article: req.body.article_id});
+
+                    return res.status(200).json({ success: true, article_id: req.body.article_id, auth_token: req.header('auth-token')});
+                }catch (err){
+                    return res.status(400).json({ success: false, error_info: err, auth_token: req.header('auth-token')});
+                }
+            }else{
+                try{
+                    const article = new Article({
+                        title     : req.body.title,
+                        author_id : mongoose.Types.ObjectId(req.user._id),
+                        tags      : req.body.tags,
+                        content   : req.body.content,
+                        subjects  : req.body.subjects,
+                        tools     : req.body.tools,
+                        is_pending : false
+                    });
+
+                    await article.save();
+
+                    return res.status(200).json({ success: true, article_id: article._id, auth_token: req.header('auth-token')});
+                }catch (err) {
+                    return res.status(400).json({ success: false, error_info: err, auth_token: req.header('auth-token')});
+                }
+            }
+        }else{
+            if(req.body.article_id){
+                try{
+                    await Article.findByIdAndUpdate(req.body.article_id, { is_pending : true });
+
+                    return res.status(200).json({ success: false, auth_token: req.header('auth-token')});
+                }
+                catch (error) {
+                    return res.status(400).json({ success: false, error_info: error, auth_token: req.header('auth-token')});
+                }
+            }else{
+                try{
+                    const newPendingArticle = new PendingArticle({
+                        title     : req.body.title,
+                        editor_id : req.body.editor_id,
+                        tags      : req.body.tags,
+                        content   : req.body.content,
+                        subjects  : req.body.subjects,
+                        tools     : req.body.tools,
+                        article_id : req.body.article_id ? mongoose.Types.ObjectId(req.body.article_id): null
+                    });
+
+                    await newPendingArticle.save();
+
+                    return res.status(200).json({ success: true, article_id: newPendingArticle._id, auth_token: req.header('auth-token')});
+                }
+                catch (err) {
+                    return res.status(400).json({ success: false, error_info: err, auth_token: req.header('auth-token')});
+                }
+            }
+        }
     });
 }else{
     /**
@@ -48,8 +102,21 @@ router.get('/create',auth, ArticleController.CreateAnArticle);
 /**
  *  description: get a article
  */
-router.get('/get/:id', auth,ArticleController.getTheArticle);
 
+if(process.env.NODE_ENV !== "production"){
+    router.get('/get/:id', auth, async (req, res)=>{
+
+        let article = await Article.findById(req.params.id)
+                            .populate({ path: 'comment_section', populate: { path: 'comments', populate: { path: 'leaf_comments'}}}).exec();
+
+        article.like_number = article.likes.length
+        article.is_like = article.likes.includes(req.user._id);
+
+        return res.status(200).send({success:true, returnValuesForArticle: article, auth_token: req.header('auth-token')});
+    });
+}else{
+    router.get('/get/:id', verify.verify,ArticleController.getTheArticle);
+}
 /**
  *  description: delete a article
  */
@@ -60,10 +127,36 @@ router.get('/delete/:id', auth,ArticleController.deleteTheArticle);
  */
 router.get('/edit/:id', auth,ArticleController.editTheArticle);
 
-/**
- *  description: edit a pending
- */
-router.get('/editPendingArticle/:id', auth,ArticleController.editThePendingArticle);
+if(process.env.NODE_ENV !== 'production'){
+    router.get('/editPendingArticle/:id', auth, async (req,res)=>{
+
+        console.log(req.params.id);
+        try{
+            const pendingArticle = await PendingArticle.findOne({_id : req.params.id});
+            if(pendingArticle.editor_id && pendingArticle.editor_id.toString() === req.user._id.toString()){
+                const returnValuesForArticle = {
+                    title : pendingArticle.title,
+                    content : pendingArticle.content,
+                    id : req.params.id
+                }
+                return res.status(200).json({success:true,returnValuesForArticle, auth_token: req.header('auth-token')})
+            }else{
+                return res.status(401).json({success:false,error_info:"only the creator of this article can edit", auth_token: req.header('auth-token')});
+            }
+        }
+        catch (error) {
+            return res.status(400).send('something wrong...')
+        }
+
+
+    })
+}else{
+    /**
+     *  description: edit a pending
+     */
+    router.get('/editPendingArticle/:id', auth,ArticleController.editThePendingArticle);
+}
+
 
 /**
  *  description:get all name of article
@@ -80,6 +173,31 @@ router.get('/getNamesOfPendingArticles/:subject_code_Or_Tool_name', auth, Articl
 
 router.get('/getAllPendingArticlesByUserId', auth, ArticleController.getPendingArticlesByUserId);
 
-router.get('/getAllPublishedArticlesByUserId', auth, ArticleController.getPublishedArticlesByUserId);
+
+if (process.env.NODE_ENV !== 'production'){
+    router.get('/getAllPublishedArticlesByUserId', auth, async (req, res)=>{
+
+        const user = await User.findById(req.user._id);
+        if(!user)
+            return res.status(400).send('invalid user!');
+
+        const articles = await Article.find({author_id: req.user._id});
+
+        if(!articles)
+            return res.status(400).json({success:false, error_info:"cannot get all published articles for this user", auth_token: req.header('auth-token')})
+
+        const articleInfo = _.map(articles, article => _.pick(article, ['title', 'id']))
+                                .map(function(article){
+                                    return { name : article.title, id : article.id }
+                                })
+
+        return res.status(200).json({success:true, articles : articleInfo, auth_token : req.header('auth-token')});
+
+    });
+
+}else{
+    router.get('/getAllPublishedArticlesByUserId', auth, ArticleController.getPublishedArticlesByUserId);
+
+}
 
 module.exports = router;
