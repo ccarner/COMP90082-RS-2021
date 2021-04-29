@@ -18,14 +18,11 @@ exports.NewAndSave = (req, res) => {
 
 exports.deleteComment = (req, res) => {
     Comment.getCommentById(req.body._id, (err, result) => {
-        if(err){
+        if(err||!result){
             res.json({ success: false, error: 'failed to find the comment' })
         } else{
-            if(result === null){
-                return res.json({ success: false, error: 'failed to find the comment' })
-            }
             const compareResult = String(req.user._id).localeCompare(String(result.author_id))
-            if(compareResult || req.user.is_moderator){
+            if(!compareResult || req.user.is_moderator){
                 Comment.deleteComment(req.body._id, (err, result) => {
                     if(err){
                         res.json({ success: false, error: 'failed to delete the comment' })
@@ -72,7 +69,7 @@ exports.getAllCommentsOfUser = (req, res) => {
 
 exports.updateComment = (req, res) => {
     Comment.getCommentById(req.body._id, (err, result) => {
-        if(err){
+        if(err||!result){
             res.json({ success: false, error: 'failed to find the comment' })
         } else {
             const compareResult = String(req.user._id).localeCompare(String(result.author_id))

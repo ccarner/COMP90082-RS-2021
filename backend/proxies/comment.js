@@ -75,7 +75,13 @@ exports.deleteComment = async (comment_id, callback) => {
 
 
 exports.getCommentById = async (comment_id, callback) => {
-  await Comment.findById(comment_id, callback)
+  Comment.findById(comment_id, function(err, result){
+    if(err||!result) {
+        callback(err, result)
+    } else {
+        callback(undefined, result)
+    }
+})
 }
 
 exports.getAllCommentsUnderThisSection = async (section_id, callback) => {

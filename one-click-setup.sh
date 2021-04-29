@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 rm -rf /var/node
-mkdir /var/node
-cd /var/node || return
+cd /var || return
 
 echo "Configuring firewall."
 sudo iptables -I INPUT -p tcp --dport 8000 -j ACCEPT
@@ -14,7 +13,10 @@ sudo ufw allow 4000
 sudo ufw allow 3000
 
 echo "A. Cloning from Github Source."
-git clone https://github.com/ccarner/COMP90082-RS-2021.git
+sudo git clone https://github.com/ccarner/COMP90082-RS-2021.git
+sudo mv COMP90082-RS-2021 node
+cd node
+sudo git checkout backend/develop
 
 
 echo "B. Installing dependencies."
@@ -22,13 +24,16 @@ sudo apt update && sudo apt -y install npm && sudo apt -y install python3
 npm install --global yarn
 
 echo "C. Installing admin API."
-sudo sh ServerAdminAPI/install.sh
+cd ServerAdminAPI
+sudo sh install.sh
 
 echo "D. Installing backend service."
-sudo sh backend/install.sh
+cd ../backend
+sudo sh install.sh
 
 #echo "E. Installing frontend service."
-#sudo sh Front_end/install.sh
+#cd ../Front_end
+#sudo sh install.sh
 
 echo "Done!"
 sudo systemctl status rsadmin
