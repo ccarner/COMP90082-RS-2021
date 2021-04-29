@@ -27,6 +27,16 @@ jobs:
           time: '10s'
 
       - name: HTTP Request
+        id: check
+        uses: fjogeleit/http-request-action@v1.8.0
+        with:
+          url: 'http://api.cervidae.com.au:8000/rest/check'
+          method: 'GET'
+
+      - name: Check Service Status
+        run: if [ ${{ steps.check.outputs.response }} -eq 1 ]; then echo "service nominal"; else exit 1; fi
+
+      - name: HTTP Request
         id: info
         uses: fjogeleit/http-request-action@v1.8.0
         with:
