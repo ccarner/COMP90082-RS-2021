@@ -21,7 +21,7 @@ def check(request):
         return HttpResponse(0, content_type="text/plain; charset=utf-8")
 
 def rebuild(request):
-    bash = "cd /var/node/backend && git pull"
+    bash = "cd /var/node/backend && git pull --no-edit --autostash --quiet"
     result = subprocess.check_output(bash, shell=True)
 
     if b'Already up to date.\n' not in result:
