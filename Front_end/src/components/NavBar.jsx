@@ -52,6 +52,7 @@ class NavBar extends Component {
     this.props.history.push(`/home`)
   }
 
+  /** Add function to redirect to FAQ page*/
   clickedFAQ() {
     this.props.history.push(`/faq`)
   }
@@ -119,6 +120,7 @@ class NavBar extends Component {
             </Nav.Link>
             {this.userManagement()}
             {this.renderPending()}
+            {/** enable button in nav bar to redirect to FAQ*/}
             <Nav.Link onClick={() => this.clickedFAQ()}>
               <div className="navbar-home">FAQ</div>
             </Nav.Link>
@@ -174,6 +176,7 @@ class NavBar extends Component {
             <Nav.Link onClick={() => this.clickedHome()}>
               <div className="navbar-home">Home</div>
             </Nav.Link>
+            {/** enable button in nav bar to redirect to FAQ*/}
             <Nav.Link onClick={() => this.clickedFAQ()}>
               <div className="navbar-home">FAQ</div>
             </Nav.Link>

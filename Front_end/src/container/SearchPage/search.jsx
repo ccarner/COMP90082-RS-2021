@@ -285,6 +285,7 @@ export default class Search extends Component {
                 style={{ marginRight: "15px", width: "60px" }}
                 onChange={this.setToolType}
               />
+              {/** Added a tag filter for search page*/}
               <Form.Check
                 type="radio"
                 label="Tag"

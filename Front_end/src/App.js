@@ -131,8 +131,8 @@ function App() {
           <PublicRoute path="/login" component={Login} />
             <PublicRoute path="/register" component={Register} />
           <PrivateRoute path="/home" component={HomePage} />
-          {/** this is just a placeholder page, loading pages should be done programmatically not hardcoded* */}
           <PrivateRoute path="/faq" component={Faq} />
+          {/** this is just a placeholder page, loading pages should be done programmatically not hardcoded* */}
           <Route path="/subject/:code">
             <Subject />
           </Route>      
