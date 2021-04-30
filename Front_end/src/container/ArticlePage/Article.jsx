@@ -14,8 +14,10 @@ import { withRouter } from "react-router"
 import { Link } from "react-router-dom"
 import Comment from "../Comment/Comment"
 import Editor from "./EditorComponent.jsx"
+import Bookmark from './Bookmark.jsx'
+import LikeButton from './LikeButton.jsx'
 
-const baseURL = "http://167.172.11.217/"
+const baseURL = "http://api.cervidae.com.au:4000"
 
 class App extends React.Component {
   constructor(props) {
@@ -104,7 +106,7 @@ class App extends React.Component {
   updateContent(value) {
     this.setState({ content: value })
   }
-
+  
   render() {
     return (
       <>
@@ -116,7 +118,7 @@ class App extends React.Component {
               <Col sm={9}>
                 <h1>{this.state.title}</h1>
               </Col>
-              <Col sm={3}>
+              <Col sm={3}>                
                 <Link
                   disabled={this.state.hasPending}
                   to={{ pathname: `/editpage/${this.state.id}` }}
@@ -129,9 +131,26 @@ class App extends React.Component {
                     {this.state.buttonText}
                   </Button>
                 </Link>
+
+                {/* currently not find a good way to back to the subject page, 
+                therefore back to the home page instead */}
+                <Link to="/home/"> 
+                  <Button
+                    className="edit-button"
+                    variant="success"
+                  >
+                    Back
+                  </Button>
+                </Link>
               </Col>
             </Row>
             {this.renderEditor()}
+
+            {/* add the bookmark button; see Bookmark.jsx for detail */}
+            <Bookmark/> 
+            {/* add the like button; see LikeButton.jsx for detail */}
+            <LikeButton/> 
+
           </Container>
         </div>
         <div className="App article-editor-content-section">

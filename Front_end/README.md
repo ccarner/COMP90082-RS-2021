@@ -3,21 +3,28 @@
 
 ### 1. Setting up frontend without Docker
 
-#### Installing Dependecies
-We first need to install yarn for node.js dependency management
+#### **Step 0: Installing yarn**
+Before using this system, we first need to install yarn for node.js dependency management.
+
 Yarn installation instruction can be found here in this [link](https://classic.yarnpkg.com/en/docs/install/)
 
-### `yarn install`
-Run the above command to install all the dependencies for frontend app.
+#### **Step 1: Installing dependencies**
 
-#### Running the app
+### `yarn install`
+
+Enter the above command in your terminal to install all the dependencies for frontend app. Before runing the above command, please make sure your terminal path is under the Front_end folder. If you have run this command before, you don't need to execute it again.
+
+#### **Step2: Running the app**
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser. Before runing the above command, please make sure your terminal path is under the Front_end folder. 
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+
+#### **Other commands**
 
 ### `yarn test`
 

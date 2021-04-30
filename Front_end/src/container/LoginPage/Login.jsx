@@ -48,14 +48,14 @@ export default class Login extends Component {
     return (
       <div>
         <div className="nav">
-          <img src={UnimelbLogo} />
+          <img src={UnimelbLogo} alt="UnimelbLogo"/>
           <div>
-            <a className="root">
+            <a href="https://www.unimelb.edu.au/" className="root">
               <span className="glyphicon glyphicon-home" />
               The University of Melbourne
             </a>
             <span> / </span>
-            <a className="root" title="Login">
+            <a href="login" className="root" title="Login">
               Login
             </a>
           </div>
