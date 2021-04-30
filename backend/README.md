@@ -1,16 +1,18 @@
-# There are two different ways to setup frontend
+# There are two different ways to setup the backend system. 
+One is by using npm, and the other is by using Docker.
+Though docker is a promising technique for deploying system, most of the public space requires money.
+Therefore, we do not consider this method for deploying the system.
 
 
-### 1. Setting up backend without Docker
+### 1. Setting up the backend system
 
 #### Installing Dependecies
-We first need to install yarn for node.js dependency management
-Yarn installation instruction can be found here in this [link](https://classic.yarnpkg.com/en/docs/install/)
+First need to install npm for node.js dependency management
 
 ### `npm install`
-Run the above command to install all the dependencies for frontend app.
 
 #### Running the app
+There are 2 ways for running the backend system
 ### `node index.js `
 
 Runs the app in the development mode.<br />
@@ -18,6 +20,34 @@ Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+
+Alternatively, this can also run 
+### `nodemon index.js`
+
+By using this way, after saving the change, the system will restart automatically.
+This way is suitable for developing the system without repeatedly typing command.
+
+
+#### Use node environment variable to switch execution mode 
+To separate the different work modes, the environment variable is introduced to reach the purpose. 
+By using this way, it is possible for the system not to execute the experimental code section or conduct the automation test under the specified condition.
+There are 3 options currently: `development`, `production`, and `test`. Where production mode is used for running the release version of the system
+#### How to switch?
+### Windows:
+in cmd, give command set NODE_ENV=development
+
+### Linux, MacOS:
+in terminal, use export NODE_ENV= value. where value can be development, production, or test
+
+
+#### Running integration test for the backend system
+To enhance the quality of the system, the integration test has been adopted to the backend system
+
+How to run integration test?
+
+use `npm test ./tests/integration [test script file]`
+currently, there are three available tests: login.test.js, register.test.js, subject.test.js
+
 
 
 
