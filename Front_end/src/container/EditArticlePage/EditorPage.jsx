@@ -156,9 +156,15 @@ class App extends React.Component {
 	 return (
 	    <div className="App article-editor-content-section">
 			<Container>
-				<h1>{this.state.title}<Button className="edit-button" disabled={this.state.hasPending} variant="info" onClick={this.saveFunc.bind(this)}>
+				<h1>{this.state.title}
+				<Button className="edit-button" disabled={this.state.hasPending} variant="info" onClick={this.saveFunc.bind(this)}>
                   {this.state.buttonText}
-                </Button></h1>
+                </Button>
+				
+				<Button id="btnCancel" className="edit-button" onClick={this.props.history.goBack}>
+					Cancel
+				</Button>
+				</h1>	
 				{this.renderEditor()}
 				
 				<hr/>

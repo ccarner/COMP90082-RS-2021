@@ -56,21 +56,21 @@ const url =
 mongoose.connect(url, { useNewUrlParser: true });
 const connection = mongoose.connection;
 connection.once('open', function() {
-    console.log("MongoDB database connection established successfully");
+  console.log("MongoDB database connection established successfully");
 })
 connection.on('error', function(err) {
-    console.log(err);
+  console.log(err);
 });
 
 //set up session
 app.use(session({
-    secret: 'chyingp',
-    // store: new FileStore(),
-    saveUninitialized: true,
-    resave: true,
-    cookie: {
-        maxAge: 60 * 1000 *30
-    }
+  secret: 'chyingp',
+  // store: new FileStore(),
+  saveUninitialized: true,
+  resave: true,
+  cookie: {
+    maxAge: 60 * 1000 *30
+  }
 }));
 
 
@@ -86,17 +86,17 @@ app.use('/register',register);
 let verify = require('./middlewares/verifyToken');
 app.use(verify.verify);
 app.post('/upload', function (request, response, next) {
-    upload(request, response, function (error) {
-      if (error) {
-        console.log(error);
-        // return response.redirect("/error");
-        return response.json("{status:error}")
-      }
-      console.log('File uploaded successfully.');
+  upload(request, response, function (error) {
+    if (error) {
+      console.log(error);
+      // return response.redirect("/error");
+      return response.json("{status:error}")
+    }
+    console.log('File uploaded successfully.');
     //   response.redirect("/success");
     return response.json("{status:ok}")
-    });
   });
+});
 
 let user = require('./routes/user');
 app.use('/user',user);
@@ -123,7 +123,7 @@ let comment = require('./routes/comment');
 app.use('/comment', comment)
 
 app.listen(PORT, function() {
-    console.log("Server is running on Port: " + PORT);
+  console.log("Server is running on Port: " + PORT);
 });
 
 // need to check the following code for adding default admin user
