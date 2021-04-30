@@ -54,7 +54,7 @@ class App extends React.Component {
 		console.log("clicked on a published article (as a moderator)")
 		this.props.history.push(`/article/${article.id}`)
 	}
-
+	// button for edit preferred name
 	editPreferredNameButton(){
 		if(AuthService.userIsModerator()){
 			return (
@@ -69,7 +69,7 @@ class App extends React.Component {
 		}
 	}
 			
-
+	// button for edit Bio
 	editBioButton(){
 		if(AuthService.userIsModerator()){
 			return (
@@ -84,6 +84,7 @@ class App extends React.Component {
 		}
 	}
 
+	// button to change profile picture 
 	changeProfilepicButton(){
 		if(AuthService.userIsModerator()){
 			return (

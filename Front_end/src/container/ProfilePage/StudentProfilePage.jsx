@@ -82,7 +82,8 @@ class App extends React.Component {
 		this.props.history.push(`/article/${article.id}`)
 	}
 
-editUserPreferredNameButton(){
+	// button for edit preferred name
+	editUserPreferredNameButton(){
 		if(AuthService.userIsAuthenticated()){
 			return (
 				<Button
@@ -97,7 +98,7 @@ editUserPreferredNameButton(){
 	}
 	
 		
-
+	// button for edit Bio
 	editUserBioButton(){
 		if(AuthService.userIsAuthenticated()){
 			return (
@@ -112,6 +113,7 @@ editUserPreferredNameButton(){
 		}
 	}
 
+	// button for change profile picture 
 	changeUserProfilepicButton(){
 		if(AuthService.userIsAuthenticated()){
 			return (
