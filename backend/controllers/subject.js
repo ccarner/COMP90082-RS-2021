@@ -1,12 +1,15 @@
 const Subject = require('../proxies/subject')
 const User = require('../proxies/user')
+const Joi = require('joi-oid');
 
 exports.addSubject = (req,res) => {
     console.log("this is moderator", req.user._moderator)
-    
+    const { error } = validate(req);
+    if (error) {
+        return res.json({ success: false, error_info: error.details[0].message });
+    } 
     if(!req.user._moderator){
-        res.json({ success: false, error: 'error this account is not a moderator' })
-        
+        res.json({ success: false, error: 'error this account is not a moderator' })  
     }else{
         creator_id = [req.user._id]
         Subject.newAndSave(req.body.name, req.body.subject_code, req.body.description,
@@ -118,6 +121,17 @@ exports.getSubjectById = (req,res) => {
 }
 
 exports.updateSubject = (req, res) => {
+    const schema = Joi.object().keys({
+        _id: Joi.objectId(),
+        subject_code: Joi.string().min(5).max(15).required(),
+        name: Joi.string().min(5).max(25).required(),
+        description: Joi.string().max(255)
+    });
+    const { error } = schema.validate(req.body);    
+    if (error) {
+        return res.json({ success: false, error_info: error.details[0].message });
+    }
+    console.log(req.body);
     if(!req.user._moderator){
         res.json({ success: false, error: 'error this account is not a moderator' })
     } else {
@@ -130,4 +144,14 @@ exports.updateSubject = (req, res) => {
             }
         })
     }
+}
+
+function validate(req) {
+    const schema = Joi.object().keys({
+        subject_code: Joi.string().min(5).max(15).required(),
+        name: Joi.string().min(5).max(25).required(),
+        description: Joi.string().max(255)
+    });
+
+    return schema.validate(req.body);
 }

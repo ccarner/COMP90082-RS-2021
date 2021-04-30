@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const Joi = require('joi');
 const User = require('../proxies/user');
 const bcryt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -11,6 +11,14 @@ const TOKEN_SECRET = config.get('jwtPrivateKey');
 
 // login page
 router.post('/', async (req, res) =>{
+    const schema = Joi.object().keys({
+        account: Joi.string().min(5).max(15).required(),
+        password: Joi.string().min(5).max(15).required()
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+        return res.json({ success: false, error: error.details[0].message});
+    }
     const account = req.body.account
     const userPassword = req.body.password
     

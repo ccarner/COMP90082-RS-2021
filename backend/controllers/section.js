@@ -1,8 +1,19 @@
 const Section = require('../proxies/section')
 const Tool = require('../proxies/tool')
 const Subject = require('../proxies/subject')
+const Joi = require('joi-oid');
 
 exports.newAndSave = (req, res) => {
+    const schema = Joi.object().keys({
+        name: Joi.string().min(5).max(25).required(),
+        type: Joi.string().min(5).max(25).required(),
+        subject_code: Joi.string().min(5).max(15).required(),
+        owner: Joi.objectId()
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+        return res.json({ success: false, error_info: error.details[0].message });
+    }
     if(!req.user._moderator){
         res.json({ success: false, error : "Only moderator can add a new section" })
     } else {
@@ -25,6 +36,15 @@ exports.newAndSave = (req, res) => {
 
 
 exports.deleteSection = (req,res) => {
+    const schema = Joi.object().keys({
+        _id: Joi.objectId(),
+        subject_code: Joi.string().min(5).max(15).required(),
+        type: Joi.string().min(5).max(25).required()
+    });
+    const { error } = schema.validate(req.body);
+    if (error) {
+        return res.json({ success: false, error_info: error.details[0].message });
+    }
     if(!req.user._moderator){
         res.json({ success: false, error : "Only moderator can add a new section" })
     } else {
