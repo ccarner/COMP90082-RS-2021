@@ -117,6 +117,8 @@ Please check our [frontend](Front_end/README.md) for frontend installation detai
 
 **container** *(Front_end/Front_end/src/container/)*: Contains details for every page functionality.
 
+#### The following sections list these pages inside container folder, presenting in the folder order:
+
 **addSection** *(Front_end/Front_end/src/container/addSection/)*: Contains class with logic for adding sections.
 
 - [addSection/AddSection.jsx](Front_end/Front_end/src/container/addSection/AddSection.jsx): Contains logic for adding sections.
@@ -153,6 +155,10 @@ Please check our [frontend](Front_end/README.md) for frontend installation detai
 **EditingSectionPage** *(Front_end/Front_end/src/container/addSection/)*: Contains class for editing sections.
 
 - [EditingSectionPage/EditingSection.jsx](Front_end/Front_end/src/container/EditingSectionPage/EditingSection.jsx): Contains logic for editing sections within subjects.
+
+**FAQPage** *(Front_end/Front_end/src/container/FAQPage/)*: Contains the page for frequently asked questions (FAQ) to help use get familiar with the system.
+
+- [FAQPage/FAQ.jsx](Front_end/Front_end/src/container/FAQPage/FAQ.jsx): FAQ page contains content to help users get familiar with the system.
 
 **HomePage** *(Front_end/Front_end/src/container/addSection/)*: Contains the homepage.
 
@@ -192,8 +198,6 @@ Please check our [frontend](Front_end/README.md) for frontend installation detai
 **WelcomePage** *(Front_end/Front_end/src/container/WelcomePage/)*: Contains the landing splash page.
 
 - [WelcomePage/WelcomePage.jsx](Front_end/Front_end/src/container/WelcomePage/WelcomePage.jsx): Landing page.
-
-
 
 ### Back-end
 
