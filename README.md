@@ -100,67 +100,69 @@ Please check our [frontend](Front_end/README.md) for frontend installation detai
 ## Description of Key Classes
 
 ### Front-end
-**Server** *(SWEN90013/Front_end/Front_end/src/)* 
+**Server** *(Front_end/Front_end/src/)* 
 
 - [app.js](Front_end/src/app.js): The front end of the application, handles routing to different pages.
 
-**Utils** *(SWEN90013/Front_end/Front_end/src/utils/)*: Contains Utility classes for use by other classes.
+**Utils** *(Front_end/Front_end/src/utils/)*: Contains Utility classes for use by other classes.
 
 - [utils/AuthService.js](Front_end/Front_end/src/utils/AuthService.js): Performs the authentication to the backend and stores role and authorization details.
 - [utils/request.js](Front_end/Front_end/src/utils/request.js): Formatted http request for use by other classes.
 - [utils/tools.js](Front_end/Front_end/src/utils/tools.js): Tools for adding and getting parameters to and from urls.
 
-**components** *(SSWEN90013/Front_end/Front_end/src/components/)*: Contains components used on all pages.
+**components** *(Front_end/Front_end/src/components/)*: Contains components used on all pages.
 
 - [components/Footer.js](Front_end/Front_end/src/components/Footer.js): The footer used on every page.
 - [components/NavBar.js](Front_end/Front_end/src/components/NavBar.js): The implementation for the Navbar used on every page.
 
-**container** *(SSWEN90013/Front_end/Front_end/src/container/)*: Contains details for every page functionality.
+**container** *(Front_end/Front_end/src/container/)*: Contains details for every page functionality.
 
-**addSection** *(SSWEN90013/Front_end/Front_end/src/container/addSection/)*: Contains class with logic for adding sections.
+**addSection** *(Front_end/Front_end/src/container/addSection/)*: Contains class with logic for adding sections.
 
 - [addSection/AddSection.jsx](Front_end/Front_end/src/container/addSection/AddSection.jsx): Contains logic for adding sections.
 
-**addUserPage** *(SSWEN90013/Front_end/Front_end/src/container/addSection/)*: Contains class with logic for adding users.
+**addUserPage** *(Front_end/Front_end/src/container/addSection/)*: Contains class with logic for adding users.
 
 - [addUserPage/AddUser.jsx](Front_end/Front_end/src/container/addUserPage/AddUser.jsx): Handles logic for adding sections.
 
-**ArticlePage** *(SSWEN90013/Front_end/Front_end/src/container/ArticlePage/)*: Contains the classes for the page for viewing articles.
+**ArticlePage** *(Front_end/Front_end/src/container/ArticlePage/)*: Contains the classes for the page for viewing articles.
 
 - [ArticlePage/Article.jsx](Front_end/Front_end/src/container/ArticlePage/Article.jsx): Handles the container for the viewer and associated buttons.
 - [ArticlePage/EditorComponent.jsx](Front_end/Front_end/src/container/ArticlePage/EditorComponent.jsx): Actual reader component, set up for read only access.
+- [ArticlePage/LikeButton.jsx](Front_end/Front_end/src/container/ArticlePage/LikeButton.jsx): users can click the button to like or unlike the article.
+- [ArticlePage/Bookmark.jsx](Front_end/Front_end/src/container/ArticlePage/Bookmark.jsx): users can click the bookmark button to bookmark or unbookmark the article.
 
-**Comment** *(SSWEN90013/Front_end/Front_end/src/container/Comment/)*: Contains the comment components on pages.
+**Comment** *(Front_end/Front_end/src/container/Comment/)*: Contains the comment components on pages.
 
 - [Comment/Comment.jsx](Front_end/Front_end/src/container/ArticlePage/Comment.jsx): Handles the container for comment system and post function of users.
 - [Comment/SubComment.jsx](Front_end/Front_end/src/container/ArticlePage/SubComment.jsx):Represents individual comment item .
 - [Comment/SubCommentItem.jsx](Front_end/Front_end/src/container/ArticlePage/SubCommentItem.jsx):Replys the comments of other users. 
 
-**CreateArticlePage** *(SSWEN90013/Front_end/Front_end/src/container/CreateArticlePage/)*: Handles the page for creating articles, set up differently from editing existing articles.
+**CreateArticlePage** *(Front_end/Front_end/src/container/CreateArticlePage/)*: Handles the page for creating articles, set up differently from editing existing articles.
 
 - [CreateArticlePage/CreateArticlePage.jsx](Front_end/Front_end/src/container/CreateArticlePage/CreateArticlePage.jsx): Handles the container for the viewer and associated buttons.
 - [CreateArticlePage/EditorComponent.jsx](Front_end/Front_end/src/container/CreateArticlePage/EditorComponent.jsx): Actual reader component, set up for editing.
 - [CreateArticlePage/tagComponent.jsx](Front_end/Front_end/src/container/CreateArticlePage/tagComponent.jsx): Handles adding and removing tags from articles.
 
-**EditArticlePage** *(SSWEN90013/Front_end/Front_end/src/container/EditArticlePage/)*: Contains classes for editing articles.
+**EditArticlePage** *(Front_end/Front_end/src/container/EditArticlePage/)*: Contains classes for editing articles.
 
 - [EditArticlePage/EditorPage.jsx](Front_end/Front_end/src/container/EditArticlePage/EditorPage.jsx): Handles the container for the viewer and associated buttons.
 - [EditArticlePage/EditorComponent.jsx](Front_end/Front_end/src/container/EditArticlePage/EditorComponent.jsx): Actual reader component, set up for editing.
 - [EditArticlePage/tagComponent.jsx](Front_end/Front_end/src/container/EditArticlePage/tagComponent.jsx): Handles adding and removing tags from articles.
 
-**EditingSectionPage** *(SSWEN90013/Front_end/Front_end/src/container/addSection/)*: Contains class for editing sections.
+**EditingSectionPage** *(Front_end/Front_end/src/container/addSection/)*: Contains class for editing sections.
 
 - [EditingSectionPage/EditingSection.jsx](Front_end/Front_end/src/container/EditingSectionPage/EditingSection.jsx): Contains logic for editing sections within subjects.
 
-**HomePage** *(SSWEN90013/Front_end/Front_end/src/container/addSection/)*: Contains the homepage.
+**HomePage** *(Front_end/Front_end/src/container/addSection/)*: Contains the homepage.
 
 - [HomePage/Home.jsx](Front_end/Front_end/src/container/HomePage/Home.jsx): Contains logic for the homepage, displaying subjects for each user.
  
-**LoginPage** *(SSWEN90013/Front_end/Front_end/src/container/LoginPage/)*: Contains class that displays the login page.
+**LoginPage** *(Front_end/Front_end/src/container/LoginPage/)*: Contains class that displays the login page.
 
 - [LoginPage/Login.jsx](Front_end/Front_end/src/container/LoginPage/Login.jsx): Contains logic for logging in.
 
-**PendingPage** *(SSWEN90013/Front_end/Front_end/src/container/PendingPage/)*: Contains classes related to pending articles for moderators.
+**PendingPage** *(Front_end/Front_end/src/container/PendingPage/)*: Contains classes related to pending articles for moderators.
 
 - [PendingPage/detailedPendingPage.jsx](Front_end/Front_end/src/container/PendingPage/detailedPendingPage.jsx): Handles the container for the viewer and associated buttons for a pending article.
 - [PendingPage/EditorComponent.jsx](Front_end/Front_end/src/container/PendingPage/EditorComponent.jsx): Actual reader component, set up for read only.
@@ -168,26 +170,26 @@ Please check our [frontend](Front_end/README.md) for frontend installation detai
 - [PendingPage/PendingPage.jsx](Front_end/Front_end/src/container/PendingPage/PendingPage.jsx): Displays list of pending articles for a subject, for moderator to approve.
 
 
-**ProfilePage** *(SSWEN90013/Front_end/Front_end/src/container/ProfilePage/)*: Contains classes relating to the profile page, which displays all articles published by the user.
+**ProfilePage** *(Front_end/Front_end/src/container/ProfilePage/)*: Contains classes relating to the profile page, which displays all articles published by the user.
 
 - [ProfilePage/EditorComponent.jsx](Front_end/Front_end/src/container/ProfilePage/EditorComponent.jsx): Actual reader component, set up for editing.
 - [ProfilePage/ModeratorProfilePage.jsx](Front_end/Front_end/src/container/ProfilePage/ProfilePage.jsx): Profile page for moderator, Displays list of pending articles with options to approve.
 - [ProfilePage/ProfilePendingArticleComponent.jsx](Front_end/Front_end/src/container/PendingPage/ProfilePendingArticleComponent.jsx): Component representing a pending article in the list.
 - [ProfilePage/StudentProfilePage.jsx](Front_end/Front_end/src/container/ProfilePage/ProfilePage.jsx): Profile page for students, like moderator page but displaying unapproved articles with option to edit.
 
-**RegisterPage** *(SSWEN90013/Front_end/Front_end/src/container/RegisterPage/)*: Contains class for registring a new user.
+**RegisterPage** *(Front_end/Front_end/src/container/RegisterPage/)*: Contains class for registring a new user.
 
 - [RegisterPage/Register.jsx](Front_end/Front_end/src/container/RegisterPage/Register.jsx): Displays registration page.
 
-**SearchPage** *(SSWEN90013/Front_end/Front_end/src/container/SearchPage/)*: Contains page for searching all articles.
+**SearchPage** *(Front_end/Front_end/src/container/SearchPage/)*: Contains page for searching all articles.
 
 - [SearchPage/search.jsx](Front_end/Front_end/src/container/SearchPage/search.jsx): Displays search options and field.
 
-**SubjectPage** *(SSWEN90013/Front_end/Front_end/src/container/SubjectPage/)*: Contains class for displaying details for a subject.
+**SubjectPage** *(Front_end/Front_end/src/container/SubjectPage/)*: Contains class for displaying details for a subject.
 
 - [SubjectPage/Subject.jsx](Front_end/Front_end/src/container/SubjectPage/Subject.jsx): Displays the articles and details related to a subject.
 
-**WelcomePage** *(SSWEN90013/Front_end/Front_end/src/container/WelcomePage/)*: Contains the landing splash page.
+**WelcomePage** *(Front_end/Front_end/src/container/WelcomePage/)*: Contains the landing splash page.
 
 - [WelcomePage/WelcomePage.jsx](Front_end/Front_end/src/container/WelcomePage/WelcomePage.jsx): Landing page.
 

@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
 import {Button } from 'react-bootstrap';
 
-class LikeButton extends React.Component {
-    state = {
-        likes: 0
-    };
-
-    addLike = () => {
-        let newCount = this.state.likes + 1;
-          this.setState({
-          likes: newCount
-        });
-      };
-
-    render() {
-        
-          return (
-            <Button 
-                onClick={this.addLike}
-                className="edit-button"
-                variant="danger" 
-            >
-              Likes: {this.state.likes}
-            </Button>)
+class LikeButton extends Component {
+    constructor(props){
+      super(props);
+      this.state = {
+        isLiked: false
       }
+    }  
+
+    isLikedChange = () => {
+      this.setState({
+          isLiked: !this.state.isLiked
+      })
     }
+
+    render(){
+      const { isLiked } = this.state;
+      const innerText = isLiked ? 'Like' : 'Unlike';
+      return(
+          <Button 
+              className="edit-button" 
+              onClick={this.isLikedChange}
+              variant="danger"
+          >
+              <span>{innerText}</span>
+          </Button>
+          )
+      }
+  }
+
 
 export default LikeButton;

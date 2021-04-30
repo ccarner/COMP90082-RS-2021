@@ -5,7 +5,7 @@ class Bookmark extends Component{
     constructor(props){
         super(props);
         this.state = {
-            isLiked: false
+            isBookmarked: false
         }
     }    
         
