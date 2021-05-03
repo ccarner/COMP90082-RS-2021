@@ -3,8 +3,7 @@ import axios from "axios"
 const accessTokenKey = "accessToken"
 
 const request = axios.create({
-  baseURL: "http://api.cervidae.com.au:4000",
-  // baseURL: "http://api.cervidae.com.au:4000",
+  baseURL: "http://api.cervidae.com.au:4000/",
   timeout: 10000,
   // headers: { "auth-token": accessTokenKey },
 })
