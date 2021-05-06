@@ -4,7 +4,7 @@
 
 The Software Training Repository was built to address the issue of the rapid evolution and ever-changing landscape of software technologies, frameworks, and tools used in the software development process. With the consistent introduction of new updates to existing tools on a daily basis, it is often difficult for a software engineer to keep up to date with the latest emerging technologies or changes in existing solutions. Whilst there are sources of information available on the web, as a student without the necessary experiences, it can often be difficult to determine the legitimacy and appropriateness of the claims of such sources.
 
- The Software Training Repository seeks to provide students and individuals with access to a centralized, reliable, and up to date source of information. The core of the system aims to be a community-driven hub, with students and staff being able to contribute their understanding and knowledge of various frameworks, technologies, and tools through articles and discussion forums. New articles are able to be published by students with students also being able to modify existing articles by adding new or editing outdated information. 
+The Software Training Repository seeks to provide students and individuals with access to a centralized, reliable, and up to date source of information. The core of the system aims to be a community-driven hub, with students and staff being able to contribute their understanding and knowledge of various frameworks, technologies, and tools through articles and discussion forums. New articles are able to be published by students with students also being able to modify existing articles by adding new or editing outdated information.
 
 - The link to our website: [Software Training Repository](http://138.197.232.85/)
 
@@ -22,16 +22,16 @@ The student and moderators should be able to register account and login. The adm
 
 | User story ID / Sprint No. | Sprint 1 | Sprint 2 |  Sprint 3  |  Sprint 4  |
 | -------------------------- | :------: | :------: | :--------: | :--------: |
-| 1.0 Use Unimelb account    |          | Ongoing  | *Canceled* | *Canceled* |
+| 1.0 Use Unimelb account    |          | Ongoing  | _Canceled_ | _Canceled_ |
 | 1.1 Register account       |          |          |            |  **Done**  |
 | 1.2 Login                  | **Done** |    —     |     —      |     —      |
 | 1.3 Account management     |          |          |            |  **Done**  |
 
-- Note that due to the limitation of unimelb database access, from sprint 3, we gave up developing the **user story 1.0** (Login via unimelb account)  and  replaced it with **user story 1.1** (Register account)
+- Note that due to the limitation of unimelb database access, from sprint 3, we gave up developing the **user story 1.0** (Login via unimelb account) and replaced it with **user story 1.1** (Register account)
 
 **Epic 2. Subject**
 
-Subject is a major component of the website. The subject page should contain a subject description and the related articles and tools recommand by the website moderators. All users should be able to view the subject pages that they subscribe to. And the moderators should be able to create, delete, edit subjects, add sections to subjects and review all pending articles under each subject. 
+Subject is a major component of the website. The subject page should contain a subject description and the related articles and tools recommand by the website moderators. All users should be able to view the subject pages that they subscribe to. And the moderators should be able to create, delete, edit subjects, add sections to subjects and review all pending articles under each subject.
 
 | User story ID / Sprint No.     | Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 |
 | ------------------------------ | -------- | :------: | :------: | :------: |
@@ -56,7 +56,7 @@ Articles is a criticle function for the website to thrive. All users can create 
 | 3.7 Search articles by keywords |          |          | **Done** |    —     |
 | 3.8 Search articles by tags     |          |          | **Done** |    —     |
 
-**Epic 4. Comment** 
+**Epic 4. Comment**
 
 Comment is a function for users to provide feedbacks to contents in the website. Users should be able to leave comments to articles and reply to other comments.
 
@@ -82,156 +82,150 @@ Users should have their own profile pages where they can check all the articles 
 | -------------------------- | -------- | -------- | -------- | -------- |
 | 5.1 Show profile           |          |          |          | **Done** |
 
-
-
 ## Links
-
-
 
 ## System Requirement
 
-
-
 ## Installation Guide
+
 Please check our [backend](backend/README.md) for backend installation details
 Please check our [frontend](Front_end/README.md) for frontend installation details
-
 
 ## Description of Key Classes
 
 ### Front-end
-**Server** *(Front_end/Front_end/src/)* 
+
+**Server** _(Front_end/Front_end/src/)_
 
 - [app.js](Front_end/src/app.js): The front end of the application, handles routing to different pages.
 
-**Utils** *(Front_end/Front_end/src/utils/)*: Contains Utility classes for use by other classes.
+**Utils** _(Front_end/Front_end/src/utils/)_: Contains Utility classes for use by other classes.
 
 - [utils/AuthService.js](Front_end/Front_end/src/utils/AuthService.js): Performs the authentication to the backend and stores role and authorization details.
 - [utils/request.js](Front_end/Front_end/src/utils/request.js): Formatted http request for use by other classes.
 - [utils/tools.js](Front_end/Front_end/src/utils/tools.js): Tools for adding and getting parameters to and from urls.
 
-**components** *(Front_end/Front_end/src/components/)*: Contains components used on all pages.
+**components** _(Front_end/Front_end/src/components/)_: Contains components used on all pages.
 
 - [components/Footer.js](Front_end/Front_end/src/components/Footer.js): The footer used on every page.
 - [components/NavBar.js](Front_end/Front_end/src/components/NavBar.js): The implementation for the Navbar used on every page.
 
-**container** *(Front_end/Front_end/src/container/)*: Contains details for every page functionality.
+**container** _(Front_end/Front_end/src/container/)_: Contains details for every page functionality.
 
 #### The following sections list these pages inside container folder, presenting in the folder order:
 
-**addSection** *(Front_end/Front_end/src/container/addSection/)*: Contains class with logic for adding sections.
+**addSection** _(Front_end/Front_end/src/container/addSection/)_: Contains class with logic for adding sections.
 
 - [addSection/AddSection.jsx](Front_end/Front_end/src/container/addSection/AddSection.jsx): Contains logic for adding sections.
 
-**addUserPage** *(Front_end/Front_end/src/container/addSection/)*: Contains class with logic for adding users.
+**addUserPage** _(Front_end/Front_end/src/container/addSection/)_: Contains class with logic for adding users.
 
 - [addUserPage/AddUser.jsx](Front_end/Front_end/src/container/addUserPage/AddUser.jsx): Handles logic for adding sections.
 
-**ArticlePage** *(Front_end/Front_end/src/container/ArticlePage/)*: Contains the classes for the page for viewing articles.
+**ArticlePage** _(Front_end/Front_end/src/container/ArticlePage/)_: Contains the classes for the page for viewing articles.
 
 - [ArticlePage/Article.jsx](Front_end/Front_end/src/container/ArticlePage/Article.jsx): Handles the container for the viewer and associated buttons.
 - [ArticlePage/EditorComponent.jsx](Front_end/Front_end/src/container/ArticlePage/EditorComponent.jsx): Actual reader component, set up for read only access.
 - [ArticlePage/LikeButton.jsx](Front_end/Front_end/src/container/ArticlePage/LikeButton.jsx): users can click the button to like or unlike the article.
 - [ArticlePage/Bookmark.jsx](Front_end/Front_end/src/container/ArticlePage/Bookmark.jsx): users can click the bookmark button to bookmark or unbookmark the article.
 
-**Comment** *(Front_end/Front_end/src/container/Comment/)*: Contains the comment components on pages.
+**Comment** _(Front_end/Front_end/src/container/Comment/)_: Contains the comment components on pages.
 
 - [Comment/Comment.jsx](Front_end/Front_end/src/container/ArticlePage/Comment.jsx): Handles the container for comment system and post function of users.
 - [Comment/SubComment.jsx](Front_end/Front_end/src/container/ArticlePage/SubComment.jsx):Represents individual comment item .
-- [Comment/SubCommentItem.jsx](Front_end/Front_end/src/container/ArticlePage/SubCommentItem.jsx):Replys the comments of other users. 
+- [Comment/SubCommentItem.jsx](Front_end/Front_end/src/container/ArticlePage/SubCommentItem.jsx):Replys the comments of other users.
 
-**CreateArticlePage** *(Front_end/Front_end/src/container/CreateArticlePage/)*: Handles the page for creating articles, set up differently from editing existing articles.
+**CreateArticlePage** _(Front_end/Front_end/src/container/CreateArticlePage/)_: Handles the page for creating articles, set up differently from editing existing articles.
 
 - [CreateArticlePage/CreateArticlePage.jsx](Front_end/Front_end/src/container/CreateArticlePage/CreateArticlePage.jsx): Handles the container for the viewer and associated buttons.
 - [CreateArticlePage/EditorComponent.jsx](Front_end/Front_end/src/container/CreateArticlePage/EditorComponent.jsx): Actual reader component, set up for editing.
 - [CreateArticlePage/tagComponent.jsx](Front_end/Front_end/src/container/CreateArticlePage/tagComponent.jsx): Handles adding and removing tags from articles.
 
-**EditArticlePage** *(Front_end/Front_end/src/container/EditArticlePage/)*: Contains classes for editing articles.
+**EditArticlePage** _(Front_end/Front_end/src/container/EditArticlePage/)_: Contains classes for editing articles.
 
 - [EditArticlePage/EditorPage.jsx](Front_end/Front_end/src/container/EditArticlePage/EditorPage.jsx): Handles the container for the viewer and associated buttons.
 - [EditArticlePage/EditorComponent.jsx](Front_end/Front_end/src/container/EditArticlePage/EditorComponent.jsx): Actual reader component, set up for editing.
 - [EditArticlePage/tagComponent.jsx](Front_end/Front_end/src/container/EditArticlePage/tagComponent.jsx): Handles adding and removing tags from articles.
 
-**EditingSectionPage** *(Front_end/Front_end/src/container/addSection/)*: Contains class for editing sections.
+**EditingSectionPage** _(Front_end/Front_end/src/container/addSection/)_: Contains class for editing sections.
 
 - [EditingSectionPage/EditingSection.jsx](Front_end/Front_end/src/container/EditingSectionPage/EditingSection.jsx): Contains logic for editing sections within subjects.
 
-**FAQPage** *(Front_end/Front_end/src/container/FAQPage/)*: Contains the page for frequently asked questions (FAQ) to help use get familiar with the system.
+**FAQPage** _(Front_end/Front_end/src/container/FAQPage/)_: Contains the page for frequently asked questions (FAQ) to help use get familiar with the system.
 
 - [FAQPage/FAQ.jsx](Front_end/Front_end/src/container/FAQPage/FAQ.jsx): FAQ page contains content to help users get familiar with the system.
 
-**HomePage** *(Front_end/Front_end/src/container/addSection/)*: Contains the homepage.
+**HomePage** _(Front_end/Front_end/src/container/addSection/)_: Contains the homepage.
 
 - [HomePage/Home.jsx](Front_end/Front_end/src/container/HomePage/Home.jsx): Contains logic for the homepage, displaying subjects for each user.
- 
-**LoginPage** *(Front_end/Front_end/src/container/LoginPage/)*: Contains class that displays the login page.
+
+**LoginPage** _(Front_end/Front_end/src/container/LoginPage/)_: Contains class that displays the login page.
 
 - [LoginPage/Login.jsx](Front_end/Front_end/src/container/LoginPage/Login.jsx): Contains logic for logging in.
 
-**PendingPage** *(Front_end/Front_end/src/container/PendingPage/)*: Contains classes related to pending articles for moderators.
+**PendingPage** _(Front_end/Front_end/src/container/PendingPage/)_: Contains classes related to pending articles for moderators.
 
 - [PendingPage/detailedPendingPage.jsx](Front_end/Front_end/src/container/PendingPage/detailedPendingPage.jsx): Handles the container for the viewer and associated buttons for a pending article.
 - [PendingPage/EditorComponent.jsx](Front_end/Front_end/src/container/PendingPage/EditorComponent.jsx): Actual reader component, set up for read only.
 - [PendingPage/pendingArticleComponent.jsx](Front_end/Front_end/src/container/PendingPage/pendingArticleComponent.jsx): Component representing a pending article in the list.
 - [PendingPage/PendingPage.jsx](Front_end/Front_end/src/container/PendingPage/PendingPage.jsx): Displays list of pending articles for a subject, for moderator to approve.
 
-
-**ProfilePage** *(Front_end/Front_end/src/container/ProfilePage/)*: Contains classes relating to the profile page, which displays all articles published by the user.
+**ProfilePage** _(Front_end/Front_end/src/container/ProfilePage/)_: Contains classes relating to the profile page, which displays all articles published by the user.
 
 - [ProfilePage/EditorComponent.jsx](Front_end/Front_end/src/container/ProfilePage/EditorComponent.jsx): Actual reader component, set up for editing.
 - [ProfilePage/ModeratorProfilePage.jsx](Front_end/Front_end/src/container/ProfilePage/ProfilePage.jsx): Profile page for moderator, Displays list of pending articles with options to approve.
 - [ProfilePage/ProfilePendingArticleComponent.jsx](Front_end/Front_end/src/container/PendingPage/ProfilePendingArticleComponent.jsx): Component representing a pending article in the list.
 - [ProfilePage/StudentProfilePage.jsx](Front_end/Front_end/src/container/ProfilePage/ProfilePage.jsx): Profile page for students, like moderator page but displaying unapproved articles with option to edit.
 
-**RegisterPage** *(Front_end/Front_end/src/container/RegisterPage/)*: Contains class for registring a new user.
+**RegisterPage** _(Front_end/Front_end/src/container/RegisterPage/)_: Contains class for registring a new user.
 
 - [RegisterPage/Register.jsx](Front_end/Front_end/src/container/RegisterPage/Register.jsx): Displays registration page.
 
-**SearchPage** *(Front_end/Front_end/src/container/SearchPage/)*: Contains page for searching all articles.
+**SearchPage** _(Front_end/Front_end/src/container/SearchPage/)_: Contains page for searching all articles.
 
 - [SearchPage/search.jsx](Front_end/Front_end/src/container/SearchPage/search.jsx): Displays search options and field.
 
-**SubjectPage** *(Front_end/Front_end/src/container/SubjectPage/)*: Contains class for displaying details for a subject.
+**SubjectPage** _(Front_end/Front_end/src/container/SubjectPage/)_: Contains class for displaying details for a subject.
 
 - [SubjectPage/Subject.jsx](Front_end/Front_end/src/container/SubjectPage/Subject.jsx): Displays the articles and details related to a subject.
 
-**WelcomePage** *(Front_end/Front_end/src/container/WelcomePage/)*: Contains the landing splash page.
+**WelcomePage** _(Front_end/Front_end/src/container/WelcomePage/)_: Contains the landing splash page.
 
 - [WelcomePage/WelcomePage.jsx](Front_end/Front_end/src/container/WelcomePage/WelcomePage.jsx): Landing page.
 
 ### Back-end
 
-**Server** *(SWEN90013/backend/Back_end/)* 
+**Server** _(SWEN90013/backend/Back_end/)_
 
 - [app.js](backend/app.js): Working as a web server, it listens to the request sent by each connected client and be ready to respond to it. It also builds a connection with database to allow data CRUD.
 
-**Routers** *(SWEN90013/backend/Back_end/routers/)*: Defines a series of routers that redirect HTTP requests from the front-end to the corresponding back-end controllers based on the suffix of the request.
+**Routers** _(SWEN90013/backend/Back_end/routers/)_: Defines a series of routers that redirect HTTP requests from the front-end to the corresponding back-end controllers based on the suffix of the request.
 
-- [routers/article.js](backend/Back_end/routers/article.js): Redirects the incoming HTTP requests with suffix of  “/article” to their corresponding functions in the article controller.
-- [routers/auth.js](backend/Back_end/routers/auth.js): Redirects the incoming HTTP requests with suffix of  “/article” to their corresponding functions in the article controller.
-- [routers/comment.js](backend/Back_end/routers/comment.js): Redirects the incoming HTTP requests with suffix of  “/article” to their corresponding functions in the article controller.
-- [routers/search.js](backend/Back_end/routers/search.js): Redirects the incoming HTTP requests with suffix of  “/article” to their corresponding functions in the article controller.
-- [routers/section.js](backend/Back_end/routers/section.js): Redirects the incoming HTTP requests with suffix of  “/article” to their corresponding functions in the article controller.
-- [routers/subject.js](backend/Back_end/routers/subject.js): Redirects the incoming HTTP requests with suffix of  “/article” to their corresponding functions in the article controller.
-- [routers/tool.js](backend/Back_end/routers/tool.js): Redirects the incoming HTTP requests with suffix of  “/article” to their corresponding functions in the article controller.
-- [routers/user.js](backend/Back_end/routers/user.js): Redirects the incoming HTTP requests with suffix of  “/article” to their corresponding functions in the article controller.
+- [routers/article.js](backend/Back_end/routers/article.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
+- [routers/auth.js](backend/Back_end/routers/auth.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
+- [routers/comment.js](backend/Back_end/routers/comment.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
+- [routers/search.js](backend/Back_end/routers/search.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
+- [routers/section.js](backend/Back_end/routers/section.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
+- [routers/subject.js](backend/Back_end/routers/subject.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
+- [routers/tool.js](backend/Back_end/routers/tool.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
+- [routers/user.js](backend/Back_end/routers/user.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
 
-**Middlewares** *(SWEN90013/backend/Back_end/middlewares/)*: Contains classes that use to verify the identity of request owners and gurantee the security of the website.
+**Middlewares** _(SWEN90013/backend/Back_end/middlewares/)_: Contains classes that use to verify the identity of request owners and gurantee the security of the website.
 
 - [middlewares/auth.js](backend/Back_end/middlewares/auth.js): Contains a function to allow users to login safely, and generate an authentication token that can verity the users’ identity for their following operations.
-- [middlewares/verifyToken.js](backend/Back_end/middlewares/verifyToken.js): 
+- [middlewares/verifyToken.js](backend/Back_end/middlewares/verifyToken.js):
 
-**Controllers** *(SWEN90013/backend/Back_end/controllers/)*: Defines a series of functions that take the HTTP requests redirected by routers, process the requests, and generate HTTP responds to send back to the front-end.
+**Controllers** _(SWEN90013/backend/Back_end/controllers/)_: Defines a series of functions that take the HTTP requests redirected by routers, process the requests, and generate HTTP responds to send back to the front-end.
 
 - [controllers/article.js](backend/Back_end/controllers/article.js): Contains functions that handles the incoming HTTP requests related to articles. (e.g. publish new articles, approve pending articles, etc.)
 - [controllers/comment.js](backend/Back_end/controllers/comment.js): Contains functions that handles the incoming HTTP requests related to comments. (e.g. post new comments of an article, delete or update an existing comment, etc.)
-- [controllers/search.js](backend/Back_end/controllers/search.js): Contains functions that handles the incoming HTTP requests related to search.  (e.g. search an article by keywords, etc.)
+- [controllers/search.js](backend/Back_end/controllers/search.js): Contains functions that handles the incoming HTTP requests related to search. (e.g. search an article by keywords, etc.)
 - [controllers/section.js](backend/Back_end/controllers/section.js): Contains functions that handles the incoming HTTP requests related to section. (e.g. add an section of article to a subject, add a comment section to an article, etc.)
 - [controllers/subject.js](backend/Back_end/controllers/subject.js):Contains functions that handles the incoming HTTP requests related to subjects. (e.g. create or update a subject, etc.)
 - [controllers/tool.js](backend/Back_end/controllers/tool.js): Contains functions that handles the incoming HTTP requests related to tools. (e.g. add a new tool, etc.)
 - [controllers/user.js](backend/Back_end/controllers/user.js): Contains functions that handles the incoming HTTP requests related to users. (e.g. user subscribe a subject, etc.)
 
-**Proxies** *(SWEN90013/nackend/Back_end/proxies/)*: Each class corresponds to a database document and works as an intermediate layer to provide the necessary  functions for the system to communicate with that database. 
+**Proxies** _(SWEN90013/nackend/Back_end/proxies/)_: Each class corresponds to a database document and works as an intermediate layer to provide the necessary functions for the system to communicate with that database.
 
 - [proxies/article.js](backend/Back_end/proxies/article.js): Provides necessary CRUD function for article documents in mongoDB.
 - [proxies/comment.js](backend/Back_end/proxies/comment.js): Provides necessary CRUD function for comment documents in mongoDB.
@@ -251,9 +245,17 @@ The database model are defined in the [SWEN90013/backend/Back_end/models/](backe
 - [models/tool.js](backend/Back_end/models/tool.js): Defines the Tool model and some functions auto-triggered functions related to the model.
 - [models/user.js](backend/Back_end/models/user.js): Defines the User mongoose model.
 
-The document details are shown in the diagram below:
+The document details of previous project are shown in the diagram below:
 
 ![RS-SystemDiagrams-DatabaseDiagram.png](Database%20Diagram.png)
+
+The updated and new documents from semester 1 of COMP90082 are described below:
+
+- The updated database schema can be found at [database_schema.pdf](docs/database_schema.pdf)
+
+- The information about CI/CD overview, Deployment Instructions and Deployment instances can be found at [deployment_instructions.pdf](docs/deployment_instructions.pdf)
+
+- The database unit test, integration test, and acceptance test documents can be found at [database_testing.pdf](tests/database_testing.pdf)
 
 ## Description of Deployment
 
@@ -264,17 +266,15 @@ Once that developer has push the push code for either frontend or backend has be
 has been deployed in our digital ocean environment.
 
 The demonstration of our deployment can be found in the below diagram.
- 
+
 ![Deployment_diagram.png](Deployment_diagram.png)
 
- ## API Testing
- 
-Api testing has been performed using post man collections
-The exported version of our api testing can be found in this [folder](api_testing). 
+## API Testing
 
+Api testing has been performed using post man collections
+The exported version of our api testing can be found in this [folder](api_testing).
 
 ## Traceability matrix
-
 
 <table>
   <tr>
@@ -646,4 +646,3 @@ When the administrator clicks the "User Management" button on the home page, the
    </td>
   </tr>
 </table>
-
