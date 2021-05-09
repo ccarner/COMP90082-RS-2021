@@ -142,17 +142,21 @@ class Comment extends React.Component {
             
             <div>
               <Container>
-                <div className="boardTitle">Discussion Board</div>
+                <div className="boardTitle">
+                  <h1>Discussion Board</h1>
+                </div>
+
                 <Row style={{ display: "flex", justifyContent: "center" }}>
                   <Image src={cardImage} roundedCircle className="imgSize" />
                   <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Control
                       as="textarea"
                       rows={3}
+                      // change px to rem
                       style={{
-                        height: "80px",
-                        width: "600px",
-                        marginRight: "10px",
+                        height: "5rem",
+                        width: "37.5rem",
+                        marginRight: "0.625rem",
                       }}
                       onChange={this.getInputComment}
                     />
@@ -161,9 +165,9 @@ class Comment extends React.Component {
                     disabled={this.state.isLoading}
                     variant="primary"
                     style={{
-                      height: "80px",
-                      width: "100px",
-                      backgroundColor: "#2183f8",
+                      height: "5rem",
+                      width: "6.25rem",
+                      // backgroundColor: "#2183f8",
                     }}
                     onClick={this.postInputComment}
                   >
@@ -177,10 +181,13 @@ class Comment extends React.Component {
                     {!this.state.isLoading ? "POST" : "Loading..."}
                   </Button>{" "}
                 </Row>
+                <span>&nbsp;</span>
+                
                 {/* <SubComment params={{ key: 1, value: 2 }} /> */}
                 {this.state.showCommentList &&
                   this.renderComment(this.state.commentList)}
                 <Row className="line" />
+
               </Container>
             </div>
           </div>

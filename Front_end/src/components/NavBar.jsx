@@ -124,7 +124,7 @@ class NavBar extends Component {
 
             {/** enable link in nav bar to redirect to user management page*/}
             {this.userManagement()}
-            
+
             {/** enable link in nav bar to redirect to FAQ*/}
             <Nav.Link 
               onClick={() => this.clickedFAQ()} 
@@ -145,6 +145,7 @@ class NavBar extends Component {
             />
             <Button
               variant="primary"
+              style={{marginRight: "10px"}}
             >
               <FontAwesomeIcon
                 icon={faSearch}

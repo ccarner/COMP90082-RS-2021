@@ -115,17 +115,18 @@ class App extends React.Component {
             {/* just a temporary link, replace href with a function to send a request to backend */}
 
             <Row>
-              <Col sm={9}>
-                <h1>{this.state.title}</h1>
+              <Col>
+                {/* Highlight article title */}
+                <h1 style={{fontWeight: 'bold'}}>{this.state.title}</h1>
               </Col>
-              <Col sm={3}>                
+              <Col>                
                 <Link
                   disabled={this.state.hasPending}
                   to={{ pathname: `/editpage/${this.state.id}` }}
                 >
                   <Button
                     className="edit-button"
-                    variant="info"
+                    variant="primary"
                     disabled={this.state.hasPending}
                   >
                     {this.state.buttonText}
@@ -144,6 +145,7 @@ class App extends React.Component {
                 </Link>
               </Col>
             </Row>
+
             {this.renderEditor()}
 
             {/* add the bookmark button; see Bookmark.jsx for detail */}
@@ -153,6 +155,8 @@ class App extends React.Component {
 
           </Container>
         </div>
+        <span>&nbsp;</span>
+        {/* Discussion Board */}
         <div className="App article-editor-content-section">
           
             <Comment params={`${baseURL}article/get/${this.state.id}`} />
