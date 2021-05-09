@@ -60,20 +60,20 @@ export default class Register extends Component {
                 <div className="nav">
                     < img src={UnimelbLogo} alt="UnimelbLogo"/>
                     <div>
+                        {/* add a span to deal with padding */}
+                        <span></span>
                         <a href="login" className="root" >
                             Login
-                        </a >
+                        </a>
                         <span> / </span>
-                        <a href="register" className="root" title="Register">
-                            Register
-                        </a >
+                        <span>Register</span>
                     </div>
                 </div>
                 <div id="title">
                     <div>Register</div>
                 </div>
                 <div className="contentTitle">
-                    Please enter the information for register
+                    Please enter the information to register.
                 </div>
                 <div className="content">
                     <Form>
@@ -99,6 +99,11 @@ export default class Register extends Component {
                                 onChange={(e) => this.getPassword(e)}
                             />
                         </Form.Group>
+
+                        {/* seems to check password entered
+                            Commented by the previous team
+                            Maybe useful in the future so not delete
+                        */}
                         {/*<Form.Group controlId="formBasicComfirmPassword">*/}
                         {/*    <Form.Label>Comfirm Password:</Form.Label>*/}
                         {/*    <Form.Control*/}
@@ -113,16 +118,19 @@ export default class Register extends Component {
                         {/*    </Form.Text>*/}
                         {/*    : <div></div>*/}
                         {/*}*/}
+
                         <Button
-                            id="btn"
-                            onClick={() => this.regist()}>
+                            variant="success"
+                            onClick={() => this.regist()}
+                        >
                             Confirm
                         </Button>{" "}
 
                         <Button
-                            id="btnBack"
-                            onClick={() => this.routeChange("login")}>
-                            Back
+                            variant="primary"
+                            onClick={() => this.routeChange("login")}
+                        >
+                            Cancel
                         </Button>
                     </Form>
                 </div>

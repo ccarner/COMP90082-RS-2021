@@ -50,22 +50,21 @@ export default class Login extends Component {
         <div className="nav">
           <img src={UnimelbLogo} alt="UnimelbLogo"/>
           <div>
+            {/* add a span to deal with padding */}
+            <span></span>
             <a href="https://www.unimelb.edu.au/" className="root">
-              <span className="glyphicon glyphicon-home" />
-              The University of Melbourne
+            The University of Melbourne
             </a>
             <span> / </span>
-            <a href="login" className="root" title="Login">
-              Login
-            </a>
+            <span >Login</span>
           </div>
         </div>
         <div id="title">
           <div>Login</div>
         </div>
-        <div className="contentTitle">
-          Login with your University of Melbourne username and password.
-        </div>
+        
+        <div className="contentTitle">Welcome! Please login with your username and password.</div>
+        
         <div className="content">
           <Form>
             <Form.Group controlId="formBasicEmail">
@@ -92,17 +91,16 @@ export default class Login extends Component {
             
             <Button
               variant="success"
-              // id="btn"
               onClick={() =>
                 // eslint-disable-next-line react/destructuring-assignment
                 this.verify(this.state.username, this.state.password)
               }
             >
-              LOGIN
+              Login
             </Button>{" "}
+            
             <Button
-                // id="btn"
-                variant="info"
+                variant="primary"
                 onClick={() => this.routeChange("register")}>
               Register
             </Button>
