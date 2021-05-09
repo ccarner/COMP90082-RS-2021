@@ -73,7 +73,7 @@ export default class Register extends Component {
                     <div>Register</div>
                 </div>
                 <div className="contentTitle">
-                    Please enter the information to register.
+                    <h5>Please enter the following information to register.</h5>
                 </div>
                 <div className="content">
                     <Form>

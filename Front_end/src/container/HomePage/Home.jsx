@@ -157,7 +157,7 @@ class Home extends Component {
       return (
         <Button
           className="padding-articles-button"
-          variant="btn btn-outline-primary"
+          variant="outline-primary"
           onClick={this.showModal}
         >
           Add Subject
@@ -171,7 +171,7 @@ class Home extends Component {
       return(
         <Row>
           <Col sm={9}>
-            <h2>Subjects you are currently a moderator in</h2>
+            <h2>Subjects you have as a moderator</h2>
           </Col>
           <Col sm={3}>
             {this.addSubjectButton()}
@@ -308,17 +308,17 @@ class Home extends Component {
                 /> */}
               </Form.Group>
             </Modal.Body>
+            
             <Modal.Footer>
               <Button
-                variant="secondary"
-                style={{ backgroundColor: "#ce9178" }}
+                variant="danger"
                 onClick={this.closeModal}
               >
                 Close
               </Button>
+
               <Button
                 variant="primary"
-                style={{ backgroundColor: "#0e4381" }}
                 disabled={this.state.isLoading}
                 onClick={!this.state.isLoading ? this.postSubjectInfo : null}
               >
