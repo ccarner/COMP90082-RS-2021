@@ -3,6 +3,7 @@ import '../../styles/main.css';
 import { Row, Container, Card, Button, Table, Modal } from 'react-bootstrap';
 import './EditingSection.css'
 import request from "../../utils/request"
+import { Link } from "react-router-dom"
 
 class EditingSubject extends Component {
 
@@ -64,10 +65,16 @@ class EditingSubject extends Component {
         </Modal.Header>
         <Modal.Body>Delete the Seletected Section</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => this.closeDialog()}>
+          <Button 
+            variant="secondary" 
+            onClick={() => this.closeDialog()}
+          >
             Close
           </Button>
-          <Button variant="danger" onClick={() => this.clickedDelete(this.state.sectionDelete)}>
+          <Button 
+            variant="danger" 
+            onClick={() => this.clickedDelete(this.state.sectionDelete)}
+          >
             Confirm
           </Button>
         </Modal.Footer>
@@ -83,10 +90,16 @@ class EditingSubject extends Component {
           </Modal.Header>
           <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
+            <Button 
+              variant="secondary" 
+              onClick={this.handleClose}
+            >
               Close
             </Button>
-            <Button variant="primary" onClick={this.handleClose}>
+            <Button 
+              variant="primary" 
+              onClick={this.handleClose}
+            >
               Save Changes
             </Button>
           </Modal.Footer>
@@ -99,7 +112,7 @@ class EditingSubject extends Component {
       <div className="subject-section">
         <Container>
           <Row>
-            <h1>Edit Section</h1>
+            <h2>Edit Section</h2>
           </Row>
           <hr />
 
@@ -107,7 +120,24 @@ class EditingSubject extends Component {
             <Row>
               <Card>
                 <Card.Header as="h5">
-                  <Button onClick={() => this.clickedAddSection()} variant="outline-primary">Add new Section</Button>
+                  <Button 
+                    onClick={() => this.clickedAddSection()} 
+                    variant="outline-primary"
+                  >
+                    Add New Section
+                  </Button>
+
+                  {/* currently not find a good way to back to the subject page, 
+                  therefore back to the home page instead */}
+                  <Link to="/home/">
+                    <Button
+                      variant="secondary"
+                      style={{marginLeft: "20px"}}
+                    >
+                      Cancel
+                    </Button>
+                  </Link>
+
                 </Card.Header>
                 <Card.Body>
 
@@ -122,16 +152,16 @@ class EditingSubject extends Component {
                     <tbody>
                       {this.state.sections.map(section => (
                         <tr>
-                          <td>{section.name}</td>
-                          <td>{section.type}</td>
-                          <td> 
+                          {/* align the content in table */}
+                          <td class="align-middle">{section.name}</td>
+                          <td class="align-middle">{section.type}</td>
+                          <td class="align-middle"> 
                             <Button variant="danger" 
                               onClick={() => this.setShow(section)}
-                              // onClick={() => this.clickedDelete(section)}
+                              size="sm"
                             >
-                                Delete
+                              Delete
                             </Button>
-                            {/* {this.DeleteModal()} */}
                           </td>
                         </tr>
                       ))}

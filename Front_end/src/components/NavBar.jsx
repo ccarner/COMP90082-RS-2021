@@ -123,12 +123,13 @@ class NavBar extends Component {
             </Nav.Link>
 
             {/** enable link in nav bar to redirect to user management page*/}
-            <Nav.Link onClick={() => this.userManagement()}>
-              <div className="navbar-home">User Management</div>
-            </Nav.Link>
- 
+            {this.userManagement()}
+            
             {/** enable link in nav bar to redirect to FAQ*/}
-            <Nav.Link onClick={() => this.clickedFAQ()}>
+            <Nav.Link 
+              onClick={() => this.clickedFAQ()} 
+              style={{marginRight: "20px"}}
+            >
               <div className="navbar-home">FAQ</div>
             </Nav.Link>
 
