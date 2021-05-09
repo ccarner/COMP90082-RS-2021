@@ -88,7 +88,9 @@ class NavBar extends Component {
     if(window.location.href.split("/")[3] === "subject"){
 
       return (<Link to={{pathname: `/pendingpage/${window.location.href.substring(window.location.href.lastIndexOf('/')+1)}`}}>
-      <Button className="edit-button" variant="info">
+      <Button 
+        variant="primary"
+      >
         Pending Submissions
       </Button>
   </Link>)
@@ -115,15 +117,23 @@ class NavBar extends Component {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
+            {/** enable link in nav bar to redirect to home page*/}
             <Nav.Link onClick={() => this.clickedHome()}>
               <div className="navbar-home">Home</div>
             </Nav.Link>
-            {this.userManagement()}
-            {this.renderPending()}
-            {/** enable button in nav bar to redirect to FAQ*/}
+
+            {/** enable link in nav bar to redirect to user management page*/}
+            <Nav.Link onClick={() => this.userManagement()}>
+              <div className="navbar-home">User Management</div>
+            </Nav.Link>
+ 
+            {/** enable link in nav bar to redirect to FAQ*/}
             <Nav.Link onClick={() => this.clickedFAQ()}>
               <div className="navbar-home">FAQ</div>
             </Nav.Link>
+
+            {/* show pending submission button */}
+            {this.renderPending()}          
           </Nav>
           <Form inline className="nav-search">
             <FormControl
@@ -132,7 +142,9 @@ class NavBar extends Component {
               className="mr-sm-2"
               onChange={this.getSearchContent}
             />
-            <Button variant="primary">
+            <Button
+              variant="primary"
+            >
               <FontAwesomeIcon
                 icon={faSearch}
                 id="input"
@@ -141,7 +153,10 @@ class NavBar extends Component {
             </Button>
           </Form>
           <Dropdown alignRight className="nav-drop-down-button">
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown.Toggle 
+              variant="success" 
+              id="dropdown-basic"
+            >
               <FontAwesomeIcon icon={faUserCircle} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -173,17 +188,21 @@ class NavBar extends Component {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
+            {/** enable link in nav bar to redirect to home page*/}
             <Nav.Link onClick={() => this.clickedHome()}>
               <div className="navbar-home">Home</div>
             </Nav.Link>
-            {/** enable button in nav bar to redirect to FAQ*/}
+
+            {/** enable link in nav bar to redirect to FAQ*/}
             <Nav.Link onClick={() => this.clickedFAQ()}>
               <div className="navbar-home">FAQ</div>
             </Nav.Link>
           </Nav>
           <Form inline className="nav-search">
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="primary">
+            <Button 
+              variant="primary"
+            >
               <FontAwesomeIcon
                 icon={faSearch}
                 id="input"
