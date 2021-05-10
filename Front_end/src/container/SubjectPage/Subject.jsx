@@ -287,6 +287,7 @@ class Subject extends Component {
 
               </Form.Group>
             </Modal.Body>
+
             <Modal.Footer>
               <Button
                 variant="danger"
@@ -300,7 +301,7 @@ class Subject extends Component {
                 disabled={this.state.isLoading}
                 onClick={!this.state.isLoading ? this.clickedAddNewArticle : null}
               >
-                {this.state.isLoading ? "Publishing..." : "Publish"}
+                {this.state.isLoading ? "Creating..." : "Create"}
               </Button>
             </Modal.Footer>
           </Modal>

@@ -73,7 +73,7 @@ class App extends React.Component {
                     delimiters={delimiters} 
                     allowUnique={true}
                     inputFieldPosition="inline"
-                    />
+                />
             </div>
         )
     }

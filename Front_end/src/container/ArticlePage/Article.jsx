@@ -116,9 +116,10 @@ class App extends React.Component {
 
             <Row>
               <Col>
-                {/* Highlight article title */}
+                {/* Bold article title */}
                 <h1 style={{fontWeight: 'bold'}}>{this.state.title}</h1>
               </Col>
+              
               <Col>                
                 <Link
                   disabled={this.state.hasPending}
@@ -146,6 +147,7 @@ class App extends React.Component {
               </Col>
             </Row>
 
+            <hr></hr>
             {this.renderEditor()}
 
             {/* add the bookmark button; see Bookmark.jsx for detail */}
@@ -161,8 +163,7 @@ class App extends React.Component {
           
             <Comment params={`${baseURL}article/get/${this.state.id}`} />
           
-        </div>
-        
+        </div>   
       </>
     )
   }
