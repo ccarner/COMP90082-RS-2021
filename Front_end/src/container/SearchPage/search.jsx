@@ -157,10 +157,9 @@ export default class Search extends Component {
     return (
       <div 
         style={{
-          // display: "flex",
-          // justifyContent: "center",
+          display: "flex",
+          justifyContent: "center",
           fontSize: "20px",
-          marginLeft: "24%",
           // color: "rgb(12, 71, 116)",
         }}
       >
