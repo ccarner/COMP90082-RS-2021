@@ -122,9 +122,10 @@ export default class Register extends Component {
                         <Button
                             variant="success"
                             onClick={() => this.regist()}
+                            style={{marginRight:"0.625rem"}}
                         >
                             Confirm
-                        </Button>{" "}
+                        </Button> 
 
                         <Button
                             variant="primary"

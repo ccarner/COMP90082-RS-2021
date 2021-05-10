@@ -85,7 +85,10 @@ export default class Login extends Component {
               />
             </Form.Group>
             { this.state.showWarning
-              ? <Form.Text className="text-danger">
+              ? <Form.Text 
+                  className="text-danger"
+                  style={{marginBottom:"0.625rem"}}
+                >
                   The username and password you entered is incorrect.
                 </Form.Text>
               : <div></div>
@@ -97,9 +100,10 @@ export default class Login extends Component {
                 // eslint-disable-next-line react/destructuring-assignment
                 this.verify(this.state.username, this.state.password)
               }
+              style={{marginRight:"0.625rem"}}
             >
               Login
-            </Button>{" "}
+            </Button>
             
             <Button
                 variant="primary"
