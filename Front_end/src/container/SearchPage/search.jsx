@@ -155,12 +155,13 @@ export default class Search extends Component {
       )
     }
     return (
-      <div
+      <div 
         style={{
-          display: "flex",
-          justifyContent: "center",
+          // display: "flex",
+          // justifyContent: "center",
           fontSize: "20px",
-          color: "rgb(12, 71, 116)",
+          marginLeft: "24%",
+          // color: "rgb(12, 71, 116)",
         }}
       >
         Sorry! There are no results related to "{this.state.searchContent}"
@@ -203,17 +204,21 @@ export default class Search extends Component {
       <div className="searchResult">
         <div
           style={{
-            color: "#0c4774",
             fontSize: "28px",
             marginTop: "25px",
             marginBottom: "20px",
             fontWeight: "630",
-            marginLeft: "18%",
+            marginLeft: "24%",
           }}
         >
           Search Results
         </div>
-        <div style={{ width: "60%", marginLeft: "18%" }}>
+        <div 
+          style={{ 
+            width: "60%", 
+            marginLeft: "24%",
+          }}
+          >
           {this.state.searchResult &&
             this.renderResult(this.state.searchResult)}
         </div>
@@ -229,37 +234,43 @@ export default class Search extends Component {
           <div
             style={{
               color: "white",
-              fontSize: "35px",
-              fontWeight: "630",
-              marginLeft: "7%",
+              marginLeft: "24%",
             }}
           >
-            Search
+            <h1>Search</h1>
           </div>
           <div>
             <InputGroup
               className="mb-3"
-              style={{ width: "50%", marginLeft: "24%" }}
+              style={{ 
+                width: "50%", 
+                marginLeft: "24%" 
+              }}
             >
               <FormControl
-                placeholder="Search the University"
-                aria-label="Search the University"
+                placeholder="Click to search"
+                aria-label="Click to search"
                 aria-describedby="basic-addon2"
                 onChange={this.getSearchContent}
                 id="js-input"
               />
               <InputGroup.Append>
                 <Button
-                  variant="outline-secondary"
-                  style={{ backgroundColor: "#157ffb", color: "white" }}
+                  variant="primary"
                   onClick={this.searchRequest}
                 >
                   Search
                 </Button>
               </InputGroup.Append>
             </InputGroup>
+
+            {/* Search filters */}
             <Form
-              style={{ display: "flex", marginLeft: "24%", color: "white" }}
+              style={{ 
+                display: "flex", 
+                marginLeft: "24%", 
+                color: "white" 
+              }}
             >
               <Form.Check
                 type="radio"
