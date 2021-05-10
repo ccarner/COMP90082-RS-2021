@@ -152,7 +152,7 @@ class Comment extends React.Component {
                     <Form.Control
                       as="textarea"
                       rows={3}
-                      // change px to rem
+                      // change px to rem 10px=0.625rem
                       style={{
                         height: "5rem",
                         width: "37.5rem",
@@ -164,6 +164,7 @@ class Comment extends React.Component {
                   <Button
                     disabled={this.state.isLoading}
                     variant="primary"
+                    // change px to rem 10px=0.625rem
                     style={{
                       height: "5rem",
                       width: "6.25rem",
