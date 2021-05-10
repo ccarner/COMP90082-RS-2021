@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!g&*9f_5qw*lhtu@4z#tdh6b30@t-t@ug-+i!_cf26u4vl#*p@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["api.cervidae.com.au"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
