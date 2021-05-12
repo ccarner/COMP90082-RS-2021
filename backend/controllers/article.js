@@ -2,6 +2,7 @@ const Article = require('../proxies/article');
 const User = require('../proxies/user');
 const Subject = require('../proxies/subject');
 const Tool = require('../proxies/tool');
+const Joi = require('joi');
 
 const mongoose = require('mongoose');
 /**
@@ -23,6 +24,12 @@ exports.publishTheArticle2 = (req,res, callback) => {
         //console.log('new pending article saved')
         if (data.article_id){
             Article.editExistingArticle(data.article_id, pending_article, req.user._moderator, function (err, article) {
+
+                const validateResult = validate(req)
+                if(validateResult.error){
+                    return res.json({ success: false, error_info: error.details[0].message });
+                }
+
                 if (err) {
                     return res.json({ success: false, error_info: err, auth_token: req.header('auth-token')});
                 }else{
@@ -31,6 +38,12 @@ exports.publishTheArticle2 = (req,res, callback) => {
             });
         } else{
             Article.newAndSave2(!req.user._moderator, pending_article, function (err, article) {
+
+                const validateResult = validate(req)
+                if(validateResult.error){
+                    return res.json({ success: false, error_info: error.details[0].message });
+                }
+
                 if (err) {
                     return res.json({ success: false, error_info: err, auth_token: req.header('auth-token')});
                 }else{
@@ -73,6 +86,12 @@ exports.publishTheArticle = (req,res, callback) => {
             Article.deletePendingArticleByPublishedArticleId(data.article_id);
         }else{    // when the article does not exist ,save to published articles collection directly
             Article.newAndSave(data, function (err, article) {
+
+                const validateResult = validate(req)
+                if(validateResult.error){
+                    return res.json({ success: false, error_info: error.details[0].message });
+                }
+
                 if (err) {
                     console.log(err)
                     return res.json({ success: false, error_info: err, auth_token: req.header('auth-token')});
@@ -94,6 +113,12 @@ exports.publishTheArticle = (req,res, callback) => {
             })
         }
         Article.newPendingArticle(data,function (err, article) {
+
+            const validateResult = validate(req)
+            if(validateResult.error){
+                return res.json({ success: false, error_info: error.details[0].message });
+            }
+
             if (err) {
                 return res.json({ success: false, error_info: err, auth_token: req.header('auth-token')});
             }else{
@@ -350,6 +375,12 @@ exports.approvePendingArticle = (req,res,callback)=>{
                     });
                 }else if(pending_article){
                     Article.newAndSave(update, function(err, article){
+
+                        const validateResult = validate(req)
+                        if(validateResult.error){
+                            return res.json({ success: false, error_info: error.details[0].message });
+                        }
+
                         if (err) {
                             return res.json({ success: false, error_info: err, auth_token: req.header('auth-token')});
                         }else{
@@ -504,5 +535,13 @@ exports.getPublishedArticlesByUserId = (req,res,callback) =>{
     })
 }
 
-
+//
+function validate(req) {
+    const schema = {
+        title: Joi.string().min(3).max(25).required(),
+        content: Joi.string().min(25).required(),
+        tags: Joi.string().min(3).max(25)
+    };
+    return Joi.validate(req.body, schema);
+}
 

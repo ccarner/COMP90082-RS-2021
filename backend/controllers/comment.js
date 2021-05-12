@@ -1,12 +1,29 @@
 const Comment = require('../proxies/comment')
+//
+const Joi = require('joi');
 
 exports.NewAndSave = (req, res) => {
     let comment = req.body
     const compareResult = String(req.user.id).localeCompare(String(comment.author_id))
+
+    
+
     if(!compareResult){
         return res.json({ success: false, error: 'Unauthorized comment saving' })
     }
     Comment.newAndSave(comment, (err, result) => {
+        const schema = {
+            reply_to_username: Joi.string().min(3).max(25).required(),
+            title: Joi.string().min(3).max(25).required(),
+            content: Joi.string().min(25).required(),
+            tags: Joi.string().min(3).max(25)
+        };
+
+        const validateResult = Joi.validate(req.body, schema);
+        if(validateResult.error){
+            return res.json({ success: false, error_info: error.details[0].message });
+        }
+
         if(err){
             console.log(err)
             res.json({ success: false, error: 'failed to save the comment' })
