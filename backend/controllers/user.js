@@ -148,7 +148,10 @@ exports.studentRegister = function (req, res) {
     username: Joi.string().min(5).max(15).required(),
     password: Joi.string().min(5).max(15).required()
   });
-  const { error } = schema.validate(req.body);
+  if(process.env.NODE_ENV !== "production") {
+    const { error } = schema.validate(req.body);
+  }
+  else {  const error = false;  }
   if (error) {
     return res.json({ success: false, error_info: error.details[0].message });
   }
