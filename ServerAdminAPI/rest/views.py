@@ -22,7 +22,7 @@ def check(request):
         return HttpResponse(0, content_type="text/plain; charset=utf-8")
 
 def rebuild(request):
-    bash = "cd /var/node/backend && git pull --no-edit --quiet && npm install "
+    bash = "cd /var/node && git stash && git pull --no-edit --quiet"
     result = subprocess.check_output(bash, shell=True)
 
     if b'Already up to date.\n' not in result:
