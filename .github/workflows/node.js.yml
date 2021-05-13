@@ -20,7 +20,7 @@ jobs:
         with:
           url: 'http://api.cervidae.com.au:8000/rest/rebuild'
           method: 'GET'
-          timeout: 60000
+          timeout: 300000
 
       - name: Wait / Sleep
         uses: jakejarvis/wait-action@v0.1.0
