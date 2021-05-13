@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -e
 echo "1. Install npm pkg manager."
 sudo apt update && sudo apt -y install npm
 

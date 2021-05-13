@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-
+set -e
 echo "1. Install yarn pkg manager."
 sudo apt update && sudo apt -y install npm
 sudo npm install --global yarn
 
-echo "2. Enable swapfile"
+echo "2. Enable Swap"
 sudo fallocate -l 2G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile

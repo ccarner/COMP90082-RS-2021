@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -e
 echo "1. Install dependencies."
 sudo apt -y install python3
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
