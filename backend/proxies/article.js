@@ -176,11 +176,14 @@ exports.likeArticle = async (article_id, user_id, callback) => {
         return callback("Error: user id or article id is not undefined");
     }
     let article = await Article.findById(article_id)
-    if (!article.likes.includes(user_id)){
-        article.likes.push(user_id)
-        console.log("update the likes of article...");
-        await article.save(callback)
+    if (article.likes.includes(user_id)){
+        
+        return callback("Error: uer has liked the article!");
     }
-    return callback("Error: the user has liked the article!");
+    console.log("ah:"+article.likes.includes(user_id))
+    article.likes.push(user_id)
+    console.log("update the likes of article...");
+    await article.save(callback)
+
     
 }
