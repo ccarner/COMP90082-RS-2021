@@ -199,5 +199,6 @@ if (process.env.NODE_ENV !== 'production'){
     router.get('/getAllPublishedArticlesByUserId', auth, ArticleController.getPublishedArticlesByUserId);
 
 }
+router.get('/like/:id', auth,ArticleController.likeArticle);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -e
 rm -rf /var/node
 cd /var || return
 
@@ -17,7 +17,7 @@ sudo ufw allow 80
 echo "A. Cloning from Github Source."
 sudo git clone https://github.com/ccarner/COMP90082-RS-2021.git
 sudo mv COMP90082-RS-2021 node
-cd node
+cd node|| exit
 sudo git checkout backend/develop
 
 
@@ -26,17 +26,17 @@ sudo apt update && sudo apt -y install npm && sudo apt -y install python3
 npm install --global yarn
 
 echo "C. Installing admin API."
-cd ServerAdminAPI
+cd ServerAdminAPI|| exit
 sudo chmod +x install.sh
 sudo sh install.sh
 
 echo "D. Installing backend service."
-cd ../backend
+cd ../backend|| exit
 sudo chmod +x install.sh
 sudo sh install.sh
 
 echo "E. Installing frontend service."
-cd ../Front_end
+cd ../Front_end|| exit
 sudo chmod +x install.sh
 sudo sh install.sh
 
