@@ -187,3 +187,31 @@ exports.likeArticle = async (article_id, user_id, callback) => {
 
     
 }
+
+exports.bookmarkArticle = async (article_id, user_id, callback) => {
+    if (!user_id||!article_id) {
+        return callback("Error: user id or article id is not undefined");
+    }
+    let article = await Article.findById(article_id)
+    if (article.bookmarks.includes(user_id)){
+        
+        return callback("Error: uer has bookmarked the article!");
+    }
+    article.bookmarks.push(user_id)
+    console.log("update the bookmarks of article...");
+    await article.save(callback)
+}
+
+exports.unbookmarkArticle = async (article_id, user_id, callback) => {
+    if (!user_id||!article_id) {
+        return callback("Error: user id or article id is not undefined");
+    }
+    let article = await Article.findById(article_id)
+    if (!article.bookmarks.includes(user_id)){
+        
+        return callback("Error: uer has not bookmarked the article!");
+    }
+    article.bookmarks.pop(user_id)
+    console.log("update the bookmarks of article...");
+    await article.save(callback)
+}

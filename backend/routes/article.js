@@ -201,4 +201,8 @@ if (process.env.NODE_ENV !== 'production'){
 }
 router.get('/like/:id', auth,ArticleController.likeArticle);
 
+router.get('/bookmark/:id', auth, ArticleController.bookmarkArticle);
+
+router.get('/unbookmark/:id', auth, ArticleController.unbookmarkArticle);
+
 module.exports = router;
