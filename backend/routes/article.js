@@ -200,5 +200,6 @@ if (process.env.NODE_ENV !== 'production'){
 
 }
 router.get('/like/:id', auth,ArticleController.likeArticle);
+router.get('/unlike/:id', auth,ArticleController.unlikeArticle);
 
 module.exports = router;

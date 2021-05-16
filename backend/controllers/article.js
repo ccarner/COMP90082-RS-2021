@@ -520,4 +520,20 @@ exports.likeArticle = async (req,res,callback) =>{
     
 }
 
+exports.unlikeArticle = async (req,res,callback) =>{
+    let article_id=req.params.id;
+    let user_id=req.user._id;
+    Article.unlikeArticle(article_id,user_id, function(error, article){
+        if(error){
+            return res.status(400).json({success:false, error, auth_token: req.header('auth-token')});
+        }
+        return res.status(200).json({success:true, article:article, auth_token: req.header('auth-token')});
+
+
+    })
+        
+     
+    
+}
+
 
