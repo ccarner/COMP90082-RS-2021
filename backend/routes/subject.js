@@ -55,8 +55,8 @@ router.delete('/delete', auth, subjectController.deleteSubject)
 // user get all subjects
 router.get('/all', auth, async (req, res) => {
 
-    if(!req.user._moderator)
-        res.json({ success: false, error: 'error this account is not a moderator' });
+    // if(!req.user._moderator)
+    //     res.json({ success: false, error: 'error this account is not a moderator' });
     
     try {
         const subjects = await Subject.find();
