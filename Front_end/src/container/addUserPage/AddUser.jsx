@@ -164,15 +164,13 @@ class AddUser extends Component {
             </Modal.Body>
           <Modal.Footer>
             <Button
-              variant="secondary"
-              style={{ backgroundColor: "#ce9178" }}
+              variant="danger"
               onClick={this.closeModal}
             >
               Close
             </Button>
             <Button
               variant="primary"
-              style={{ backgroundColor: "#0e4381" }}
               disabled={this.state.isLoading}
               onClick={!this.state.isLoading ? this.postUser : null}
             >
@@ -211,7 +209,12 @@ class AddUser extends Component {
             <Row>
               <Card>
                 <Card.Header as="h5">
-                  <Button onClick={this.showModal} variant="outline-primary">Add new user</Button>
+                  <Button 
+                    onClick={this.showModal} 
+                    variant="outline-primary"
+                  >
+                    Add New User
+                  </Button>
                 </Card.Header>
                 <Card.Body>
 

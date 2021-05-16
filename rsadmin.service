@@ -1,0 +1,12 @@
+[Unit]
+Description=RS Server Admin API
+
+[Service]
+ExecStart=python3 manage.py runserver 0:8000
+Restart=always
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/var/node/ServerAdminAPI
+
+[Install]
+WantedBy=multi-user.target

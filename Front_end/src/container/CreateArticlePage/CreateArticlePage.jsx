@@ -1,11 +1,8 @@
-
 import React from 'react';
 import Editor from './EditorComponent.jsx';
 import ReactTag from './tagComponent.jsx';
-
-
 import '../../styles/main.css';
-import {Form, Col, Container, Button } from 'react-bootstrap';
+import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 import 'jodit';
 import 'jodit/build/jodit.min.css';
 import AuthService from "../../utils/AuthService"
@@ -24,7 +21,7 @@ class App extends React.Component {
 			content: "",
 			loaded: true,
 			hasPending: false,
-			buttonText: "Save article",
+			buttonText: "Publish",
 			title: "",
 			tags: [],
 			subjects: null,
@@ -116,7 +113,7 @@ class App extends React.Component {
 		}
 	}
 
-     updateContent(value) {
+    updateContent(value) {
         this.setState({content: value})
 	}
 	updateTags(newTags){
@@ -138,28 +135,41 @@ class App extends React.Component {
 	 return (
 	    <div className="App article-editor-content-section">
 			<Container>
-				<h1>
-					<Form>
-						<Form.Row>
-							<Col>								
-								<Form.Label>Article Title</Form.Label>
-							</Col>
-							<Col>
-								<Form.Control defaultValue={this.state.title} onChange={this.getArticleTitle} size="lg"></Form.Control>
-							</Col>
-							<Col>
-								<Button className="edit-button" disabled={this.state.hasPending} variant="info" onClick={this.saveFunc.bind(this)}>
-									{this.state.buttonText}
-								</Button>
-							</Col>
-						</Form.Row>
-					</Form>
-				</h1>
+				<Form>
+					<Form.Row>
+						<Col sm="auto">								
+							<h1><Form.Label>Article Title</Form.Label></h1>
+						</Col>
+
+						<Col>
+							<Form.Control defaultValue={this.state.title} onChange={this.getArticleTitle} size="lg"></Form.Control>
+						</Col>
+
+						<Col>
+							<Button 
+								className="edit-button" 
+								disabled={this.state.hasPending} 
+								variant="primary" 
+								onClick={this.saveFunc.bind(this)}
+							>
+								{this.state.buttonText}
+							</Button>
+								
+							<Button 
+								className="edit-button" 
+								variant="success"
+								onClick={this.props.history.goBack}
+							>
+								Cancel
+							</Button>
+						</Col>
+					</Form.Row>	
+				</Form>
+				
 				<hr></hr>
-					{this.renderEditor()}
+				{this.renderEditor()}
 				<hr></hr>
 			</Container>
-
 	    </div>
 	  );
 	}

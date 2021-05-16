@@ -14,8 +14,10 @@ import { withRouter } from "react-router"
 import { Link } from "react-router-dom"
 import Comment from "../Comment/Comment"
 import Editor from "./EditorComponent.jsx"
+import Bookmark from './Bookmark.jsx'
+import LikeButton from './LikeButton.jsx'
 
-const baseURL = "http://167.172.11.217/"
+const baseURL = "http://api.cervidae.com.au:4000/"
 
 class App extends React.Component {
   constructor(props) {
@@ -104,7 +106,7 @@ class App extends React.Component {
   updateContent(value) {
     this.setState({ content: value })
   }
-
+  
   render() {
     return (
       <>
@@ -113,33 +115,55 @@ class App extends React.Component {
             {/* just a temporary link, replace href with a function to send a request to backend */}
 
             <Row>
-              <Col sm={9}>
-                <h1>{this.state.title}</h1>
+              <Col>
+                {/* Bold article title */}
+                <h1 style={{fontWeight: 'bold'}}>{this.state.title}</h1>
               </Col>
-              <Col sm={3}>
+              
+              <Col>                
                 <Link
                   disabled={this.state.hasPending}
                   to={{ pathname: `/editpage/${this.state.id}` }}
                 >
                   <Button
                     className="edit-button"
-                    variant="info"
+                    variant="primary"
                     disabled={this.state.hasPending}
                   >
                     {this.state.buttonText}
                   </Button>
                 </Link>
+
+                {/* currently not find a good way to back to the subject page, 
+                therefore back to the home page instead */}
+                <Link to="/home/"> 
+                  <Button
+                    className="edit-button"
+                    variant="success"
+                  >
+                    Back
+                  </Button>
+                </Link>
               </Col>
             </Row>
+
+            <hr></hr>
             {this.renderEditor()}
+
+            {/* add the bookmark button; see Bookmark.jsx for detail */}
+            <Bookmark/> 
+            {/* add the like button; see LikeButton.jsx for detail */}
+            <LikeButton/> 
+
           </Container>
         </div>
+        <span>&nbsp;</span>
+        {/* Discussion Board */}
         <div className="App article-editor-content-section">
           
             <Comment params={`${baseURL}article/get/${this.state.id}`} />
           
-        </div>
-        
+        </div>   
       </>
     )
   }

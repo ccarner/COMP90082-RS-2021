@@ -48,24 +48,25 @@ export default class Login extends Component {
     return (
       <div>
         <div className="nav">
-          <img src={UnimelbLogo} />
+          <img src={UnimelbLogo} alt="UnimelbLogo"/>
           <div>
-            <a className="root">
-              <span className="glyphicon glyphicon-home" />
-              The University of Melbourne
+            {/* add a span to deal with padding */}
+            <span></span>
+            <a href="https://www.unimelb.edu.au/" className="root">
+            The University of Melbourne
             </a>
             <span> / </span>
-            <a className="root" title="Login">
-              Login
-            </a>
+            <span >Login</span>
           </div>
         </div>
         <div id="title">
           <div>Login</div>
         </div>
+        
         <div className="contentTitle">
-          Login with your University of Melbourne username and password.
+          <h5>Welcome! Please login with your username and password.</h5>
         </div>
+        
         <div className="content">
           <Form>
             <Form.Group controlId="formBasicEmail">
@@ -84,7 +85,10 @@ export default class Login extends Component {
               />
             </Form.Group>
             { this.state.showWarning
-              ? <Form.Text className="text-danger">
+              ? <Form.Text 
+                  className="text-danger"
+                  style={{marginBottom:"0.625rem"}}
+                >
                   The username and password you entered is incorrect.
                 </Form.Text>
               : <div></div>
@@ -92,17 +96,17 @@ export default class Login extends Component {
             
             <Button
               variant="success"
-              // id="btn"
               onClick={() =>
                 // eslint-disable-next-line react/destructuring-assignment
                 this.verify(this.state.username, this.state.password)
               }
+              style={{marginRight:"0.625rem"}}
             >
-              LOGIN
-            </Button>{" "}
+              Login
+            </Button>
+            
             <Button
-                // id="btn"
-                variant="info"
+                variant="primary"
                 onClick={() => this.routeChange("register")}>
               Register
             </Button>

@@ -1,0 +1,5 @@
+{
+    "name" :"COMP90082 - RS", 
+    "db" : "mongodb+srv://root:root@cluster0.uhlwx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtPrivateKey": "unsecureKey"
+}

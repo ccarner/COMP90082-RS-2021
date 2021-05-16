@@ -5,7 +5,7 @@ import {Card} from 'react-bootstrap';
 
 import request from "../../utils/request"
 
-const baseURL = "http://167.172.11.217/"
+const baseURL = "http://api.cervidae.com.au:4000/"
 const accessToken = localStorage.getItem("accessToken")
 
 class ProfilePendingArticleComponent extends React.Component{

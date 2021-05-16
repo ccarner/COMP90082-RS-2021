@@ -1,11 +1,8 @@
-
 import React from 'react';
 import Editor from './EditorComponent.jsx';
 import ReactTag from './tagComponent.jsx';
-
-
 import '../../styles/main.css';
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Row, Col } from 'react-bootstrap';
 import 'jodit';
 import 'jodit/build/jodit.min.css';
 
@@ -118,11 +115,13 @@ class App extends React.Component {
 					ref={this.editorComponent} 
 					value={this.state.content}
 					saveFunc={this.saveFunc.bind(this)}
-					onChange={content => this.setState({content})}/>
+					onChange={content => this.setState({content})}
+				/>
 					&nbsp;
 				<ReactTag 
-				tagsIn={this.state.tags}
-				updateTags={this.updateTags.bind(this)}/>
+					tagsIn={this.state.tags}
+					updateTags={this.updateTags.bind(this)}
+				/>
 				</React.Fragment>	
 			)
 		} 
@@ -154,17 +153,43 @@ class App extends React.Component {
 	render () {
 		// console.log("send " + this.state.tags)
 	 return (
+		<>
 	    <div className="App article-editor-content-section">
 			<Container>
-				<h1>{this.state.title}<Button className="edit-button" disabled={this.state.hasPending} variant="info" onClick={this.saveFunc.bind(this)}>
-                  {this.state.buttonText}
-                </Button></h1>
-				{this.renderEditor()}
+				<Row>
+					<Col>
+					{/* Bold article title */}
+					<h1 style={{fontWeight: 'bold'}}>{this.state.title}</h1>
+					</Col>
+
+					{/* add cancel and save article buttons */}
+					<Col>
+						<Button 
+							className="edit-button" 
+							disabled={this.state.hasPending} 
+							variant="primary" 
+							onClick={this.saveFunc.bind(this)}
+						>
+                  		{this.state.buttonText}
+                		</Button>
+
+						<Button 
+							className="edit-button"
+							variant="success" 
+							onClick={this.props.history.goBack}
+						>
+							Cancel
+						</Button>					
+					</Col>					
+				</Row>
 				
-				<hr/>
+				<hr></hr>				
+				{this.renderEditor()}
+				<hr></hr>
 			</Container>
 	        
 	    </div>
+		</>
 	  );
 	}
 }

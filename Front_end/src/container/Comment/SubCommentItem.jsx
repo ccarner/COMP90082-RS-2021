@@ -165,38 +165,38 @@ class SubCommentItem extends React.Component {
               {this.props.params.content}
             </div>
             {!this.state.isShowReply ? (
-              <div
+              <Button
                 style={{
-                  position: "absolute",
-                  right: "0px",
-                  cursor: "pointer",
-                  color: "rgb(12, 71, 116)",
-                  fontWeight: "500",
-                  bottom: "0px",
-                }}
+                  cursor: "pointer", 
+                  marginBottom: "10px",}}
                 onClick={this.showReply}
+                size="sm"
+                variant="primary"
               >
                 reply
-              </div>
+              </Button>
             ) : (
-              <Row>
+              <Row style={{ display: "flex", justifyContent: "center" }}>
                 {" "}
                 <Form.Control
                   as="textarea"
                   rows={1}
+                  // change px to rem 10px=0.625rem
                   style={{
-                    height: "40px",
-                    width: "528px",
-                    marginRight: "10px",
+                    height: "2.5rem",
+                    width: "33rem",
+                    marginRight: "0.625rem",
+                    marginBottom: "0.625rem",
                   }}
                   onChange={this.getReplyText}
                 />
                 <Button
                   variant="primary"
+                  // change px to rem 10px=0.625rem
                   style={{
-                    height: "40px",
-                    width: "80px",
-                    backgroundColor: "#2183f8",
+                    height: "2.5rem",
+                    width: "5rem",
+                    marginBottom: "0.625rem",
                   }}
                   onClick={this.postComment}
                 >

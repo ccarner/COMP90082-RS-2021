@@ -183,6 +183,7 @@ class Subject extends Component {
     this.props.history.push(`/subject/${this.state.subject.subject_code}/editLayout`)
   }
 
+  // edit description of a subject 
   editSubjectModal() {
     return (
       <div>
@@ -227,15 +228,14 @@ class Subject extends Component {
             </Modal.Body>
             <Modal.Footer>
               <Button
-                variant="secondary"
-                style={{ backgroundColor: "#ce9178" }}
+                variant="danger"
                 onClick={this.closeEditSubModal}
               >
                 Close
               </Button>
+
               <Button
                 variant="primary"
-                style={{ backgroundColor: "#0e4381" }}
                 disabled={this.state.isLoading}
                 onClick={!this.state.isLoading ? this.clickedUpdateSubject : null}
               >
@@ -248,6 +248,7 @@ class Subject extends Component {
     )
   }
 
+  // add article title
   createArticleModel() {
     return (
       <div>
@@ -266,7 +267,7 @@ class Subject extends Component {
             </Modal.Header>
             <Modal.Body>
               <Form.Group>
-              
+                {/* add article title */}
                 <Form.Label>Article Title</Form.Label>
                 <Form.Control
                   type="text"
@@ -275,29 +276,32 @@ class Subject extends Component {
                   style={{ marginTop: "5px" }}
                 />
               
+                {/* Commented by the previous team
+                    Maybe useful in the future so not delete */}
                 {/* <Form.Label>Tags</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Please write some keywords"
                   onChange={this.getSubjectTags}
                 /> */}
+
               </Form.Group>
             </Modal.Body>
+
             <Modal.Footer>
               <Button
-                variant="secondary"
-                style={{ backgroundColor: "#ce9178" }}
+                variant="danger"
                 onClick={this.closeModal}
               >
                 Close
               </Button>
+
               <Button
                 variant="primary"
-                style={{ backgroundColor: "#0e4381" }}
                 disabled={this.state.isLoading}
                 onClick={!this.state.isLoading ? this.clickedAddNewArticle : null}
               >
-                {this.state.isLoading ? "Publishing..." : "Publish"}
+                {this.state.isLoading ? "Creating..." : "Create"}
               </Button>
             </Modal.Footer>
           </Modal>
@@ -316,7 +320,7 @@ class Subject extends Component {
               <h1>{section.name}</h1>
             </Col>
             <Col md={1}>
-              <Button variant="secondary" size="sm">
+              <Button variant="outline-secondary">
                   Edit
               </Button>
             </Col>
@@ -338,8 +342,11 @@ class Subject extends Component {
               <h1>{section.description}</h1>
             </Col>
             <Col md={1}>
-              <Button onClick={() => this.clickedAddNewArticle()} variant="secondary" size="sm">
-                  Edit
+              <Button 
+                onClick={() => this.clickedAddNewArticle()} 
+                variant="outline-secondary" 
+              >
+                Edit
               </Button>
             </Col>
           </Row>
@@ -351,8 +358,13 @@ class Subject extends Component {
                   <Card.Img variant="top" src={cardImage} />
                   <Card.Body>
                     <Card.Title>{tool.title}
-                    <Button className="card-subject-button"size="sm" variant="primary" onClick = {(e) => {e.stopPropagation(); this.clickedSubscribe(tool.title)}}>
-                    Subscribe</Button>
+                    <Button 
+                      className="card-subject-button"
+                      variant="primary" 
+                      onClick = {(e) => {e.stopPropagation(); this.clickedSubscribe(tool.title)}}
+                    >
+                      Subscribe
+                    </Button>
                     </Card.Title>
                   </Card.Body>
                   <Card.Footer>
@@ -375,8 +387,11 @@ class Subject extends Component {
               <h2>Helpful articles relating to this subject</h2>
             </Col>
             <Col md={2}>
-              <Button onClick={() => this.showModal()} variant="outline-primary adding-artical-button" size="sm">
-                Add New Article
+              <Button 
+                onClick={() => this.showModal()} 
+                variant="outline-primary adding-artical-button" 
+              >
+                Add Article
               </Button>
             </Col>
           </Row>
@@ -398,8 +413,11 @@ class Subject extends Component {
             <h2>Helpful articles relating to this subject</h2>
           </Col>
           <Col md={2}>
-            <Button onClick={() => this.showModal()} variant="outline-primary adding-artical-button" size="sm">
-              Add New Article
+            <Button 
+              onClick={() => this.showModal()} 
+              variant="outline-primary adding-artical-button"
+            >
+              Add Article
             </Button>
           </Col>
         </Row>
@@ -442,22 +460,41 @@ class Subject extends Component {
   editButton = () => {
     if(AuthService.userIsModerator()){
       return (
-        <Col>
-          <Button onClick={() => this.showEditSubModal()} variant="primary" size="sm">
-            Edit Description
-          </Button>{' '}
-          <Button variant="secondary" onClick={() => this.clickedEditLayout()} size="sm">
-            Edit Page Layout
-          </Button>
-        </Col>
+        // allign "Edit Description" and "Edit Section" buttons
+        <Container>
+          <Row>
+            <Col md="auto">
+            <Button 
+              variant="primary" 
+              onClick={() => this.showEditSubModal()}
+              size="sm"
+            >
+              Edit Description
+            </Button>
+            </Col>
+            <Col md="auto">
+            <Button 
+              variant="secondary" 
+              onClick={() => this.clickedEditLayout()} 
+              size="sm"
+            >
+              Edit Section
+            </Button>
+            </Col>
+          </Row>
+        </Container>
       )
     } else {
       // Check the student subscribe this subject or not
       if(this.state.isSubscribed){
         return (
           <Col>
-            <Button variant="secondary" size="sm" disabled>
-              subscribed
+            <Button 
+              variant="secondary" 
+              size="sm" 
+              disabled
+            >
+              Subscribed
             </Button>
           </Col>  
         )
@@ -465,8 +502,12 @@ class Subject extends Component {
       // Return button that student can click subscribe
       return (
         <Col>
-          <Button variant="success" onClick={() => this.clickedSubscribe()} size="sm">
-            subscribe
+          <Button 
+            variant="success" 
+            onClick={() => this.clickedSubscribe()} 
+            size="sm"
+          >
+            Subscribe
           </Button>
         </Col>
       )

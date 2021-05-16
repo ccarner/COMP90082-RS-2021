@@ -58,23 +58,22 @@ export default class Register extends Component {
         return (
             <div>
                 <div className="nav">
-                    < img src={UnimelbLogo} />
+                    < img src={UnimelbLogo} alt="UnimelbLogo"/>
                     <div>
-                        <a className="root">
-                            <span className="glyphicon glyphicon-home" />
-                            The University of Melbourne
-                        </a >
+                        {/* add a span to deal with padding */}
+                        <span></span>
+                        <a href="login" className="root" >
+                            Login
+                        </a>
                         <span> / </span>
-                        <a className="root" title="Register">
-                            Register
-                        </a >
+                        <span>Register</span>
                     </div>
                 </div>
                 <div id="title">
                     <div>Register</div>
                 </div>
                 <div className="contentTitle">
-                    Please enter the information for register
+                    <h5>Please enter the following information to register.</h5>
                 </div>
                 <div className="content">
                     <Form>
@@ -100,6 +99,11 @@ export default class Register extends Component {
                                 onChange={(e) => this.getPassword(e)}
                             />
                         </Form.Group>
+
+                        {/* seems to check password entered
+                            Commented by the previous team
+                            Maybe useful in the future so not delete
+                        */}
                         {/*<Form.Group controlId="formBasicComfirmPassword">*/}
                         {/*    <Form.Label>Comfirm Password:</Form.Label>*/}
                         {/*    <Form.Control*/}
@@ -114,11 +118,21 @@ export default class Register extends Component {
                         {/*    </Form.Text>*/}
                         {/*    : <div></div>*/}
                         {/*}*/}
+
                         <Button
-                            id="btn"
-                            onClick={() => this.regist()}>
+                            variant="success"
+                            onClick={() => this.regist()}
+                            style={{marginRight:"0.625rem"}}
+                        >
                             Confirm
-                        </Button>{" "}
+                        </Button> 
+
+                        <Button
+                            variant="primary"
+                            onClick={() => this.routeChange("login")}
+                        >
+                            Cancel
+                        </Button>
                     </Form>
                 </div>
             </div>

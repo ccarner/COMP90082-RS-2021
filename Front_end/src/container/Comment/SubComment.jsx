@@ -154,39 +154,40 @@ class SubComment extends React.Component {
               {this.props.params.content}
             </div>
             {!this.state.isShowReply ? (
-              <div
+              <Button
+                // change to button and replace it way from delete
                 style={{
-                  position: "absolute",
-                  right: "0px",
-                  cursor: "pointer",
-                  color: "rgb(12, 71, 116)",
-                  fontWeight: "500",
-                  top: "15px",
-                }}
+                  cursor: "pointer", 
+                  marginBottom: "10px",}}
                 onClick={this.showReply}
+                size="sm"
+                variant="primary"
               >
                 reply
-              </div>
+              </Button>
             ) : (
-              <Row>
+              <Row style={{ display: "flex", justifyContent: "center" }}>
                 {" "}
                 <Form.Control
                   as="textarea"
                   rows={1}
+                  // change px to rem 10px=0.625rem
                   style={{
-                    height: "40px",
-                    width: "600px",
-                    marginRight: "10px",
-                    marginLeft: "15px",
+                    height: "2.5rem",
+                    width: "37.5rem",
+                    marginRight: "0.625rem",
+                    // marginLeft: "15px",
+                    marginBottom: "0.625rem",
                   }}
                   onChange={this.getReplyText}
                 />
                 <Button
                   variant="primary"
+                  // change px to rem 10px=0.625rem
                   style={{
-                    height: "40px",
-                    width: "80px",
-                    backgroundColor: "#2183f8",
+                    height: "2.5rem",
+                    width: "5rem",
+                    marginBottom: "0.625rem",
                   }}
                   onClick={this.postComment}
                 >

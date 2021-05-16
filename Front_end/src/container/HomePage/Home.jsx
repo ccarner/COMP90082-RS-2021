@@ -146,21 +146,32 @@ class Home extends Component {
     return (
       <Row>
         <Col className="text-center unsubcribes-message">
-          <h5>***You have not subscribed to any topic***</h5>
+          <h5>You have not subscribed to any topic</h5>
         </Col>
       </Row>
     )
   }
 
+  // if true, admin can add subjects; if false, users can subscribe subjects
   addSubjectButton() {
     if(AuthService.userIsModerator()){
       return (
         <Button
           className="padding-articles-button"
-          variant="btn btn-outline-primary"
+          variant="outline-primary"
           onClick={this.showModal}
         >
           Add Subject
+        </Button>
+      )
+    } else {
+      return (
+        <Button
+          className="padding-articles-button"
+          variant="outline-primary"
+          onClick={this.showModal}
+        >
+          Subscribe Subject
         </Button>
       )
     }
@@ -171,7 +182,7 @@ class Home extends Component {
       return(
         <Row>
           <Col sm={9}>
-            <h2>Subjects you are currently a moderator in</h2>
+            <h2>Subjects you have as a moderator</h2>
           </Col>
           <Col sm={3}>
             {this.addSubjectButton()}
@@ -182,7 +193,10 @@ class Home extends Component {
       return (
         <Row>
           <Col sm={9}>
-            <h2>Subjects you are subscribed to</h2>
+            <h2>Subjects you have subscribed to</h2>
+          </Col>
+          <Col sm={3}>
+            {this.addSubjectButton()}
           </Col>
         </Row>
       )
@@ -253,7 +267,7 @@ class Home extends Component {
     return (
       <Row>
         <Col className="text-center unsubcribes-message">
-          <h5>***You have not subscribed to any Subject***</h5>
+          <h5>You have not subscribed to any subject</h5>
         </Col>
       </Row>
     )
@@ -262,7 +276,8 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {this.state.isShow ? (
+        {this.state.isShow && AuthService.userIsModerator() ? (
+          // if condition is true, admin can create subjects using the code below
           <Modal
             size="lg"
             show={this.state.isShow}
@@ -308,17 +323,17 @@ class Home extends Component {
                 /> */}
               </Form.Group>
             </Modal.Body>
+            
             <Modal.Footer>
               <Button
-                variant="secondary"
-                style={{ backgroundColor: "#ce9178" }}
+                variant="danger"
                 onClick={this.closeModal}
               >
                 Close
               </Button>
+
               <Button
                 variant="primary"
-                style={{ backgroundColor: "#0e4381" }}
                 disabled={this.state.isLoading}
                 onClick={!this.state.isLoading ? this.postSubjectInfo : null}
               >
@@ -326,7 +341,32 @@ class Home extends Component {
               </Button>
             </Modal.Footer>
           </Modal>
-        ) : null}
+        ) : (
+          // if condition is false, users can subscribe subjects using code below
+          <Modal
+            size="lg"
+            show={this.state.isShow}
+            onHide={this.closeModal}
+            centered
+            dialogClassName="modal-90w"
+          >
+            <Modal.Header
+              style={{ backgroundColor: "#0e4381", color: "white" }}
+            >
+              <Modal.Title>Subscribe Subject</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+
+            </Modal.Body>
+
+            <Modal.Footer>
+
+            </Modal.Footer>
+          
+          </Modal>
+          //null
+        )}
         <Jumbotron fluid>
           <Container>
             <Row>

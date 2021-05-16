@@ -14,7 +14,7 @@
     "dotenv": "^8.2.0",
     "jodit-react": "^1.0.59",
     "pubsub-js": "^1.9.0",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-bootstrap": "^1.0.1",
     "react-dnd": "^5.0.0",
     "react-dnd-html5-backend": "^3.0.2",

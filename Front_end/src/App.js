@@ -26,6 +26,7 @@ import StudentProfilePage from "./container/ProfilePage/StudentProfilePage"
 import ModeratorProfilePage from "./container/ProfilePage/ModeratorProfilePage"
 import AddUser from "./container/addUserPage/AddUser"
 import CreateArticlePage from "./container/CreateArticlePage/CreateArticlePage"
+import Faq from "./container/FAQPage/FAQ"
 
 const AdminRoute = ({ component: Component, ...rest}) => {
   return (
@@ -130,6 +131,7 @@ function App() {
           <PublicRoute path="/login" component={Login} />
             <PublicRoute path="/register" component={Register} />
           <PrivateRoute path="/home" component={HomePage} />
+          <PrivateRoute path="/faq" component={Faq} />
           {/** this is just a placeholder page, loading pages should be done programmatically not hardcoded* */}
           <Route path="/subject/:code">
             <Subject />
