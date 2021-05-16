@@ -9,4 +9,6 @@ python3 -m pip install Django
 echo "2. Install systemd service"
 sudo cp ../rsadmin.service /lib/systemd/system
 sudo systemctl daemon-reload
+sudo systemctl enable rsadmin
 sudo systemctl start rsadmin
+

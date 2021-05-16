@@ -17,7 +17,8 @@ sudo yarn build
 
 echo "4. Install nginx."
 sudo apt install -y nginx
-sudo cp nginx_front.conf /etc/nginx/sites-enabled
+sudo rm -rf /etc/nginx/sites-enabled/default
+sudo cp default /etc/nginx/sites-enabled
 sudo rm -rf /etc/nginx/sites-enabled/default
 sudo mkdir --parents /var/www/front/public
 sudo cp -r build/* /var/www/front/public

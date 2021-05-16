@@ -143,32 +143,29 @@ exports.addUser = function (req, res) {
 
 
 exports.studentRegister = function (req, res) {
-  const schema = Joi.object().keys({
-    studentId: Joi.string().min(6).max(7).required(),
-    username: Joi.string().min(5).max(15).required(),
-    password: Joi.string().min(5).max(15).required()
-  });
   if(process.env.NODE_ENV !== "production") {
-    const { error } = schema.validate(req.body);
-  }
-  else {  const error = false;  }
-  if (error) {
-    return res.json({ success: false, error_info: error.details[0].message });
-  }
-  else {
-    let name = req.body.name;
-    let account = req.body.username;
-    let password = req.body.password;
-    let student_number = req.body.studentId;
-    let is_moderator = false;
-
-
-    User.newAndSave2(name, account, student_number, password, is_moderator, function (err, user) {
-      if (err) {
-        res.json({ success: false, error_info: 'duplicate username or student id', error: err });
-      } else {
-        return res.json({ success: true, user: user });
-      }
+    const schema = Joi.object().keys({
+      studentId: Joi.string().min(6).max(7).required(),
+      username: Joi.string().min(5).max(15).required(),
+      password: Joi.string().min(5).max(15).required()
     });
+    const { error } = schema.validate(req.body);
+    if (error) {
+      return res.json({ success: false, error_info: error.details[0].message });
+    }
   }
+  let name = req.body.name;
+  let account = req.body.username;
+  let password = req.body.password;
+  let student_number = req.body.studentId;
+  let is_moderator = false;
+
+
+  User.newAndSave2(name, account, student_number, password, is_moderator, function (err, user) {
+    if (err) {
+      res.json({ success: false, error_info: 'duplicate username or student id', error: err });
+    } else {
+      return res.json({ success: true, user: user });
+    }
+  });
 }

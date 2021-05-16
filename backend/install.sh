@@ -9,6 +9,7 @@ sudo npm install
 echo "3. Install systemd service"
 sudo cp ../rsrepo.service /lib/systemd/system
 sudo systemctl daemon-reload
+sudo systemctl enable rsrepo
 sudo systemctl start rsrepo
 
 echo "Done!"

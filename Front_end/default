@@ -8,9 +8,4 @@ server {
     location / {
         try_files $uri $uri/ /index.html;
     }
-
-    # index.php fallback
-    location ~ ^/api/ {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
 }
