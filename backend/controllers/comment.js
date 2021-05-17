@@ -90,3 +90,41 @@ exports.updateComment = (req, res) => {
 
     
 }
+
+exports.likeCommentById = (req, res) => {
+    Comment.getCommentById(req.params.id, (err, result) => {
+        if(err||!result||undefined) {
+            res.json({ success: false, error: err })
+        } else {
+            Comment.likeComment(req.params.id,req.user._id,(err,result)=>{
+                console.log(req.user)
+                if(err){
+                    res.status(400).json({ success: false, error: 'Failed to like this comment since '+err })
+                }else{
+                    res.status(200).json({ success: true, comments: result })
+                }
+            })
+
+            
+        }
+    })
+}
+
+exports.unlikeCommentById = (req, res) => {
+    Comment.getCommentById(req.params.id, (err, result) => {
+        if(err||!result||undefined) {
+            res.json({ success: false, error: err })
+        } else {
+            Comment.unlikeComment(req.params.id,req.user._id,(err,result)=>{
+                console.log(req.user)
+                if(err){
+                    res.status(400).json({ success: false, error: 'Failed to unlike this comment since '+err })
+                }else{
+                    res.status(200).json({ success: true, comments: result })
+                }
+            })
+
+            
+        }
+    })
+}

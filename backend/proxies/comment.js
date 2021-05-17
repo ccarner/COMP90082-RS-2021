@@ -107,3 +107,39 @@ exports.updateComment = async (commentBody, callback) => {
     return callback("Invalid Update"+e, undefined)
   }
 }
+
+exports.likeComment = async (comment_id,user_id, callback) => {
+  try{
+    let comment = await Comment.findOne({ _id: comment_id})
+    if (!comment||!user_id){
+      
+      return callback("Unable to find the comment or user", undefined)
+    }
+    if(comment.likes.includes(user_id)){
+      return callback("User has liked the comment")
+    }
+    comment.likes.push(user_id)
+    await comment.save()
+    return callback(undefined, comment)
+  } catch (e){
+    return callback("Invalid Update"+e, undefined)
+  }
+}
+
+exports.unlikeComment = async (comment_id,user_id, callback) => {
+  try{
+    let comment = await Comment.findOne({ _id: comment_id})
+    if (!comment||!user_id){
+      
+      return callback("Unable to find the comment or user", undefined)
+    }
+    if(!comment.likes.includes(user_id)){
+      return callback("User has not liked the comment")
+    }
+    comment.likes.pull(user_id)
+    await comment.save()
+    return callback(undefined, comment)
+  } catch (e){
+    return callback("Invalid Update"+e, undefined)
+  }
+}

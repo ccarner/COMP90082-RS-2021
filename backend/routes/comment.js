@@ -19,4 +19,6 @@ router.get('/', commentController.getCommentById)
 // user updates a comment
 router.patch('/patch', auth, commentController.updateComment)
 
+router.get('/like/:id',auth, commentController.likeCommentById)
+router.get('/unlike/:id',auth, commentController.unlikeCommentById)
 module.exports = router;
