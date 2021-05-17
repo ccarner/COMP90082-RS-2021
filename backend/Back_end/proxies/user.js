@@ -1,6 +1,9 @@
 const models = require('../models');
 const User = models.User;
 const Subject = models.Subject;
+const cache = require('../models/cache')
+
+const redis = require('redis');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
@@ -99,6 +102,10 @@ exports.getUserByAccount = async function (userAccount, callback) {
     return callback();
   }
   User.findOne({_id:mongoose.Types.ObjectId(user.id)}, callback);
+
+  cache.set(user.id, userAccount, (err, res)=> {
+    console.info('user id and account added in redis succeed')
+  });
 };
 
 
