@@ -115,10 +115,8 @@ exports.likeComment = async (comment_id,user_id, callback) => {
       
       return callback("Unable to find the comment or user", undefined)
     }
-    if(comment.likes.includes(user_id)){
-      return callback("User has liked the comment")
-    }
-    comment.likes.push(user_id)
+  
+    comment.likes.addToSet(user_id)
     await comment.save()
     return callback(undefined, comment)
   } catch (e){
@@ -132,9 +130,6 @@ exports.unlikeComment = async (comment_id,user_id, callback) => {
     if (!comment||!user_id){
       
       return callback("Unable to find the comment or user", undefined)
-    }
-    if(!comment.likes.includes(user_id)){
-      return callback("User has not liked the comment")
     }
     comment.likes.pull(user_id)
     await comment.save()
