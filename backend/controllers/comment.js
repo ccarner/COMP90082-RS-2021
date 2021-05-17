@@ -97,7 +97,6 @@ exports.likeCommentById = (req, res) => {
             res.json({ success: false, error: err })
         } else {
             Comment.likeComment(req.params.id,req.user._id,(err,result)=>{
-                console.log(req.user)
                 if(err){
                     res.status(400).json({ success: false, error: 'Failed to like this comment since '+err })
                 }else{
@@ -116,7 +115,6 @@ exports.unlikeCommentById = (req, res) => {
             res.json({ success: false, error: err })
         } else {
             Comment.unlikeComment(req.params.id,req.user._id,(err,result)=>{
-                console.log(req.user)
                 if(err){
                     res.status(400).json({ success: false, error: 'Failed to unlike this comment since '+err })
                 }else{
