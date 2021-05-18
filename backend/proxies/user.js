@@ -1,5 +1,6 @@
 const {User} = require('../models/user');
 const {Subject} = require('../models/subject');
+const cache = require('../models/cache');
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -32,6 +33,11 @@ exports.newAndSave = async function (user, callback) {
     let newUser = new User(user);
     newUser.password = await hashfunction(user.password)
     newUser.save(callback);
+
+  cache.set(newUser,newUser.password, (err, res) => {
+    console.log('newUser info added in redis')
+  });
+
   };
 
 exports.newAndSave2 = async function (name, account, student_number, password, is_moderator, callback) {
@@ -49,6 +55,10 @@ exports.newAndSave2 = async function (name, account, student_number, password, i
 
 
   user.save(callback);
+
+  cache.set(user.account,(user.password,user.student_number,user.is_moderator), (err, res) => {
+    console.log('user info added in redis')
+  });
 };
 
  /**
