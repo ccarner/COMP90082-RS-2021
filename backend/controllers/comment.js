@@ -1,6 +1,18 @@
-const Comment = require('../proxies/comment')
+const Comment = require('../proxies/comment');
+const Joi = require('joi');
 
 exports.NewAndSave = (req, res) => {
+    if(process.env.NODE_ENV !== "production") {
+        const schema = Joi.object().keys({
+          author_id: Joi.required(),
+          section_id: Joi.required(),
+          content: Joi.string().min(15).max(255).required()
+        });
+        const { error } = schema.validate(req.body);
+        if (error) {
+          return res.json({ success: false, error_info: error.details[0].message });
+        }
+    }
     let comment = req.body
     const compareResult = String(req.user.id).localeCompare(String(comment.author_id))
     if(!compareResult){
