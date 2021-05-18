@@ -18,10 +18,9 @@ const redisObj = {
 
     },
     init: function () {
-        this.connect(); // 创建连接
+        this.connect(); 
         const instance = this.client;
-
-        // 主要重写了一下三个方法。可以根据需要定义。
+        
         const get = instance.get;
         const set = instance.set;
         // const setex = instance.setex;
@@ -43,7 +42,7 @@ const redisObj = {
             });
 
         };
-        // 可以不用传递expires参数。在config文件里进行配置。
+        
         // instance.setex = function (key, value, callback) {
         //     if (value !== undefined) {
         //         setex.call(instance, key, config.cache.maxAge, JSON.stringify(value), callback);
@@ -64,5 +63,5 @@ const redisObj = {
 };
 
 
-// 返回的是一个redis.client的实例
+
 module.exports = redisObj.init();
