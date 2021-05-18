@@ -97,6 +97,12 @@ class AddUser extends Component {
     })
   }
 
+  setIsModerator = (evt) =>{
+    this.setState({
+      is_moderator: evt.target.value === 'true'
+    })
+  }
+
   setType = (evt) => {
     this.setState({
       newType: evt.target.value,
@@ -155,7 +161,8 @@ class AddUser extends Component {
                   style={{ marginTop: "5px" }}
                 />
                 <Form.Label>Type</Form.Label>
-                <Form.Control setType size="sm" as="select">
+                <Form.Control value={this.state.is_moderator} size="sm" as="select" 
+                  onChange={this.setIsModerator}>
                   <option value="true">Moderator</option>
                   <option value="false">Student</option>
                 </Form.Control>
