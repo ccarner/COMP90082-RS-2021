@@ -8,11 +8,22 @@ const ArticleController = require('../controllers/article');
 const auth = require('../middlewares/auth');
 const verify = require('../middlewares/verifyToken');
 const _ = require('lodash')
+const Joi = require('joi');
 
 
 if(process.env.NODE_ENV !== "production"){
     console.warn("you are using development mode code")
     router.post('/publish',auth, async (req,res)=>{
+        if(process.env.NODE_ENV !== "production") {
+            const schema = Joi.object().keys({
+                title: Joi.string().min(5).max(25).required(),
+                content: Joi.string().min(10).required(),
+              });
+              const { error } = schema.validate(req.body);
+              if (error) {
+                return res.json({ success: false, error_info: error.details[0].message });
+              }
+        }
         console.log('the user id is in publish the article',req.user._id);
         // First create pending article
 
