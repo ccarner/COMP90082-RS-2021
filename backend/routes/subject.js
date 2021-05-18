@@ -6,10 +6,21 @@ const auth = require('../middlewares/auth');
 const mongoose = require('mongoose');
 const {Subject} = require('../models/subject');
 const {User} = require('../models/user');
+const Joi = require('joi');
 
 // moderator creates a subject
 if(process.env.NODE_ENV !== 'production'){
     router.post('/add', auth, async (req, res) =>{
+
+        const schema = Joi.object().keys({
+            subject_code: Joi.string().min(5).max(15).required(),
+            name: Joi.string().min(5).max(25).required(),
+            description: Joi.string().max(255)
+        });
+        const { error } = schema.validate(req.body);
+        if (error) {
+            return res.json({ success: false, error_info: error.details[0].message });
+        } 
 
         try{
 
