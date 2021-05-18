@@ -1,13 +1,9 @@
 const Subject = require('../proxies/subject')
 const User = require('../proxies/user')
-const Joi = require('joi-oid');
+const Joi = require('joi');
 
 exports.addSubject = (req,res) => {
     console.log("this is moderator", req.user._moderator)
-    const { error } = validate(req);
-    if (error) {
-        return res.json({ success: false, error_info: error.details[0].message });
-    } 
     if(!req.user._moderator){
         res.json({ success: false, error: 'error this account is not a moderator' })  
     }else{
@@ -122,7 +118,7 @@ exports.getSubjectById = (req,res) => {
 
 exports.updateSubject = (req, res) => {
     const schema = Joi.object().keys({
-        _id: Joi.objectId(),
+        _id: Joi.required(),
         subject_code: Joi.string().min(5).max(15).required(),
         name: Joi.string().min(5).max(25).required(),
         description: Joi.string().max(255)
@@ -144,14 +140,4 @@ exports.updateSubject = (req, res) => {
             }
         })
     }
-}
-
-function validate(req) {
-    const schema = Joi.object().keys({
-        subject_code: Joi.string().min(5).max(15).required(),
-        name: Joi.string().min(5).max(25).required(),
-        description: Joi.string().max(255)
-    });
-
-    return schema.validate(req.body);
 }
