@@ -27,7 +27,7 @@ echo "A. Cloning from Github Source."
 git clone https://github.com/ccarner/COMP90082-RS-2021.git
 mv COMP90082-RS-2021 node
 cd node|| exit
-git checkout backend/develop
+git checkout cache_deploy
 
 
 printf "\n\n\n"
