@@ -14,7 +14,6 @@ echo "#\!/bin/bash\niptables-restore < /etc/iptables.rules" > /etc/network/if-pr
 iptables-save | sudo tee -a /etc/iptables.rules >> /dev/null
 chmod  +x /etc/network/if-pre-up.d/iptables
 
-ufw enable
 ufw allow 8000
 ufw allow 4000
 ufw allow 80
