@@ -1,0 +1,5 @@
+{
+    "name" :"COMP90082 - RS", 
+    "db" : "mongodb://127.0.0.1:27017/test?compressors=disabled&gssapiServiceName=mongodb",
+    "jwtPrivateKey": "unsecureKey"
+}
