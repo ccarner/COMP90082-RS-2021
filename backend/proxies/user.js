@@ -34,13 +34,14 @@ exports.newAndSave = async function (user, callback) {
     newUser.save(callback);
   };
 
-exports.newAndSave2 = async function (name, account, student_number, password, is_moderator, callback) {
+exports.newAndSave2 = async function (name, account, student_number, password, email, is_moderator, callback) {
   const hashedPassword = await hashfunction(password);
   const user = new User();
 
   user.account        = account;
   user.password       = hashedPassword;
   user.student_number = student_number;
+  user.email          = email;
   if(is_moderator != undefined){
     user.is_moderator   = is_moderator;
   } else if (user.name != undefined){

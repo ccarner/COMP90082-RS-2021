@@ -147,7 +147,8 @@ exports.studentRegister = function (req, res) {
     const schema = Joi.object().keys({
       studentId: Joi.string().min(6).max(7).required(),
       username: Joi.string().min(5).max(15).required(),
-      password: Joi.string().min(5).max(15).required()
+      password: Joi.string().min(5).max(15).required(),
+      email: Joi.string().email().trim()
     });
     const { error } = schema.validate(req.body);
     if (error) {
@@ -159,9 +160,10 @@ exports.studentRegister = function (req, res) {
   let password = req.body.password;
   let student_number = req.body.studentId;
   let is_moderator = false;
+  let email = req.body.email;
 
 
-  User.newAndSave2(name, account, student_number, password, is_moderator, function (err, user) {
+  User.newAndSave2(name, account, student_number, password, email, is_moderator, function (err, user) {
     if (err) {
       res.json({ success: false, error_info: 'duplicate username or student id', error: err });
     } else {

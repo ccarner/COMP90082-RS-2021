@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
     account: { type: String, unique: true, required: true},
     password: {type: String, required: true},
     student_number: { type: String,trim: true, index: true, unique: true, sparse: true},
+    email: {type: String,trim: true},
     is_moderator: { type: Boolean, default: false, required: true},
     is_admin: {type: Boolean, default: false, required : true},
     avatar: {type: String},
