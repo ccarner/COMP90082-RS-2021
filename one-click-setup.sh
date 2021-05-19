@@ -19,8 +19,6 @@ ufw allow 4000
 ufw allow 80
 ufw allow 27017
 
-ulimit -n 64000 && ulimit -u 64000
-
 printf "\n\n\n"
 echo "A. Cloning from Github Source."
 git clone https://github.com/ccarner/COMP90082-RS-2021.git
