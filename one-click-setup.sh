@@ -9,7 +9,7 @@ iptables -I INPUT -p tcp --dport 4000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 iptables -I INPUT -p tcp --dport 27017 -j ACCEPT
 
-mkdir -p /etc/network/if-pre-up.d/iptables
+mkdir -p /etc/network/if-pre-up.d
 echo "#\!/bin/bash\niptables-restore < /etc/iptables.rules" > /etc/network/if-pre-up.d/iptables
 iptables-save | sudo tee -a /etc/iptables.rules >> /dev/null
 chmod  +x /etc/network/if-pre-up.d/iptables
