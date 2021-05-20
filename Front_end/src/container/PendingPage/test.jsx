@@ -8,7 +8,7 @@ import {Card, Button, Listroup} from 'react-bootstrap';
 import axios from "axios";
 import {withRouter} from "react-router";
 
-const baseURL = "http://api.cervidae.com.au:4000/"
+const baseURL = "http://158.101.92.248:4000/"
 const accessToken = localStorage.getItem("accessToken")
 
 class PendingArticle extends React.Component{
