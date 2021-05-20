@@ -7,58 +7,72 @@ const mongoose = require('mongoose');
 const {Subject} = require('../models/subject');
 const {User} = require('../models/user');
 const Joi = require('joi');
+const _ = require('lodash');
 
 // moderator creates a subject
-if(process.env.NODE_ENV !== 'production'){
-    router.post('/add', auth, async (req, res) =>{
-
-        const schema = Joi.object().keys({
-            subject_code: Joi.string().min(5).max(15).required(),
-            name: Joi.string().min(5).max(25).required(),
-            description: Joi.string().max(255)
-        });
-        const { error } = schema.validate(req.body);
-        if (error) {
-            return res.json({ success: false, error_info: error.details[0].message });
-        } 
-
-        try{
-
-            if(!req.user._moderator)
-                return res.status(403).send('you are not the moderator');
-
-            let subject = await Subject.findOne({ subject_code: req.body.subject_code.toUpperCase() });
-
-            if(subject)
-                return res.status(400).send("Subject already existed.");
-
-            subject = new Subject({
-                name : req.body.name,
-                subject_code : req.body.subject_code.toUpperCase(),
-                description : req.body.description,
-                created_by : [req.user._id]
-            });
-
-            let subject_creator = await User.findOne({_id: req.user._id});
-            if(!subject_creator.moderated_subjects)
-                subject_creator.moderated_subjects = [];
-
-            subject_creator.moderated_subjects.push(subject._id);
-
-            await subject_creator.save();
-            await subject.save();
-
-            return res.status(200).send(subject);
-        }catch (e) {
-            console.error(e.message);
-            res.status(400).send('something wrong');
-        }
+if (process.env.NODE_ENV !== 'production') {
+  async function updateStudentSubjects(newSubject) {
+    const students = await User.find().and(
+      {is_moderator: false},
+      {is_admin: false}
+    );
+    const subjects = students[0].subscribed_subjects;
+    students.forEach(async (student) => {
+      await User.findByIdAndUpdate(student._id, {
+        subscribed_subjects: [...subjects, newSubject._id],
+      });
     });
-}else{
-    router.post('/add', auth, subjectController.addSubject)
+  }
+
+  router.post('/add', auth, async (req, res) => {
+    const schema = Joi.object().keys({
+      subject_code: Joi.string().min(5).max(15).required(),
+      name: Joi.string().min(5).max(25).required(),
+      description: Joi.string().max(255),
+    });
+    const {error} = schema.validate(req.body);
+    if (error) {
+      return res.json({success: false, error_info: error.details[0].message});
+    }
+
+    try {
+      if (!req.user._moderator)
+        return res.status(403).send('you are not the moderator');
+
+      let subject = await Subject.findOne({
+        subject_code: req.body.subject_code.toUpperCase(),
+      });
+
+      if (subject) return res.status(400).send('Subject already existed.');
+
+      subject = new Subject({
+        name: req.body.name,
+        subject_code: req.body.subject_code.toUpperCase(),
+        description: req.body.description,
+        created_by: [req.user._id],
+      });
+
+      let subject_creator = await User.findOne({_id: req.user._id});
+      if (!subject_creator.moderated_subjects)
+        subject_creator.moderated_subjects = [];
+
+      subject_creator.moderated_subjects.push(subject._id);
+
+      await subject_creator.save();
+      await subject.save();
+
+      // add the new added subject to the existed students
+      await updateStudentSubjects(subject);
+
+      return res.status(200).send(subject);
+    } catch (e) {
+      console.error(e.message);
+      res.status(400).send('something wrong');
+    }
+  });
+} else {
+  router.post('/add', auth, subjectController.addSubject);
 }
-
-
 
 // moderator delete a subject
 router.delete('/delete', auth, subjectController.deleteSubject)
