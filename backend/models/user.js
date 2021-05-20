@@ -27,4 +27,5 @@ UserSchema.methods.generateAuthToken = function () {
   return token;
 };
 
-exports.User = new mongoose.model('User',UserSchema);
+const User = new mongoose.model('User', UserSchema);
+exports.User = User;

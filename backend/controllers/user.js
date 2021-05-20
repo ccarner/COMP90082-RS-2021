@@ -1,12 +1,14 @@
-const User = require('../proxies/user');
-const Subject = require('../proxies/subject');
-const Tool = require('../proxies/tool')
+const UserProxy = require('../proxies/user');
+const {Subject} = require('../models/subject');
+const {User} = require('../models/user');
+const Tool = require('../proxies/tool');
 const jwt = require('jsonwebtoken');
 const TOKEN_SECRET = 'THIS_IS_SECRET'
 const Joi = require('joi');
 const aws = require('aws-sdk');
 const fs = require('fs');
 
+const _ = require('lodash');
 
 /**
  * post upload image single 
@@ -49,12 +51,14 @@ exports.upload = function (req, res) {
 
       console.log(locationUrl);
 
-      User.updateImage(mtoken._id, { "images": locationUrl },
+      UserProxy.updateImage(
+        mtoken._id,
+        {images: locationUrl},
         function (err, raw) {
-          if (err)
-            console.log('The raw response from Mongo was ', raw);
+          if (err) console.log('The raw response from Mongo was ', raw);
           res.json(`success: false , error:${raw}`);
-        })
+        }
+      );
 
       responsejson = {
         success: true,
@@ -72,8 +76,7 @@ exports.upload = function (req, res) {
  
 */
 exports.getAllImages = function (req, res) {
-  User.getUserById(req.user._id, function (err, user) {
-
+  UserProxy.getUserById(req.user._id, function (err, user) {
     var responsejson = {
       success: true,
       images: user.images
@@ -90,7 +93,7 @@ exports.getAllImages = function (req, res) {
  */
 
 exports.getUserHomePage = async function (req, res) {
-  User.getUserHomePage(req.user._id, (err, result) => {
+  UserProxy.getUserHomePage(req.user._id, (err, result) => {
     if (err) {
       return res.json({ success: false, error: err });
     } else {
@@ -100,7 +103,7 @@ exports.getUserHomePage = async function (req, res) {
 }
 
 exports.getAllUsers = function (req, res) {
-  User.getAllUsers(function (err, users) {
+  UserProxy.getAllUsers(function (err, users) {
     if (err) {
       res.json({ success: false, error: 'failed to get all users' });
     } else {
@@ -116,35 +119,58 @@ exports.getAllUsers = function (req, res) {
 }
 
 exports.subscribe_subject = function (req, res) {
-  let subjectid = req.body.subject_id
-  User.updateSubscribedSubject(subjectid, req.user._id, (error, result) => {
-    if (error) {
-      res.json({ success: false, error: 'failed to subscribe the subject' + error })
-    } else {
-      res.json({ success: true, user: result })
+  let subjectid = req.body.subject_id;
+  UserProxy.updateSubscribedSubject(
+    subjectid,
+    req.user._id,
+    (error, result) => {
+      if (error) {
+        res.json({
+          success: false,
+          error: 'failed to subscribe the subject' + error,
+        });
+      } else {
+        res.json({success: true, user: result});
+      }
     }
-  })
-}
+  );
+};
 
-
-exports.addUser = function (req, res) {
+exports.addUser = async function (req, res) {
   // if(!req.user._admin){
   //     return res.json({success: false, error : 'You are not an Admin'})
   // }
 
-  User.newAndSave(req.body, function (err, user) {
-    if (err) {
-      res.json({ success: false, error: 'failed to add user', error: err });
-    } else {
-      return res.json({ success: true, user: user });
-    }
+  const users = await User.find().or([
+    {account: req.body.account},
+    {student_number: req.body.student_number},
+  ]);
+
+  if (users.length !== 0)
+    return res.status(400).send('Duplicate username or student id');
+
+  const user = new User({
+    name: req.body.name,
+    account: req.body.account,
+    password: await hashfunction(req.body.password),
+    student_number: req.body.student_number,
+    is_moderator: req.body.is_moderator,
+    is_admin: false,
+    subscribed_subjects: req.body.is_moderator
+      ? []
+      : _.map(await Subject.find(), '_id'),
+    email: req.body.email,
   });
+
+  await user.save();
+
+  return res.status(200).json({success: true, user: user});
 };
 
-
-exports.studentRegister = function (req, res) {
-  if(process.env.NODE_ENV !== "production") {
+exports.studentRegister = async function (req, res) {
+  if (process.env.NODE_ENV !== 'production') {
     const schema = Joi.object().keys({
+      name: Joi.string(),
       studentId: Joi.string().min(6).max(7).required(),
       username: Joi.string().min(5).max(15).required(),
       password: Joi.string().min(5).max(15).required(),
@@ -152,22 +178,32 @@ exports.studentRegister = function (req, res) {
     });
     const { error } = schema.validate(req.body);
     if (error) {
-      return res.json({ success: false, error_info: error.details[0].message });
+      return res
+        .status(400)
+        .json({success: false, error_info: error.details[0].message});
     }
+
+    const users = await User.find().or([
+      {account: req.body.username},
+      {student_number: req.body.studentId},
+    ]);
+
+    if (users.length !== 0)
+      return res.status(400).send('Duplicate username or student id');
+
+    const user = new User({
+      name: req.body.name,
+      account: req.body.username,
+      password: await hashfunction(req.body.password),
+      student_number: req.body.studentId,
+      is_moderator: false,
+      is_admin: false,
+      subscribed_subjects: _.map(await Subject.find(), '_id'),
+      email: req.body.email,
+    });
+
+    await user.save();
+
+    return res.status(200).json({success: true, user: user});
   }
-  let name = req.body.name;
-  let account = req.body.username;
-  let password = req.body.password;
-  let student_number = req.body.studentId;
-  let is_moderator = false;
-  let email = req.body.email;
-
-
-  User.newAndSave2(name, account, student_number, password, email, is_moderator, function (err, user) {
-    if (err) {
-      res.json({ success: false, error_info: 'duplicate username or student id', error: err });
-    } else {
-      return res.json({ success: true, user: user });
-    }
-  });
-}
+};
