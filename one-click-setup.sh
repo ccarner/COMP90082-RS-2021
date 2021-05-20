@@ -3,7 +3,7 @@ set -e
 rm -rf /var/node
 cd /var || return
 
-echo "Configuring firewall."
+echo "A0. Configuring firewall."
 iptables -I INPUT -p tcp --dport 8000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 4000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
@@ -31,6 +31,11 @@ printf "\n\n\n"
 echo "B. Installing dependencies."
 apt update && apt -y install npm && apt -y install python3
 npm install --global yarn
+sudo apt install snapd
+sudo snap install core; sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
 
 printf "\n\n\n"
 echo "C. Installing admin API."
@@ -38,17 +43,20 @@ cd ServerAdminAPI|| exit
 chmod +x install.sh
 sh install.sh
 
+
 printf "\n\n\n"
 echo "D. Installing backend service."
 cd ../backend|| exit
 chmod +x install.sh
 sh install.sh
 
+
 printf "\n\n\n"
 echo "E. Installing frontend service."
 cd ../Front_end|| exit
 chmod +x install.sh
 sh install.sh
+
 
 printf "\n\n\n"
 echo "All Done!"
