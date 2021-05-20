@@ -17,7 +17,7 @@ import Editor from "./EditorComponent.jsx"
 import Bookmark from './Bookmark.jsx'
 import LikeButton from './LikeButton.jsx'
 
-const baseURL = "http://api.cervidae.com.au:4000/"
+const baseURL = "http://158.101.92.248:4000/"
 
 class App extends React.Component {
   constructor(props) {
