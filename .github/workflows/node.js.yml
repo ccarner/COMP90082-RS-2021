@@ -5,9 +5,9 @@ name: Auto Deployment
 
 on:
   push:
-    branches: [ backend/develop ]
+    branches: [ cache_deploy ]
   pull_request:
-    branches: [ backend/develop ]
+    branches: [ cache_deploy ]
 
 jobs:
   deployment:
