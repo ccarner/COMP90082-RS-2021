@@ -7,6 +7,7 @@ echo "A0. Configuring firewall."
 iptables -I INPUT -p tcp --dport 8000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 4000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT -p tcp --dport 443 -j ACCEPT
 iptables -I INPUT -p tcp --dport 27017 -j ACCEPT
 
 mkdir -p /etc/network/if-pre-up.d
@@ -18,6 +19,7 @@ ufw allow 8000
 ufw allow 4000
 ufw allow 80
 ufw allow 27017
+ufw allow 443
 
 printf "\n\n\n"
 echo "A. Cloning from Github Source."

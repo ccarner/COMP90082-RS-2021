@@ -10,7 +10,7 @@ class AuthService {
   login(username, pass) {
     // eslint-disable-next-line no-shadow
     const request = axios.create({
-      baseURL: "http://api.cervidae.com.au:4000/",
+      baseURL: "https://api.cervidae.com.au/api/",
       timeout: 10000,
       headers: {
         Accept: "application/json",
