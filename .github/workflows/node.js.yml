@@ -18,7 +18,7 @@ jobs:
         id: rebuild
         uses: fjogeleit/http-request-action@v1.8.0
         with:
-          url: 'http://api.cervidae.com.au:8000/rest/rebuild'
+          url: 'http://52.155.110.120:8000/rest/rebuild'
           method: 'GET'
           timeout: 300000
 
@@ -31,7 +31,7 @@ jobs:
         id: check
         uses: fjogeleit/http-request-action@v1.8.0
         with:
-          url: 'http://api.cervidae.com.au:8000/rest/check'
+          url: 'http://52.155.110.120:8000/rest/check'
           method: 'GET'
 
       - name: Check Service Status
@@ -41,7 +41,7 @@ jobs:
         id: info
         uses: fjogeleit/http-request-action@v1.8.0
         with:
-          url: 'http://api.cervidae.com.au:8000/rest/info'
+          url: 'http://52.155.110.120:8000/rest/info'
           method: 'GET'
 
       - name: Show Response
