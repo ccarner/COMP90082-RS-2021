@@ -122,7 +122,11 @@ export default class Register extends Component {
                         <Button
                             variant="success"
                             onClick={() => this.regist()}
-                            style={{marginRight:"0.625rem"}}
+                            style={{
+                                marginRight:"0.625rem",
+                                width:"6rem",
+                                fontWeight:"bold"
+                            }}
                         >
                             Confirm
                         </Button> 
@@ -130,6 +134,10 @@ export default class Register extends Component {
                         <Button
                             variant="primary"
                             onClick={() => this.routeChange("login")}
+                            style={{
+                                width:"6rem",
+                                fontWeight:"bold"
+                            }}
                         >
                             Cancel
                         </Button>

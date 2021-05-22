@@ -1,4 +1,4 @@
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, OverlayTrigger, Tooltip} from "react-bootstrap"
 import React, { Component } from "react"
 import AuthService from "../../utils/AuthService"
 import "./Login.css"
@@ -70,20 +70,22 @@ export default class Login extends Component {
         <div className="content">
           <Form>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Username:</Form.Label>
+              <Form.Label> Username: </Form.Label>
               <Form.Control
                 placeholder="Enter Username"
                 onChange={(e) => this.getUsername(e)}
               />
             </Form.Group>
+            
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password:</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder="Enter Password"
                 onChange={(e) => this.getPassword(e)}
               />
             </Form.Group>
+
             { this.state.showWarning
               ? <Form.Text 
                   className="text-danger"
@@ -100,14 +102,23 @@ export default class Login extends Component {
                 // eslint-disable-next-line react/destructuring-assignment
                 this.verify(this.state.username, this.state.password)
               }
-              style={{marginRight:"0.625rem"}}
+              style={{
+                marginRight:"0.625rem", 
+                width:"6rem",
+                fontWeight:"bold"
+              }}
             >
               Login
             </Button>
             
             <Button
                 variant="primary"
-                onClick={() => this.routeChange("register")}>
+                onClick={() => this.routeChange("register")}
+                style={{ 
+                  width:"6rem",
+                  fontWeight:"bold"
+                }}
+            >
               Register
             </Button>
           </Form>
