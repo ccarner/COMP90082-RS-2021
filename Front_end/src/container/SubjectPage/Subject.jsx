@@ -268,7 +268,13 @@ class Subject extends Component {
             <Modal.Body>
               <Form.Group>
                 {/* add article title */}
-                <Form.Label>Article Title</Form.Label>
+                <Form.Label
+                  style={{
+                    fontWeight: "bold"
+                  }}
+                >
+                  Article Title
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Please enter the article title"
@@ -292,6 +298,11 @@ class Subject extends Component {
               <Button
                 variant="danger"
                 onClick={this.closeModal}
+                style={{
+                  marginRight: "0.625rem",
+                  width: "5rem",
+                  fontWeight: "bold"
+                }}
               >
                 Close
               </Button>
@@ -300,6 +311,10 @@ class Subject extends Component {
                 variant="primary"
                 disabled={this.state.isLoading}
                 onClick={!this.state.isLoading ? this.clickedAddNewArticle : null}
+                style={{
+                  width: "5rem",
+                  fontWeight: "bold"
+                }}
               >
                 {this.state.isLoading ? "Creating..." : "Create"}
               </Button>
@@ -390,6 +405,10 @@ class Subject extends Component {
               <Button 
                 onClick={() => this.showModal()} 
                 variant="outline-primary adding-artical-button" 
+                style={{
+                  width: "8rem",
+                  fontWeight: "bold"
+                }}
               >
                 Add Article
               </Button>
@@ -416,6 +435,10 @@ class Subject extends Component {
             <Button 
               onClick={() => this.showModal()} 
               variant="outline-primary adding-artical-button"
+              style={{
+                width: "8rem",
+                fontWeight: "bold"
+              }}
             >
               Add Article
             </Button>
@@ -468,6 +491,9 @@ class Subject extends Component {
               variant="primary" 
               onClick={() => this.showEditSubModal()}
               size="sm"
+              style={{
+                width: "8rem"
+              }}
             >
               Edit Description
             </Button>
@@ -477,6 +503,9 @@ class Subject extends Component {
               variant="secondary" 
               onClick={() => this.clickedEditLayout()} 
               size="sm"
+              style={{
+                width: "8rem"
+              }}
             >
               Edit Section
             </Button>
