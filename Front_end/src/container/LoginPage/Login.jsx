@@ -96,7 +96,6 @@ export default class Login extends Component {
             
             <Button
               variant="success"
-              className="btn"
               onClick={() =>
                 // eslint-disable-next-line react/destructuring-assignment
                 this.verify(this.state.username, this.state.password)
@@ -108,9 +107,7 @@ export default class Login extends Component {
             
             <Button
                 variant="primary"
-                className="btn"
-                onClick={() => this.routeChange("register")}
-            >
+                onClick={() => this.routeChange("register")}>
               Register
             </Button>
           </Form>
