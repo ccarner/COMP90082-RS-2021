@@ -257,6 +257,10 @@ export default class Search extends Component {
                 <Button
                   variant="primary"
                   onClick={this.searchRequest}
+                  style={{
+                    width: "5rem",
+                    fontWeight: "bold"
+                  }}
                 >
                   Search
                 </Button>

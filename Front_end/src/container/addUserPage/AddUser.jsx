@@ -219,6 +219,10 @@ class AddUser extends Component {
                   <Button 
                     onClick={this.showModal} 
                     variant="outline-primary"
+                    style={{ 
+                      width:"9rem",
+                      fontWeight:"bold"
+                    }}
                   >
                     Add New User
                   </Button>

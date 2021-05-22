@@ -145,7 +145,10 @@ class NavBar extends Component {
             />
             <Button
               variant="primary"
-              style={{marginRight: "10px"}}
+              style={{
+                marginRight: "10px", 
+                width: "3.5rem"
+              }}
             >
               <FontAwesomeIcon
                 icon={faSearch}
@@ -154,10 +157,14 @@ class NavBar extends Component {
               />
             </Button>
           </Form>
-          <Dropdown alignRight className="nav-drop-down-button">
+          <Dropdown 
+            alignRight 
+            className="nav-drop-down-button"
+          >
             <Dropdown.Toggle 
               variant="success" 
               id="dropdown-basic"
+              style={{ width:"3.5rem"}}
             >
               <FontAwesomeIcon icon={faUserCircle} />
             </Dropdown.Toggle>
