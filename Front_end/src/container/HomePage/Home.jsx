@@ -152,7 +152,7 @@ class Home extends Component {
     )
   }
 
-  // if true, admin can add subjects; if false, users can subscribe subjects
+  // if true, admin can add subjects
   addSubjectButton() {
     if(AuthService.userIsModerator()){
       return (
@@ -160,6 +160,10 @@ class Home extends Component {
           className="padding-articles-button"
           variant="outline-primary"
           onClick={this.showModal}
+          style={{ 
+            width:"8rem",
+            fontWeight:"bold"
+          }}
         >
           Add Subject
         </Button>
@@ -184,9 +188,6 @@ class Home extends Component {
         <Row>
           <Col sm={9}>
             <h2>Subjects you have subscribed to</h2>
-          </Col>
-          <Col sm={3}>
-            {this.addSubjectButton()}
           </Col>
         </Row>
       )
@@ -216,7 +217,10 @@ class Home extends Component {
               <Col key={subject.id} xs={6} md={4} className="card-sub">
                 <Card
                   className="subject-card"
-                  style={{ width: "18rem" }}
+                  style={{ 
+                    width: "100%",
+                    marginBottom: "10%"
+                  }}
                   onClick={() => this.clickedSubject(subject.subject_code)}
                 >
                   <Card.Img variant="top" src={cardImage} />
@@ -238,7 +242,10 @@ class Home extends Component {
               <Col key={subject.id} xs={6} md={4} className="card-sub">
                 <Card
                   className="subject-card"
-                  style={{ width: "18rem" }}
+                  style={{ 
+                    width: "100%",
+                    marginBottom: "10%" 
+                  }}
                   onClick={() => this.clickedSubject(subject.subject_code)}
                 >
                   <Card.Img variant="top" src={cardImage} />
@@ -288,16 +295,16 @@ class Home extends Component {
                   placeholder="Please enter the subject code"
                   onChange={this.getSubjectCode}
                 />
-                <Form.Label style={{ marginTop: "5px" }}>
+                <Form.Label style={{ marginTop: "0.3125rem" }}>
                   Subject Title
                 </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Please enter the subject title"
                   onChange={this.getSubjectTitle}
-                  style={{ marginTop: "5px" }}
+                  style={{ marginTop: "0.3125rem" }}
                 />
-                <Form.Label style={{ marginTop: "5px" }}>
+                <Form.Label style={{ marginTop: "0.3125rem" }}>
                   Description
                 </Form.Label>
                 <Form.Control
@@ -305,7 +312,7 @@ class Home extends Component {
                   rows="5"
                   placeholder="Please write a brief description"
                   onChange={this.getSubjectDscrip}
-                  style={{ marginTop: "5px" }}
+                  style={{ marginTop: "0.3125rem" }}
                 />
                 {/* <Form.Label>Tags</Form.Label>
                 <Form.Control
@@ -320,6 +327,11 @@ class Home extends Component {
               <Button
                 variant="danger"
                 onClick={this.closeModal}
+                style={{ 
+                  marginRight: "0.625rem",
+                  width: "5rem",
+                  fontWeight:"bold"
+                }}
               >
                 Close
               </Button>
@@ -328,6 +340,10 @@ class Home extends Component {
                 variant="primary"
                 disabled={this.state.isLoading}
                 onClick={!this.state.isLoading ? this.postSubjectInfo : null}
+                style={{ 
+                  width: "5rem",
+                  fontWeight:"bold"
+                }}
               >
                 {this.state.isLoading ? "Publishing..." : "Publish"}
               </Button>
