@@ -164,17 +164,7 @@ class Home extends Component {
           Add Subject
         </Button>
       )
-    } else {
-      return (
-        <Button
-          className="padding-articles-button"
-          variant="outline-primary"
-          onClick={this.showModal}
-        >
-          Subscribe Subject
-        </Button>
-      )
-    }
+    } 
   }
 
   SubjectDescriptionSect = () =>{
@@ -298,7 +288,9 @@ class Home extends Component {
                   placeholder="Please enter the subject code"
                   onChange={this.getSubjectCode}
                 />
-                <Form.Label>Subject Title</Form.Label>
+                <Form.Label style={{ marginTop: "5px" }}>
+                  Subject Title
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Please enter the subject title"
@@ -342,30 +334,7 @@ class Home extends Component {
             </Modal.Footer>
           </Modal>
         ) : (
-          // if condition is false, users can subscribe subjects using code below
-          <Modal
-            size="lg"
-            show={this.state.isShow}
-            onHide={this.closeModal}
-            centered
-            dialogClassName="modal-90w"
-          >
-            <Modal.Header
-              style={{ backgroundColor: "#0e4381", color: "white" }}
-            >
-              <Modal.Title>Subscribe Subject</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-
-            </Modal.Body>
-
-            <Modal.Footer>
-
-            </Modal.Footer>
-          
-          </Modal>
-          //null
+          null
         )}
         <Jumbotron fluid>
           <Container>
