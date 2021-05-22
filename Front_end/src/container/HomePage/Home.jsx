@@ -289,13 +289,24 @@ class Home extends Component {
             </Modal.Header>
             <Modal.Body>
               <Form.Group>
-                <Form.Label>Subject Code</Form.Label>
+                <Form.Label 
+                  style={{ 
+                    fontWeight:"bold",
+                  }}
+                >
+                  Subject Code
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Please enter the subject code"
                   onChange={this.getSubjectCode}
                 />
-                <Form.Label style={{ marginTop: "0.3125rem" }}>
+                <Form.Label 
+                  style={{ 
+                    fontWeight:"bold",
+                    marginTop: "0.3125rem" 
+                  }}
+                >
                   Subject Title
                 </Form.Label>
                 <Form.Control
@@ -304,7 +315,12 @@ class Home extends Component {
                   onChange={this.getSubjectTitle}
                   style={{ marginTop: "0.3125rem" }}
                 />
-                <Form.Label style={{ marginTop: "0.3125rem" }}>
+                <Form.Label 
+                  style={{ 
+                    fontWeight:"bold",
+                    marginTop: "0.3125rem" 
+                    }}
+                >
                   Description
                 </Form.Label>
                 <Form.Control
