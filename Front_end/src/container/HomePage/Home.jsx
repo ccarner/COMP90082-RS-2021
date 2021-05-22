@@ -304,7 +304,7 @@ class Home extends Component {
                 <Form.Label 
                   style={{ 
                     fontWeight:"bold",
-                    marginTop: "0.3125rem" 
+                    marginTop: "0.625rem" 
                   }}
                 >
                   Subject Title
@@ -313,12 +313,11 @@ class Home extends Component {
                   type="text"
                   placeholder="Please enter the subject title"
                   onChange={this.getSubjectTitle}
-                  style={{ marginTop: "0.3125rem" }}
                 />
                 <Form.Label 
                   style={{ 
                     fontWeight:"bold",
-                    marginTop: "0.3125rem" 
+                    marginTop: "0.625rem" 
                     }}
                 >
                   Description
@@ -328,7 +327,6 @@ class Home extends Component {
                   rows="5"
                   placeholder="Please write a brief description"
                   onChange={this.getSubjectDscrip}
-                  style={{ marginTop: "0.3125rem" }}
                 />
                 {/* <Form.Label>Tags</Form.Label>
                 <Form.Control
