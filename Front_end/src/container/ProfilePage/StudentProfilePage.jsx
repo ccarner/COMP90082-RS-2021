@@ -91,7 +91,7 @@ class App extends React.Component {
 					variant="btn btn-outline-primary"
 					onClick={""}
 				>
-					Edit Name
+					Edit
 				</Button>
 			)
 		}
@@ -99,19 +99,19 @@ class App extends React.Component {
 	
 		
 	// button for edit Bio
-	editUserBioButton(){
-		if(AuthService.userIsAuthenticated()){
-			return (
-				<Button
-					className="edit-user-Bio-button"
-					variant="btn btn-outline-primary"
-					onClick={""}
-				>
-					Edit Bio
-				</Button>
-			)
-		}
-	}
+	// editUserBioButton(){
+	// 	if(AuthService.userIsAuthenticated()){
+	// 		return (
+	// 			<Button
+	// 				className="edit-user-Bio-button"
+	// 				variant="btn btn-outline-primary"
+	// 				onClick={""}
+	// 			>
+	// 				Edit Bio
+	// 			</Button>
+	// 		)
+	// 	}
+	// }
 
 	// button for change profile picture 
 	changeUserProfilepicButton(){
@@ -121,8 +121,9 @@ class App extends React.Component {
 					className="change-user-profile-pic-button"
 					variant="btn btn-outline-primary"
 					onClick={""}
+					style={{marginLeft:'4rem'}}
 				>
-					Change profile pic
+					Upload pic
 				</Button>
 			)
 		}
@@ -176,7 +177,7 @@ class App extends React.Component {
 				        </Col>
 					</Row>
 					<p></p>
-					<Row>
+					{/* <Row>
 						<Col sm={1}>
 							<h5>Bio: </h5>
 						</Col>
@@ -194,9 +195,9 @@ class App extends React.Component {
 							</InputGroup>
 						</Col>
 						<Col sm={4}>
-							{this.editUserBioButton()}
+							{this.editUserBioButton()} 
 			    		</Col> 
-					</Row>
+					</Row> */}
 					<hr></hr>
 					<h2>Here is a list of your articles currently that are under review</h2>
 					<hr></hr>

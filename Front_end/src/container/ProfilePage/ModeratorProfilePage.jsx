@@ -63,26 +63,26 @@ class App extends React.Component {
 					variant="btn btn-outline-primary"
 					onClick={" "}
 				>
-					Edit preferred name
+					Edit
 				</Button>
 			)
 		}
 	}
 			
 	// button for edit Bio
-	editBioButton(){
-		if(AuthService.userIsModerator()){
-			return (
-				<Button
-					className="edit-io-button"
-					variant="btn btn-outline-primary"
-					onClick={""}
-				>
-					Edit Bio
-				</Button>
-			)
-		}
-	}
+	// editBioButton(){
+	// 	if(AuthService.userIsModerator()){
+	// 		return (
+	// 			<Button
+	// 				className="edit-io-button"
+	// 				variant="btn btn-outline-primary"
+	// 				onClick={""}
+	// 			>
+	// 				Edit Bio
+	// 			</Button>
+	// 		)
+	// 	}
+	// }
 
 	// button to change profile picture 
 	changeProfilepicButton(){
@@ -92,8 +92,9 @@ class App extends React.Component {
 					className="change-profile-pic-button"
 					variant="btn btn-outline-primary"
 					onClick={" "}
+					style={{marginLeft:'4rem'}}
 				>
-					Change profile pic
+					Upload pic
 				</Button>
 			)
 		}
@@ -148,7 +149,7 @@ class App extends React.Component {
 							</Col>
 						</Row>
 						<p></p>
-						<Row>
+						{/* <Row>
 							<Col sm={1}>
 								<h5>Bio: </h5>
 							</Col>
@@ -167,9 +168,9 @@ class App extends React.Component {
 								</InputGroup>
 						    </Col>
 							<Col sm={4}>
-								{this.editBioButton()}
+								{this.editBioButton()} 
 						    </Col>
-						</Row>
+						</Row> */}
 						<hr></hr>
 				    	<h1>List of your published articles</h1>
 				    	<hr></hr>
@@ -235,7 +236,7 @@ class App extends React.Component {
 				</Col>
 				</Row>
 				<p></p>
-				<Row>
+				{/* <Row>
 					<Col sm={1}>
 						<h5>Bio: </h5>
 					</Col>
@@ -256,7 +257,7 @@ class App extends React.Component {
 					<Col sm={4}>
 						{this.editBioButton()}
 					</Col>
-				</Row>
+				</Row> */}
 				<hr></hr>
 				<p>You don't currently have any published articles, you can help contribute by adding articles in a subject or tool page!</p>
 			</div>

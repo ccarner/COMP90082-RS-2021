@@ -89,7 +89,7 @@ class App extends React.Component {
       )
     }
     if (this.state.loaded) {
-      return <h1>Error: Article ID not found</h1>
+      return <h1>The article is submitted for approval</h1>
     }
     return (
       <>

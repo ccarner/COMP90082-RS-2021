@@ -273,7 +273,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {this.state.isShow && AuthService.userIsModerator() ? (
+        {this.state.isShow ? (
           // if condition is true, admin can create subjects using the code below
           <Modal
             size="lg"
@@ -370,10 +370,9 @@ class Home extends Component {
           <Container>
             <Row>
               <Col md={{ span: 6, offset: 3 }}>
-                <h1>Welcome to the home page!</h1>
-                <p>
-                  Here, you will see all the subjects that you are enrolled in
-                  and topics you are subscribed to.
+                <h1 align="center">Welcome to the home page!</h1>
+                <p align="center">
+                  Here, you will see all the subjects that you are enrolled in.
                 </p>
               </Col>
             </Row>
@@ -389,10 +388,10 @@ class Home extends Component {
         <section className="main-section">
           <Container>
             <Row>
-              <h2>Topics you have subscribed to</h2>
+              {/* <h2>Topics you have subscribed to</h2> */}
             </Row>
             <hr />
-            {this.TopicSection()}
+            {/* {this.TopicSection()} */}
           </Container>
         </section>
       </div>
