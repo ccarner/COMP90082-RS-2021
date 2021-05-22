@@ -129,6 +129,10 @@ class App extends React.Component {
                     className="edit-button"
                     variant="primary"
                     disabled={this.state.hasPending}
+                    style={{ 
+                      width:"7rem",
+                      fontWeight:"bold"
+                    }}
                   >
                     {this.state.buttonText}
                   </Button>
@@ -140,6 +144,10 @@ class App extends React.Component {
                   <Button
                     className="edit-button"
                     variant="success"
+                    style={{ 
+                      width:"7rem",
+                      fontWeight:"bold"
+                    }}
                   >
                     Back
                   </Button>
