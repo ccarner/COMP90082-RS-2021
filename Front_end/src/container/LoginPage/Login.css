@@ -54,13 +54,12 @@
     width: 400px;
     background-color: #ffffff;
 }
-#btn{
-    margin-top: 20px;
-    width: 132px;
-    height: 54px;
+/* button style for login */
+.btn{
+    margin-top: 10px;
+    width: 100px;
+    height: 40px;
     font-weight: bolder;
-    box-shadow: 0px 5px 0px #075609;
-    background-color: #118914;
 }
 
 .footer{

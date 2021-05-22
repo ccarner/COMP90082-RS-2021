@@ -152,7 +152,7 @@ class Home extends Component {
     )
   }
 
-  // if true, admin can add subjects; if false, users can subscribe subjects
+  // if true, admin can add subjects
   addSubjectButton() {
     if(AuthService.userIsModerator()){
       return (
@@ -164,17 +164,7 @@ class Home extends Component {
           Add Subject
         </Button>
       )
-    } else {
-      return (
-        <Button
-          className="padding-articles-button"
-          variant="outline-primary"
-          onClick={this.showModal}
-        >
-          Subscribe Subject
-        </Button>
-      )
-    }
+    } 
   }
 
   SubjectDescriptionSect = () =>{
@@ -276,7 +266,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {this.state.isShow && AuthService.userIsModerator() ? (
+        {this.state.isShow ? (
           // if condition is true, admin can create subjects using the code below
           <Modal
             size="lg"
@@ -342,30 +332,7 @@ class Home extends Component {
             </Modal.Footer>
           </Modal>
         ) : (
-          // if condition is false, users can subscribe subjects using code below
-          <Modal
-            size="lg"
-            show={this.state.isShow}
-            onHide={this.closeModal}
-            centered
-            dialogClassName="modal-90w"
-          >
-            <Modal.Header
-              style={{ backgroundColor: "#0e4381", color: "white" }}
-            >
-              <Modal.Title>Subscribe Subject</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-
-            </Modal.Body>
-
-            <Modal.Footer>
-
-            </Modal.Footer>
-          
-          </Modal>
-          //null
+          null
         )}
         <Jumbotron fluid>
           <Container>
@@ -373,7 +340,7 @@ class Home extends Component {
               <Col md={{ span: 6, offset: 3 }}>
                 <h1>Welcome to the home page!</h1>
                 <p>
-                  Here, you will see all the subjects that you are enrolled in
+                  Here, you will see all the subjects that you are enrolled in 
                   and topics you are subscribed to.
                 </p>
               </Col>

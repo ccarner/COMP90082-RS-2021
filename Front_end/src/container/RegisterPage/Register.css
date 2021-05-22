@@ -54,32 +54,12 @@
     width: 400px;
     background-color: #ffffff;
 }
-#btn{
-    margin-top: 20px;
-    margin-left: 10px;
-    width: 132px;
-    height: 54px;
+/* button style for register */
+.btn{
+    margin-top: 10px;
+    width: 100px;
+    height: 40px;
     font-weight: bolder;
-    box-shadow: 0px 5px 0px #075609;
-    background-color: #118914;
-}
-#btnBack{
-    margin-top: 20px;
-    margin-left: 10px;
-    width: 132px;
-    height: 54px;
-    font-weight: bolder;
-    box-shadow: 0px 5px 0px #0e3149;
-    background-color: #064675;
-}
-#btnRegister{
-    margin-top: 20px;
-    margin-left: 100px;
-    width: 132px;
-    height: 54px;
-    font-weight: bolder;
-    box-shadow: 0px 5px 0px #075609;
-    background-color: #118914;
 }
 
 .footer img{
