@@ -36,7 +36,7 @@ exports.newAndSave = async function (user, callback) {
 //     cache.set(newUser,newUser.password, (err, res) => {
 //       console.log('newUser info added in redis')
 //     });
-    console.log('newUser info added in redis')
+//     console.log('newUser info added in redis')
     newUser.save(callback);  
 
   };
@@ -57,7 +57,7 @@ exports.newAndSave2 = async function (name, account, student_number, password, i
 //   cache.set(user.account,(user.password,user.student_number,user.is_moderator), (err, res) => {
 //     console.log('user info added in redis')
 //   });
-  console.log('user info added in redis')
+//   console.log('user info added in redis')
   user.save(callback);
 
 };
