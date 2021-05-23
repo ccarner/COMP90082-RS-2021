@@ -34,9 +34,9 @@ exports.newAndSave = async function (user, callback) {
     newUser.password = await hashfunction(user.password)
     newUser.save(callback);
 
-  cache.set(newUser,newUser.password, (err, res) => {
-    console.log('newUser info added in redis')
-  });
+    cache.set(newUser,newUser.password, (err, res) => {
+      console.log('newUser info added in redis')
+    });
 
   };
 
