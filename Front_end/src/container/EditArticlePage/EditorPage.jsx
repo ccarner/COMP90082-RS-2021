@@ -65,7 +65,7 @@ class App extends React.Component {
 				tools: data.returnValuesForArticle.tools
 			})
 			if(data.returnValuesForArticle.is_pending){
-				this.setState({hasPending: true, buttonText: "Pending article exists"})
+				this.setState({hasPending: true, buttonText: "Pending"})
 			}
 			// console.log(data)
 			return data

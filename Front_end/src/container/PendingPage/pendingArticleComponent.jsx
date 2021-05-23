@@ -45,9 +45,21 @@ class PendingArticle extends React.Component{
 					<Card.Text>This section contains a short description of pending article</Card.Text>
 					<hr></hr>
 					<Button variant="primary" 
-							onClick={() => {this.approveArticle(this.props.id)}}>Approve</Button>{' '}
+							onClick={() => {this.approveArticle(this.props.id)}}
+							style={{ 
+								width:"6rem",
+								fontWeight:"bold",
+								marginRight:"0.625rem"
+							  }}
+					>Approve</Button>
+
 					<Button variant="secondary"
-							onClick={() => {this.rejectArticle(this.props.id)}}>Reject</Button>
+							onClick={() => {this.rejectArticle(this.props.id)}}
+							style={{ 
+								width:"6rem",
+								fontWeight:"bold"
+							  }}
+					>Reject</Button>
 				</Card.Body>
 			</Card>
 		)

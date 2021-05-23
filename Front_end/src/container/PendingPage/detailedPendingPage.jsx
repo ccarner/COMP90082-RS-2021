@@ -70,7 +70,8 @@ class App extends React.Component {
 			return ( <Editor ref={this.editorComponent} value={this.state.content} onChange={content => this.setState({content})}/>)
 		} else {
 			if(this.state.loaded){
-				return (<h1>Error: Article ID not found</h1>)
+				return this.state.content
+				//return (<h1>Article approved, please refresh the page</h1>)
 			} else {
 				return (
 				<React.Fragment>
@@ -93,10 +94,22 @@ class App extends React.Component {
 				  <h1>{this.state.title}</h1>
 				</Col>
 				<Col sm={3}>
-					  <Button variant="primary" 
-							onClick={() => {this.approveArticle(this.state.id)}}>Approve</Button>{' '}
+					<Button 
+						variant="primary" 
+						onClick={() => {this.approveArticle(this.state.id)}}
+						style={{ 
+							width:"6rem",
+							fontWeight:"bold",
+							marginRight:"0.625rem"
+						}}
+					>Approve</Button>{' '}
 					<Button variant="secondary"
-							onClick={() => {this.rejectArticle(this.state.id)}}>Reject</Button>
+							onClick={() => {this.rejectArticle(this.state.id)}}
+							style={{ 
+								width:"6rem",
+								fontWeight:"bold"
+							  }}
+					>Reject</Button>
 				</Col>
 			  </Row>)
  
@@ -117,17 +130,17 @@ class App extends React.Component {
     }
 
     approveArticle(articleId) {
-		request.get( "article/pendingArticle/approve/" + articleId, {headers: {
-			"auth-token": accessToken
-
-		}}).then(response => response.data).catch((err) => {console.log(err)})
+		request
+			.get( "article/pendingArticle/approve/" + articleId, {headers: {"auth-token": accessToken}})
+			.then(response => response.data.returnValuesForArticle.content).catch((err) => {console.log(err)})
 		this.props.history.push(`/subject/${this.props.location.state.subjectID}`)
 
 	}
 
 	rejectArticle(articleId) {
-		request.get("article/pendingArticle/reject/" + articleId,
-		{headers: {"auth-token": accessToken}}).then(response => response.data).catch((err) => {console.log(err)})
+		request
+			.get("article/pendingArticle/reject/" + articleId,{headers: {"auth-token": accessToken}})
+			.then(response => response.data).catch((err) => {console.log(err)})
 		this.props.history.push(`/subject/${this.props.location.state.subjectID}`)
 
 	}

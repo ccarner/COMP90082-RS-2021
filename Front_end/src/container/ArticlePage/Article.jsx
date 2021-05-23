@@ -62,7 +62,7 @@ class App extends React.Component {
           if (data.returnValuesForArticle.is_pending) {
             this.setState({
               hasPending: true,
-              buttonText: "Pending article exists",
+              buttonText: "Pending",
             })
           }
           console.log(data)
