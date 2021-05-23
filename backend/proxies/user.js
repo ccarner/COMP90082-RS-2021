@@ -1,6 +1,6 @@
 const {User} = require('../models/user');
 const {Subject} = require('../models/subject');
-const cache = require('../models/cache');
+// const cache = require('../models/cache');
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
