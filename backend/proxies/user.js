@@ -37,6 +37,7 @@ exports.newAndSave = async function (user, callback) {
 //       console.log('newUser info added in redis')
 //     });
 //     console.log('newUser info added in redis')
+  
     newUser.save(callback);  
 
   };
