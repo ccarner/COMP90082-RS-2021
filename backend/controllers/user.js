@@ -182,7 +182,7 @@ exports.studentRegister = async function (req, res) {
         .status(400)
         .json({success: false, error_info: error.details[0].message});
     }
-
+  }
     const users = await User.find().or([
       {account: req.body.username},
       {student_number: req.body.studentId},
@@ -205,5 +205,4 @@ exports.studentRegister = async function (req, res) {
     await user.save();
 
     return res.status(200).json({success: true, user: user});
-  }
 };
