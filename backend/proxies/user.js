@@ -32,11 +32,12 @@ hashfunction = async function (password){
 exports.newAndSave = async function (user, callback) {
     let newUser = new User(user);
     newUser.password = await hashfunction(user.password)
-    newUser.save(callback);
-
+  
     cache.set(newUser,newUser.password, (err, res) => {
       console.log('newUser info added in redis')
     });
+  
+    newUser.save(callback);  
 
   };
 
@@ -52,13 +53,13 @@ exports.newAndSave2 = async function (name, account, student_number, password, i
   } else if (user.name != undefined){
     user.name           = name;
   }
-
-
-  user.save(callback);
-
+  
   cache.set(user.account,(user.password,user.student_number,user.is_moderator), (err, res) => {
     console.log('user info added in redis')
   });
+
+  user.save(callback);
+
 };
 
  /**
