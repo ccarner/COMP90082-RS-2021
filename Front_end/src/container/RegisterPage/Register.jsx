@@ -78,16 +78,16 @@ export default class Register extends Component {
                 <div className="content">
                     <Form>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Label>UserId:</Form.Label>
+                            <Form.Label>Student ID:</Form.Label>
                             <Form.Control
-                                placeholder="Enter UserId"
+                                placeholder="Student ID must be 6 to 7 numbers"
                                 onChange={(e) => this.getUserId(e)}
                             />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Username:</Form.Label>
                             <Form.Control
-                                placeholder="Enter Username"
+                                placeholder="Username must be 5 to 15 characters"
                                 onChange={(e) => this.getUsername(e)}
                             />
                         </Form.Group>
@@ -95,7 +95,7 @@ export default class Register extends Component {
                             <Form.Label>Password:</Form.Label>
                             <Form.Control
                                 type="password"
-                                placeholder="Enter Password"
+                                placeholder="Password must be 5 to 15 characters"
                                 onChange={(e) => this.getPassword(e)}
                             />
                         </Form.Group>

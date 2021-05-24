@@ -298,7 +298,7 @@ class Home extends Component {
                 </Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Please enter the subject code"
+                  placeholder="Subject code must be 5 to 15 characters"
                   onChange={this.getSubjectCode}
                 />
                 <Form.Label 
@@ -311,7 +311,7 @@ class Home extends Component {
                 </Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Please enter the subject title"
+                  placeholder="Subject title must be 5 to 25 characters"
                   onChange={this.getSubjectTitle}
                 />
                 <Form.Label 
@@ -325,7 +325,7 @@ class Home extends Component {
                 <Form.Control
                   as="textarea"
                   rows="5"
-                  placeholder="Please write a brief description"
+                  placeholder="Description must be 0 to 255 characters"
                   onChange={this.getSubjectDscrip}
                 />
                 {/* <Form.Label>Tags</Form.Label>

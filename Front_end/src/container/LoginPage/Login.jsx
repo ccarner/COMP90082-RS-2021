@@ -72,7 +72,7 @@ export default class Login extends Component {
             <Form.Group controlId="formBasicEmail">
               <Form.Label> Username: </Form.Label>
               <Form.Control
-                placeholder="Enter Username"
+                placeholder="Username must be 5 to 15 characters"
                 onChange={(e) => this.getUsername(e)}
               />
             </Form.Group>
@@ -81,7 +81,7 @@ export default class Login extends Component {
               <Form.Label>Password:</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Enter Password"
+                placeholder="Password must be 5 to 15 characters"
                 onChange={(e) => this.getPassword(e)}
               />
             </Form.Group>

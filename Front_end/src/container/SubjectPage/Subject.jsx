@@ -205,14 +205,14 @@ class Subject extends Component {
                 <Form.Label>Subject Code</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Please enter the subject code"
+                  placeholder="Subject code must be 5 to 15 characters"
                   onChange={this.getSubjectCode}
                   value={this.state.subjectCodeModal}
                 />
                 <Form.Label>Subject Title</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Please enter the subject title"
+                  placeholder="Subject title must be 5 to 25 characters"
                   onChange={this.getSubjectTitle}
                   style={{ marginTop: "5px" }}
                   value={this.state.subjectNameModal}
@@ -221,6 +221,7 @@ class Subject extends Component {
                 <Form.Control 
                   as="textarea" 
                   rows="3"
+                  placeholder="Description must be 0 to 255 characters"
                   value={this.state.subjectDescription}
                   onChange={this.getEditSubj} 
                 />
