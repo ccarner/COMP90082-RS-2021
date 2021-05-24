@@ -21,7 +21,8 @@ class App extends React.Component {
 			loaded: false,
 			//articles: null,
 			pendingArticles: [],
-			publishedArticles: []
+			publishedArticles: [],
+			username: ""
 		}
 		this.clickedPendingArticle = this.clickedPendingArticle.bind(this);
 		this.clickedPublishedArticle = this.clickedPublishedArticle.bind(this);
@@ -70,6 +71,22 @@ class App extends React.Component {
 		}).catch((err) =>{
 			this.setState({loaded: true})
 			console.log("error")})
+		
+		request.get(`/user/home`).then((response) => {
+			if(response.data.success){
+			  this.setState({
+				username: response.data.user.account
+			})}
+			else {
+			  this.setState({
+				loading:false
+						  })
+			}
+		  }).catch((err) =>{
+			console.log(err)
+		  })
+
+		
 	}
 
 	//function to route to detailed pending page once article is clicked
@@ -150,7 +167,7 @@ class App extends React.Component {
 					<hr></hr>
 					<Row>
 						<Col>
-							<h5>Username: </h5>
+							<h5>Username: {this.state.username}</h5>
 						</Col>
 					</Row>
 					<p></p>
