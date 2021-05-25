@@ -10,7 +10,7 @@ import 'jodit/build/jodit.min.css';
 import {withRouter} from "react-router";
 import request from "../../utils/request"
 
-const accessToken = localStorage.getItem("accessToken")
+// const accessToken = localStorage.getItem("accessToken")
 
 
 class App extends React.Component {

@@ -9,7 +9,7 @@ import {withRouter} from "react-router"
 import profile_pic from './images/profile_pic.png'
 import AuthService from "../../utils/AuthService";
 
-const accessToken = localStorage.getItem("accessToken")
+// const accessToken = localStorage.getItem("accessToken")
 //using this to test getting html files
 
 

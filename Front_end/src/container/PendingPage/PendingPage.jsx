@@ -9,7 +9,7 @@ import PendingArticleComponent from './pendingArticleComponent.jsx'
 //using this to test getting html files
 import {withRouter} from "react-router";
 
-const accessToken = localStorage.getItem("accessToken")
+// const accessToken = localStorage.getItem("accessToken")
 
 
 class App extends React.Component {

@@ -1,4 +1,4 @@
-import { Form, Button, OverlayTrigger, Tooltip} from "react-bootstrap"
+import { Form, Button} from "react-bootstrap"
 import React, { Component } from "react"
 import AuthService from "../../utils/AuthService"
 import "./Login.css"
@@ -72,7 +72,7 @@ export default class Login extends Component {
             <Form.Group controlId="formBasicEmail">
               <Form.Label> Username: </Form.Label>
               <Form.Control
-                placeholder="Username must be 5 to 15 characters"
+                placeholder="Enter your username"
                 onChange={(e) => this.getUsername(e)}
               />
             </Form.Group>
@@ -81,7 +81,7 @@ export default class Login extends Component {
               <Form.Label>Password:</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password must be 5 to 15 characters"
+                placeholder="Enter your password"
                 onChange={(e) => this.getPassword(e)}
               />
             </Form.Group>

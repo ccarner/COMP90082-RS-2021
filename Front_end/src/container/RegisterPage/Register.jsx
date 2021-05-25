@@ -16,6 +16,7 @@ export default class Register extends Component {
             confirmPassword:null,
         }
     }
+    
     regist() {
         const self = this;
         const params = {
@@ -78,26 +79,57 @@ export default class Register extends Component {
                 <div className="content">
                     <Form>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Student ID:</Form.Label>
+                            <Form.Label>Student ID: {' '}
+                                <span 
+                                    className="text-danger"
+                                    style={{
+                                        fontSize: 13,
+                                    }}
+                                >
+                                    * Must be 7 to 8 numbers
+                                </span>
+                            </Form.Label>
                             <Form.Control
-                                placeholder="Student ID must be 6 to 7 numbers"
+                                placeholder="Student ID must be 7 to 8 numbers"
                                 onChange={(e) => this.getUserId(e)}
                             />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Username:</Form.Label>
+                            <Form.Label>Username: {' '}
+                                <span 
+                                    className="text-danger"
+                                    style={{
+                                        fontSize: 13,
+                                    }}
+                                >
+                                    * Must be 5 to 15 characters
+                                </span>
+                            
+                            </Form.Label>
                             <Form.Control
                                 placeholder="Username must be 5 to 15 characters"
                                 onChange={(e) => this.getUsername(e)}
                             />
                         </Form.Group>
                         <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password:</Form.Label>
+                           
+                            <Form.Label>Password: {' '}
+                                <span 
+                                    className="text-danger"
+                                    style={{
+                                        fontSize: 13,
+                                    }}
+                                >
+                                    * Must be at least 6 characters
+                                </span>
+                            </Form.Label>
+                            
                             <Form.Control
                                 type="password"
-                                placeholder="Password must be 5 to 15 characters"
+                                placeholder="Password must be at least 6 characters"
                                 onChange={(e) => this.getPassword(e)}
                             />
+                            
                         </Form.Group>
 
                         {/* seems to check password entered

@@ -2,7 +2,7 @@ import React from 'react';
 import Editor from './EditorComponent.jsx';
 import ReactTag from './tagComponent.jsx';
 import '../../styles/main.css';
-import { Form, Row, Col, Container, Button } from 'react-bootstrap';
+import { Form, Col, Container, Button } from 'react-bootstrap';
 import 'jodit';
 import 'jodit/build/jodit.min.css';
 import AuthService from "../../utils/AuthService"
@@ -11,7 +11,7 @@ import AuthService from "../../utils/AuthService"
 import {withRouter} from "react-router";
 import request from "../../utils/request"
 
-const accessToken = localStorage.getItem("accessToken")
+// const accessToken = localStorage.getItem("accessToken")
 
 
 class App extends React.Component {
