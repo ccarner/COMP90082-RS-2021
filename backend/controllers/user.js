@@ -172,7 +172,7 @@ exports.studentRegister = async function (req, res) {
     const schema = Joi.object().keys({
       name: Joi.string(),
       studentId: Joi.string().min(6).max(8).required(),
-      username: Joi.string().required(),
+      username: Joi.string().min(5).max(15).required(),
       password: Joi.string().min(6).required(),
       email: Joi.string().email().trim()
     });
