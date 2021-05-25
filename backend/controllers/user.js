@@ -171,9 +171,9 @@ exports.studentRegister = async function (req, res) {
   if (process.env.NODE_ENV !== 'production') {
     const schema = Joi.object().keys({
       name: Joi.string(),
-      studentId: Joi.string().min(6).max(7).required(),
-      username: Joi.string().min(5).max(15).required(),
-      password: Joi.string().min(5).max(15).required(),
+      studentId: Joi.string().min(6).max(8).required(),
+      username: Joi.string().required(),
+      password: Joi.string().min(6).required(),
       email: Joi.string().email().trim()
     });
     const { error } = schema.validate(req.body);

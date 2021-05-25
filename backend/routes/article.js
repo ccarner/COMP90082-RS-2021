@@ -16,8 +16,8 @@ if(process.env.NODE_ENV !== "production"){
     router.post('/publish',auth, async (req,res)=>{
         if(process.env.NODE_ENV !== "production") {
             const schema = Joi.object().keys({
-                title: Joi.string().min(5).max(25).required(),
-                content: Joi.string().min(10).required(),
+                title: Joi.string().required(),
+                content: Joi.string().min(5).required(),
               });
               const { error } = schema.validate(req.body);
               if (error) {

@@ -6,7 +6,7 @@ exports.NewAndSave = (req, res) => {
         const schema = Joi.object().keys({
           author_id: Joi.required(),
           section_id: Joi.required(),
-          content: Joi.string().min(15).max(255).required()
+          content: Joi.string().max(255).required()
         });
         const { error } = schema.validate(req.body);
         if (error) {
