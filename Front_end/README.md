@@ -1,4 +1,4 @@
-# There are two different ways to setup frontend
+# There are two different ways to setup frontend in local machine 
 
 
 ### 1. Setting up frontend without Docker

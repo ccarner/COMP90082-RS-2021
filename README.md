@@ -193,13 +193,18 @@ Please check our [frontend](Front_end/README.md) for frontend installation detai
 
 - [WelcomePage/WelcomePage.jsx](Front_end/Front_end/src/container/WelcomePage/WelcomePage.jsx): Landing page.
 
+### **User Experience Testing**
+User experince testing has been performed
+The exported version of our user experience testing can be found in this [folder](docs).
+
+
 ### Back-end
 
-**Server** _(SWEN90013/backend/Back_end/)_
+**Server** _(backend/Back_end/)_
 
 - [app.js](backend/app.js): Working as a web server, it listens to the request sent by each connected client and be ready to respond to it. It also builds a connection with database to allow data CRUD.
 
-**Routers** _(SWEN90013/backend/Back_end/routers/)_: Defines a series of routers that redirect HTTP requests from the front-end to the corresponding back-end controllers based on the suffix of the request.
+**Routers** _(backend/Back_end/routers/)_: Defines a series of routers that redirect HTTP requests from the front-end to the corresponding back-end controllers based on the suffix of the request.
 
 - [routers/article.js](backend/Back_end/routers/article.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
 - [routers/auth.js](backend/Back_end/routers/auth.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
@@ -210,12 +215,12 @@ Please check our [frontend](Front_end/README.md) for frontend installation detai
 - [routers/tool.js](backend/Back_end/routers/tool.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
 - [routers/user.js](backend/Back_end/routers/user.js): Redirects the incoming HTTP requests with suffix of “/article” to their corresponding functions in the article controller.
 
-**Middlewares** _(SWEN90013/backend/Back_end/middlewares/)_: Contains classes that use to verify the identity of request owners and gurantee the security of the website.
+**Middlewares** _(backend/Back_end/middlewares/)_: Contains classes that use to verify the identity of request owners and gurantee the security of the website.
 
 - [middlewares/auth.js](backend/Back_end/middlewares/auth.js): Contains a function to allow users to login safely, and generate an authentication token that can verity the users’ identity for their following operations.
 - [middlewares/verifyToken.js](backend/Back_end/middlewares/verifyToken.js):
 
-**Controllers** _(SWEN90013/backend/Back_end/controllers/)_: Defines a series of functions that take the HTTP requests redirected by routers, process the requests, and generate HTTP responds to send back to the front-end.
+**Controllers** _(backend/Back_end/controllers/)_: Defines a series of functions that take the HTTP requests redirected by routers, process the requests, and generate HTTP responds to send back to the front-end.
 
 - [controllers/article.js](backend/Back_end/controllers/article.js): Contains functions that handles the incoming HTTP requests related to articles. (e.g. publish new articles, approve pending articles, etc.)
 - [controllers/comment.js](backend/Back_end/controllers/comment.js): Contains functions that handles the incoming HTTP requests related to comments. (e.g. post new comments of an article, delete or update an existing comment, etc.)
@@ -225,7 +230,7 @@ Please check our [frontend](Front_end/README.md) for frontend installation detai
 - [controllers/tool.js](backend/Back_end/controllers/tool.js): Contains functions that handles the incoming HTTP requests related to tools. (e.g. add a new tool, etc.)
 - [controllers/user.js](backend/Back_end/controllers/user.js): Contains functions that handles the incoming HTTP requests related to users. (e.g. user subscribe a subject, etc.)
 
-**Proxies** _(SWEN90013/nackend/Back_end/proxies/)_: Each class corresponds to a database document and works as an intermediate layer to provide the necessary functions for the system to communicate with that database.
+**Proxies** _(backend/Back_end/proxies/)_: Each class corresponds to a database document and works as an intermediate layer to provide the necessary functions for the system to communicate with that database.
 
 - [proxies/article.js](backend/Back_end/proxies/article.js): Provides necessary CRUD function for article documents in mongoDB.
 - [proxies/comment.js](backend/Back_end/proxies/comment.js): Provides necessary CRUD function for comment documents in mongoDB.
@@ -236,7 +241,7 @@ Please check our [frontend](Front_end/README.md) for frontend installation detai
 
 ## Description of Database
 
-The database model are defined in the [SWEN90013/backend/Back_end/models/](backend/Back_end/models) folder using Mongoose framework.
+The database model are defined in the [backend/Back_end/models/](backend/Back_end/models) folder using Mongoose framework.
 
 - [models/article.js](backend/Back_end/models/article.js): Defines the Article and the PendingArticle mongoose model.
 - [models/comment.js](backend/Back_end/models/comment.js): Defines the Comment mongoose model and some functions auto-triggered functions related to the model.
