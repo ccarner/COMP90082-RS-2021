@@ -86,11 +86,11 @@ export default class Register extends Component {
                                         fontSize: 13,
                                     }}
                                 >
-                                    * Must be 7 to 8 numbers
+                                    * Must be 6 to 8 numbers
                                 </span>
                             </Form.Label>
                             <Form.Control
-                                placeholder="Student ID must be 7 to 8 numbers"
+                                placeholder="Student ID must be 6 to 8 numbers"
                                 onChange={(e) => this.getUserId(e)}
                             />
                         </Form.Group>
