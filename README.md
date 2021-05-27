@@ -9,6 +9,11 @@ The Software Training Repository seeks to provide students and individuals with 
 - Working demo: [https://api.cervidae.com.au/](https://api.cervidae.com.au/)
 - Documentations: [Confluence](https://confluence.cis.unimelb.edu.au:8443/display/COMP900822021SM1RR)
 
+## Installation Guide
+
+https://confluence.cis.unimelb.edu.au:8443/display/COMP900822021SM1RR/Deployment+Guides
+
+
 ## Features
 
 The section describes the features of our projects and our work progress in each sprint. (We only shows a brief summary to each User Stories in the tables below. However, The detailed version of documentations can be found in our [documentations](docs)
@@ -41,13 +46,6 @@ After login to the website, users will be directed to their homepage. From their
 Users should have their own profile pages where they can check all the articles (and pending articles for students) they have created.
 
 
-## Links
-
-## System Requirement
-
-## Installation Guide
-
-https://confluence.cis.unimelb.edu.au:8443/display/COMP900822021SM1RR/Deployment+Guides
 
 ## Description of Key Classes
 
