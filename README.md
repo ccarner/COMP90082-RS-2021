@@ -194,7 +194,7 @@ The exported version of our user experience testing can be found in this [folder
 - [proxies/tool.js](backend/Back_end/proxies/tool.js): Provides necessary CRUD function for tool documents in mongoDB.
 - [proxies/user.js](backend/Back_end/proxies/user.js): Provides necessary CRUD function for user documents in mongoDB.
 
-## Database
+### Database
 
 The database model are defined in the [backend/Back_end/models/](backend/Back_end/models) folder using Mongoose framework.
 
@@ -218,7 +218,7 @@ The updated and new documents from semester 1 of COMP90082 are described below:
 - The database unit test, integration test, and acceptance test documents can be found at [database_testing.pdf](tests/database_testing.pdf)
 
 
-## API Testing
+### API Testing
 
 Api testing has been performed using post man collections
 The exported version of our api testing can be found in this [folder](api_testing).
