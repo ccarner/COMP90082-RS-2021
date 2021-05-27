@@ -17,13 +17,6 @@ The section describes the features of our projects and our work progress in each
 
 The student and moderators should be able to register account and login. The administrator should be able to manage users’ accounts.
 
-| User story ID / Sprint No. | Sprint 1 | Sprint 2 |  Sprint 3  |  Sprint 4  |
-| -------------------------- | :------: | :------: | :--------: | :--------: |
-| 1.0 Use Unimelb account    |          | Ongoing  | _Canceled_ | _Canceled_ |
-| 1.1 Register account       |          |          |            |  **Done**  |
-| 1.2 Login                  | **Done** |    —     |     —      |     —      |
-| 1.3 Account management     |          |          |            |  **Done**  |
-
 - Note that due to the limitation of unimelb database access, from sprint 3, we gave up developing the **user story 1.0** (Login via unimelb account) and replaced it with **user story 1.1** (Register account)
 
 **Epic 2. Subject**
