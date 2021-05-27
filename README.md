@@ -14,40 +14,39 @@ The Software Training Repository seeks to provide students and individuals with 
 https://confluence.cis.unimelb.edu.au:8443/display/COMP900822021SM1RR/Deployment+Guides
 
 
+
 ## Features
 
-The section describes the features of our projects and our work progress in each sprint. (We only shows a brief summary to each User Stories in the tables below. However, The detailed version of documentations can be found in our [documentations](docs)
-
-**Epic 1. Login**
+**1. User**
 
 The student and moderators should be able to register account and login. The administrator should be able to manage users’ accounts.
 
 - Note that due to the limitation of unimelb database access, from sprint 3, we gave up developing the **user story 1.0** (Login via unimelb account) and replaced it with **user story 1.1** (Register account)
 
-**Epic 2. Subject**
+**2. Subject**
 
 Subject is a major component of the website. The subject page should contain a subject description and the related articles and tools recommand by the website moderators. All users should be able to view the subject pages that they subscribe to. And the moderators should be able to create, delete, edit subjects, add sections to subjects and review all pending articles under each subject.
 
 
-**Epic 3. Article**
+**3. Article**
 
 Articles is a criticle function for the website to thrive. All users can create new articles and edit exsiting articles to share their ideas. However, any edictions made by students need to be reviewed by website moderators, and the moderators may approve or reject those editions. Besides users can attach tags to an article, in that case, other users will be able to search those articles based on their tags. Meanwhile, users will also be able to seach articles base on the keywords in their title.
 
-**Epic 4. Comment**
+**4. Comment**
 
 Comment is a function for users to provide feedbacks to contents in the website. Users should be able to leave comments to articles and reply to other comments.
 
-**Epic 5. Homepage**
+**5. Homepage**
 
 After login to the website, users will be directed to their homepage. From their homepage, users should be able to see all subjects enrolled by the user. And for moderators, they should also be able to see the subjects moderated by them.
 
-**Epic 6. Profile**
+**6. Profile**
 
 Users should have their own profile pages where they can check all the articles (and pending articles for students) they have created.
 
 
 
-## Description of Key Classes
+## Key Classes
 
 ### Front-end
 
@@ -195,7 +194,7 @@ The exported version of our user experience testing can be found in this [folder
 - [proxies/tool.js](backend/Back_end/proxies/tool.js): Provides necessary CRUD function for tool documents in mongoDB.
 - [proxies/user.js](backend/Back_end/proxies/user.js): Provides necessary CRUD function for user documents in mongoDB.
 
-## Description of Database
+## Database
 
 The database model are defined in the [backend/Back_end/models/](backend/Back_end/models) folder using Mongoose framework.
 
