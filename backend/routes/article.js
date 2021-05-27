@@ -14,19 +14,17 @@ const Joi = require('joi');
 if(process.env.NODE_ENV !== "production"){
     console.warn("you are using development mode code")
     router.post('/publish',auth, async (req,res)=>{
-        if(process.env.NODE_ENV !== "production") {
-            const schema = Joi.object().keys({
-                title: Joi.string().required(),
-                content: Joi.string().min(5).required(),
-                subjects: Joi.array().items(Joi.string()),
-                tags: Joi.array().items(Joi.string()),
-                tools: Joi.array().items(Joi.string())
-              });
-              const { error } = schema.validate(req.body);
-              if (error) {
-                return res.json({ success: false, error_info: error.details[0].message });
-              }
-        }
+        const schema = Joi.object().keys({
+            title: Joi.string().required(),
+            content: Joi.string().min(5).required(),
+            subjects: Joi.array().items(Joi.string()),
+            tags: Joi.array().items(Joi.string()),
+            tools: Joi.array().items(Joi.string())
+          });
+          const { error } = schema.validate(req.body);
+          if (error) {
+            return res.json({ success: false, error_info: error.details[0].message });
+          }
         console.log('the user id is in publish the article',req.user._id);
         // First create pending article
 
