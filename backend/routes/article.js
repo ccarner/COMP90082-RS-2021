@@ -18,6 +18,9 @@ if(process.env.NODE_ENV !== "production"){
             const schema = Joi.object().keys({
                 title: Joi.string().required(),
                 content: Joi.string().min(5).required(),
+                subjects: Joi.array().items(Joi.string()),
+                tags: Joi.array().items(Joi.string()),
+                tools: Joi.array().items(Joi.string())
               });
               const { error } = schema.validate(req.body);
               if (error) {
