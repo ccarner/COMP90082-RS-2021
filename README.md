@@ -6,92 +6,47 @@ The Software Training Repository was built to address the issue of the rapid evo
 
 The Software Training Repository seeks to provide students and individuals with access to a centralized, reliable, and up to date source of information. The core of the system aims to be a community-driven hub, with students and staff being able to contribute their understanding and knowledge of various frameworks, technologies, and tools through articles and discussion forums. New articles are able to be published by students with students also being able to modify existing articles by adding new or editing outdated information.
 
-- The link to our website: [Software Training Repository](http://138.197.232.85/)
-
-- Watch our introduction video Here:
-
-  [![Alt text](https://img.youtube.com/vi/50aPdhyAcd4/0.jpg)](https://www.youtube.com/watch?v=50aPdhyAcd4)
-
-## Features
-
-The section describes the features of our projects and our work progress in each sprint. (We only shows a brief summary to each User Stories in the tables below. However, The detailed version of documentations can be found in our [documentations](docs)
-
-**Epic 1. Login**
-
-The student and moderators should be able to register account and login. The administrator should be able to manage users’ accounts.
-
-| User story ID / Sprint No. | Sprint 1 | Sprint 2 |  Sprint 3  |  Sprint 4  |
-| -------------------------- | :------: | :------: | :--------: | :--------: |
-| 1.0 Use Unimelb account    |          | Ongoing  | _Canceled_ | _Canceled_ |
-| 1.1 Register account       |          |          |            |  **Done**  |
-| 1.2 Login                  | **Done** |    —     |     —      |     —      |
-| 1.3 Account management     |          |          |            |  **Done**  |
-
-- Note that due to the limitation of unimelb database access, from sprint 3, we gave up developing the **user story 1.0** (Login via unimelb account) and replaced it with **user story 1.1** (Register account)
-
-**Epic 2. Subject**
-
-Subject is a major component of the website. The subject page should contain a subject description and the related articles and tools recommand by the website moderators. All users should be able to view the subject pages that they subscribe to. And the moderators should be able to create, delete, edit subjects, add sections to subjects and review all pending articles under each subject.
-
-| User story ID / Sprint No.     | Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 |
-| ------------------------------ | -------- | :------: | :------: | :------: |
-| 2.1 Create new subjects        | Ongoing  | **Done** |    —     |    —     |
-| 2.2 Add sections to subjects   |          | **Done** |    —     |    —     |
-| 2.3 Delete sections            |          | **Done** |    —     |    —     |
-| 2.4 View pending articles list |          | Ongoing  | **Done** |    —     |
-| 2.5 View subject details       | Ongoing  | **Done** |    —     |    —     |
-
-**Epic 3. Article**
-
-Articles is a criticle function for the website to thrive. All users can create new articles and edit exsiting articles to share their ideas. However, any edictions made by students need to be reviewed by website moderators, and the moderators may approve or reject those editions. Besides users can attach tags to an article, in that case, other users will be able to search those articles based on their tags. Meanwhile, users will also be able to seach articles base on the keywords in their title.
-
-| User story ID / Sprint No.      | Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 |
-| ------------------------------- | :------: | -------- | :------: | :------: |
-| 3.1 Create new articles         | Ongoing  | Ongoing  | **Done** |    —     |
-| 3.2 Edit existing articles      |          | Ongoing  | **Done** |    —     |
-| 3.3 Add tags to articles        | Ongoing  | **Done** |    —     |    —     |
-| 3.4 Review pending articles     |          | Ongoing  | **Done** |    —     |
-| 3.5 Approve pending articles    |          | Ongoing  | **Done** |    —     |
-| 3.6 Reject pending articles     |          | Ongoing  | **Done** |    —     |
-| 3.7 Search articles by keywords |          |          | **Done** |    —     |
-| 3.8 Search articles by tags     |          |          | **Done** |    —     |
-
-**Epic 4. Comment**
-
-Comment is a function for users to provide feedbacks to contents in the website. Users should be able to leave comments to articles and reply to other comments.
-
-| User story ID / Sprint No. | Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 |
-| -------------------------- | :------: | :------: | -------- | :------: |
-| 4.1 Comment an article     |          |          | **Done** |    —     |
-| 4.2 Delete own comments    |          |          | **Done** |    —     |
-| 4.3 Comment a comment      |          |          | **Done** |    —     |
-
-**Epic 5. Homepage**
-
-After login to the website, users will be directed to their homepage. From their homepage, users should be able to see all subjects enrolled by the user. And for moderators, they should also be able to see the subjects moderated by them.
-
-| User story ID / Sprint No. | Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 |
-| -------------------------- | :------: | :------: | :------: | :------: |
-| 5.1 Show homepage          | **Done** |    —     |    —     |    —     |
-
-**Epic 8. Profile**
-
-Users should have their own profile pages where they can check all the articles (and pending articles for students) they have created.
-
-| User story ID / Sprint No. | Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 |
-| -------------------------- | -------- | -------- | -------- | -------- |
-| 5.1 Show profile           |          |          |          | **Done** |
-
-## Links
-
-## System Requirement
+- Working demo: [https://api.cervidae.com.au/](https://api.cervidae.com.au/)
+- Documentations: [Confluence](https://confluence.cis.unimelb.edu.au:8443/display/COMP900822021SM1RR)
 
 ## Installation Guide
 
-Please check our [backend](backend/README.md) for backend installation details
-Please check our [frontend](Front_end/README.md) for frontend installation details
+https://confluence.cis.unimelb.edu.au:8443/display/COMP900822021SM1RR/Deployment+Guides
 
-## Description of Key Classes
+
+
+## Features
+
+**1. User**
+
+The student and moderators should be able to register account and login. The administrator should be able to manage users’ accounts.
+
+- Note that due to the limitation of unimelb database access, from sprint 3, we gave up developing the **user story 1.0** (Login via unimelb account) and replaced it with **user story 1.1** (Register account)
+
+**2. Subject**
+
+Subject is a major component of the website. The subject page should contain a subject description and the related articles and tools recommand by the website moderators. All users should be able to view the subject pages that they subscribe to. And the moderators should be able to create, delete, edit subjects, add sections to subjects and review all pending articles under each subject.
+
+
+**3. Article**
+
+Articles is a criticle function for the website to thrive. All users can create new articles and edit exsiting articles to share their ideas. However, any edictions made by students need to be reviewed by website moderators, and the moderators may approve or reject those editions. Besides users can attach tags to an article, in that case, other users will be able to search those articles based on their tags. Meanwhile, users will also be able to seach articles base on the keywords in their title.
+
+**4. Comment**
+
+Comment is a function for users to provide feedbacks to contents in the website. Users should be able to leave comments to articles and reply to other comments.
+
+**5. Homepage**
+
+After login to the website, users will be directed to their homepage. From their homepage, users should be able to see all subjects enrolled by the user. And for moderators, they should also be able to see the subjects moderated by them.
+
+**6. Profile**
+
+Users should have their own profile pages where they can check all the articles (and pending articles for students) they have created.
+
+
+
+## Key Classes
 
 ### Front-end
 
@@ -239,7 +194,7 @@ The exported version of our user experience testing can be found in this [folder
 - [proxies/tool.js](backend/Back_end/proxies/tool.js): Provides necessary CRUD function for tool documents in mongoDB.
 - [proxies/user.js](backend/Back_end/proxies/user.js): Provides necessary CRUD function for user documents in mongoDB.
 
-## Description of Database
+### Database
 
 The database model are defined in the [backend/Back_end/models/](backend/Back_end/models) folder using Mongoose framework.
 
@@ -262,19 +217,8 @@ The updated and new documents from semester 1 of COMP90082 are described below:
 
 - The database unit test, integration test, and acceptance test documents can be found at [database_testing.pdf](tests/database_testing.pdf)
 
-## Description of Deployment
 
-Deployment for our project has been setup as below diagram.
-The deployment pipeline setup can be found [here](.github/workflows/)
-
-Once that developer has push the push code for either frontend or backend has been build using github action scripts and the build version of the docker image
-has been deployed in our digital ocean environment.
-
-The demonstration of our deployment can be found in the below diagram.
-
-![Deployment_diagram.png](Deployment_diagram.png)
-
-## API Testing
+### API Testing
 
 Api testing has been performed using post man collections
 The exported version of our api testing can be found in this [folder](api_testing).
