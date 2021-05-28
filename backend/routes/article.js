@@ -314,25 +314,4 @@ router.patch('/liked', async (req, res) => {
   res.status(200).send(updatedArticle);
 });
 
-router.patch('/unliked', async (req, res) => {
-  const article = await Article.findById(req.body.article_id);
-  const reader = await User.findById(req.body.reader_id);
-  const idx = article.likes.indexOf(reader._id);
-  article.likes.splice(idx, 1);
-
-  if (idx == -1)
-    // should be done by frontend
-    return res.status(404).send('user never click like');
-
-  const updatedArticle = await Article.findByIdAndUpdate(
-    req.body.article_id,
-    {
-      likes: article.likes,
-    },
-    {new: true}
-  );
-
-  res.status(200).send(updatedArticle);
-});
-
 module.exports = router;
