@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-ORIGIN=$(https://api.cervidae.com.au)
-ORIGIN_DOMAIN=$(api.cervidae.com.au)
+ORIGIN=$"https://api.cervidae.com.au"
+ORIGIN_DOMAIN=$"api.cervidae.com.au"
 ENDPOINT=$(curl -s ipinfo.io/ip)
 
 GIT=${GIT:-https://github.com/ccarner/COMP90082-RS-2021.git}
@@ -10,9 +10,9 @@ CERT=${CERT:-false}
 DOMAIN=${DOMAIN:-$ENDPOINT}
 
 if [ $CERT = true ]; then
-  BASE=$("https://"+DOMAIN)
+  BASE=$"https://"
 else
-  BASE=$("http://"+DOMAIN)
+  BASE=$"http://"
 fi
 
 if [ -t 1 ]; then
@@ -22,7 +22,6 @@ if [ -t 1 ]; then
   BLUE=$(printf '\033[34m')
   BOLD=$(printf '\033[1m')
   DIM=$(printf '\033[2m')
-  UNDER=$(printf '\033[4m')
   RESET=$(printf '\033[m')
 fi
 
@@ -40,12 +39,10 @@ iptables -I INPUT -p tcp --dport 4000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
 iptables -I INPUT -p tcp --dport 443 -j ACCEPT
 iptables -I INPUT -p tcp --dport 27017 -j ACCEPT
-
 mkdir -p /etc/network/if-pre-up.d
 echo "#\!/bin/bash\niptables-restore < /etc/iptables.rules" > /etc/network/if-pre-up.d/iptables
 iptables-save | sudo tee -a /etc/iptables.rules >> /dev/null
 chmod  +x /etc/network/if-pre-up.d/iptables
-
 ufw allow 8000
 ufw allow 4000
 ufw allow 80
@@ -66,7 +63,7 @@ git clone -c core.eol=lf -c core.autocrlf=false \
 }
 mv COMP90082-RS-2021 node
 cd node|| exit
-find /var/node/Front_end/src -type f -exec sed -i "s/$ORIGIN/$BASE/g" {} +
+find /var/node/Front_end/src -type f -exec sed -i "s/$ORIGIN/$BASE$DOMAIN/g" {} +
 sed -i -- "s/$ORIGIN_DOMAIN/$DOMAIN/g" /var/node/Front_end
 
 printf "\n\n"
