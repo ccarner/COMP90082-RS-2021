@@ -205,17 +205,21 @@ The database model are defined in the [backend/Back_end/models/](backend/Back_en
 - [models/tool.js](backend/Back_end/models/tool.js): Defines the Tool model and some functions auto-triggered functions related to the model.
 - [models/user.js](backend/Back_end/models/user.js): Defines the User mongoose model.
 
-The document details of previous project are shown in the diagram below:
-
-![RS-SystemDiagrams-DatabaseDiagram.png](Database%20Diagram.png)
-
 The updated and new documents from semester 1 of COMP90082 are described below:
 
 - The updated database schema can be found at [database_schema.pdf](docs/database_schema.pdf)
 
+- The information about MongoDB, database validation rules and scripts, and cache/redis can be found at [Database_and_redis.pdf](docs/Database_and_redis.pdf)
+
 - The information about CI/CD overview, Deployment Instructions and Deployment instances can be found at [deployment_instructions.pdf](docs/deployment_instructions.pdf)
 
-- The database unit test, integration test, and acceptance test documents can be found at [database_testing.pdf](tests/database_testing.pdf)
+- The unit test, integration test, and acceptance test documents of sprint 1 and sprint 2 for database and deployment can be found at [Database_Deployment_testing_for_both_sprints.pdf](tests/Database_Deployment_testing_for_both_sprints.pdf)
+
+- The changelog of the inception phase and sprint 1 and sprint 2 for database and deployment can be found at [Database_and_deployment_changelog.pdf](docs/Database_and_deployment_changelog.pdf)
+
+The document details of previous project are shown in the diagram below:
+
+![RS-SystemDiagrams-DatabaseDiagram.png](Database%20Diagram.png)
 
 
 ### API Testing
