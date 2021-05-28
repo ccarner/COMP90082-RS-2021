@@ -5,6 +5,7 @@ import "../../styles/main.css"
 import { Col, Row, Container, Button } from "react-bootstrap"
 import "jodit"
 import "jodit/build/jodit.min.css"
+import jwtDecode from "jwt-decode";
 
 // using this to test getting html files
 import request from "../../utils/request"
@@ -16,6 +17,8 @@ import Comment from "../Comment/Comment"
 import Editor from "./EditorComponent.jsx"
 import Bookmark from './Bookmark.jsx'
 import LikeButton from './LikeButton.jsx'
+import CreateArticlePage from "../CreateArticlePage/CreateArticlePage"
+import { setOriginalNode } from "typescript"
 
 const baseURL = "https://api.cervidae.com.au/api/"
 
@@ -23,6 +26,8 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      viewer: null,
+      article: null,
       content: null,
       loaded: false,
       hasPending: false,
@@ -50,24 +55,32 @@ class App extends React.Component {
       })
       .then((response) => response.data)
       .then((data) => {
+
         console.log(data)
+
         if (data.success) {
           this.editorComponent &&
-            this.editorComponent.setContent(data.returnValuesForArticle.content)
+          this.editorComponent.setContent(data.returnValuesForArticle.content)
           this.updateContent(data.returnValuesForArticle.content)
+
           this.setState({
+            token : data.auth_token,
+            article : data.returnValuesForArticle,
             loaded: true,
             title: data.returnValuesForArticle.title,
           })
+
           if (data.returnValuesForArticle.is_pending) {
             this.setState({
               hasPending: true,
               buttonText: "Pending",
             })
           }
-          console.log(data)
+
+
           return data
         }
+
         this.editorComponent && this.editorComponent.setContent("")
         this.updateContent("")
         this.setState({ loaded: true })
@@ -78,8 +91,50 @@ class App extends React.Component {
       })
   }
 
+  async changedLiked(article, token){
+    const body = {...article}
+    const viewer = jwtDecode(token)._id
+    if(article._id){
+      const idx = article.likes.indexOf(viewer);
+
+      if(idx >= 0){
+        article.likes.splice(idx,1)
+      }else{
+        article.likes = [...article.likes,viewer];
+      }
+      const updated = {
+        _id : article._id,
+        likes : article.likes
+      };
+      console.log('send request')
+      await request.patch(`article/liked`,updated, {
+        headers: {
+          "auth-token": localStorage.getItem("accessToken"),
+        },
+      })
+    }
+      
+  }
+
+  handleLike = async (article, token) =>{
+
+    const viewer = jwtDecode(token)._id;
+    const originalArticle = article;
+    // article.likes.indexOf(viewer) >= 0
+
+    try{
+      await this.changedLiked(article, token)
+    }catch(ex){
+      console.error(ex);
+      request.patch()
+      this.setState({article : originalArticle})
+    }   
+  
+  }
+
   renderEditor() {
     if (this.state.content || this.state.title) {
+      
       return (
         <Editor
           ref={this.editorComponent}
@@ -108,6 +163,7 @@ class App extends React.Component {
   }
   
   render() {
+
     return (
       <>
         <div className="App article-editor-content-section">
@@ -161,7 +217,7 @@ class App extends React.Component {
             {/* add the bookmark button; see Bookmark.jsx for detail */}
             <Bookmark/> 
             {/* add the like button; see LikeButton.jsx for detail */}
-            <LikeButton/> 
+            <LikeButton liked={this.state.liked} onClick={()=> this.handleLike(this.state.article, this.state.token)}/> 
 
           </Container>
         </div>
