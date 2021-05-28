@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
 set -e
-rm -rf /var/node
-cd /var || return
+
+ORIGIN=$(https://api.cervidae.com.au)
+ORIGIN_DOMAIN=$(api.cervidae.com.au)
+ENDPOINT=$(curl -s ipinfo.io/ip)
+
+GIT=${GIT:-https://github.com/ccarner/COMP90082-RS-2021.git}
+CERT=${CERT:-false}
+DOMAIN=${DOMAIN:-$ENDPOINT}
+
+if [ $CERT = true ]; then
+  BASE=$("https://"+DOMAIN)
+else
+  BASE=$("http://"+DOMAIN)
+fi
 
 if [ -t 1 ]; then
-  RAINBOW=(
-    "$(printf '\033[38;5;196m')"
-    "$(printf '\033[38;5;202m')"
-    "$(printf '\033[38;5;226m')"
-    "$(printf '\033[38;5;082m')"
-    "$(printf '\033[38;5;021m')"
-    "$(printf '\033[38;5;093m')"
-    "$(printf '\033[38;5;163m')"
-  )
   RED=$(printf '\033[31m')
   GREEN=$(printf '\033[32m')
   YELLOW=$(printf '\033[33m')
@@ -23,7 +26,15 @@ if [ -t 1 ]; then
   RESET=$(printf '\033[m')
 fi
 
-printf "%sA. Configuring firewall.%s\n" $RED $RESET
+printf "%s%sWelcome to RS REPO installer, starting in 5 seconds...%s\n" $GREEN $BOLD $RESET
+printf "%s%s%sCourtesy of Aaron Du and the RS2021 team ;)%s\n" $BLUE $DIM $BOLD $RESET
+printf "%s%sENDPOINT: $ENDPOINT%s\n" $YELLOW $BOLD $RESET
+printf "%s%sDOMAIN: $DOMAIN%s\n" $YELLOW $BOLD $RESET
+printf "%s%sSSL: $CERT%s\n" $YELLOW $BOLD $RESET
+sleep 5
+
+printf "\n\n"
+printf "%s%sA. Configure firewall%s\n" $RED $BOLD $RESET
 iptables -I INPUT -p tcp --dport 8000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 4000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
@@ -42,21 +53,35 @@ ufw allow 27017
 ufw allow 443
 
 printf "\n\n"
-printf "%s%sB. Cloning from Github source.%s\n" $RED $BOLD $RESET
-git clone https://github.com/ccarner/COMP90082-RS-2021.git
+printf "%s%sB. Clone from Github%s\n" $RED $BOLD $RESET
+rm -rf /var/node
+cd /var || return
+git clone -c core.eol=lf -c core.autocrlf=false \
+  -c fsck.zeroPaddedFilemode=ignore \
+  -c fetch.fsck.zeroPaddedFilemode=ignore \
+  -c receive.fsck.zeroPaddedFilemode=ignore \
+  --depth=1 "$GIT" || {
+  fmt_error "git clone of repo failed"
+  exit 1
+}
 mv COMP90082-RS-2021 node
 cd node|| exit
 git checkout backend/develop
-
+find /var/node/Front_end/src -type f -exec sed -i "s/$ORIGIN/$BASE/g" {} +
+sed -i -- "s/$ORIGIN_DOMAIN/$DOMAIN/g" /var/node/Front_end
 
 printf "\n\n"
-printf "%s%sC. Installing dependencies.%s\n" $RED $BOLD $RESET
+printf "%s%sC. Install dependencies%s\n" $RED $BOLD $RESET
 apt update && apt -y install npm && apt -y install python3
 npm install --global yarn
 sudo apt install snapd
 sudo snap install core; sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+if [ "$CERT" = true ]; then
+  sudo certbot certonly --nginx
+fi
 
 sudo apt-get install gnupg
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
@@ -68,31 +93,32 @@ sudo systemctl enable mongod
 
 
 printf "\n\n"
-echo "%s%sD. Installing admin API.%s\n" $RED $BOLD $RESET
+printf "%s%sD. Install CI/CD Admin API%s\n" $RED $BOLD $RESET
 cd ServerAdminAPI|| exit
 chmod +x install.sh
 sh install.sh
 
 
 printf "\n\n"
-echo "%s%sE. Installing backend service.%s\n" $RED $BOLD $RESET
+printf "%s%sE. Install Backend service%s\n" $RED $BOLD $RESET
 cd ../backend|| exit
 chmod +x install.sh
 sh install.sh
 
 
 printf "\n\n"
-printf "%s%sF. Installing frontend service.%s\n" $RED $BOLD $RESET
+printf "%s%sF. Install Frontend service%s\n" $RED $BOLD $RESET
 cd ../Front_end|| exit
 chmod +x install.sh
-sh install.sh
+sh install.sh "$CERT"
 
 
 printf "\n\n"
-printf "%s%sAll Done!%s\n" $RED $BOLD $RESET
+printf "%s%sAll Done! Enjoy%s\n" $GREEN $BOLD $RESET
 printf "\n"
 systemctl status rsadmin | cat
 printf "\n\n"
 systemctl status rsrepo | cat
 printf "\n\n"
 systemctl status nginx | cat
+printf "\n\n"
