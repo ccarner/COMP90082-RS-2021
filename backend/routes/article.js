@@ -256,7 +256,6 @@ router.get('/getAllPublishedArticlesByUserId', auth, async (req, res) => {
       error_info: 'cannot get all published articles for this user',
       auth_token: req.header('auth-token'),
     });
-
   const articleInfo = _.map(articles, (article) =>
     _.pick(article, ['title', 'id'])
   ).map(function (article) {
@@ -298,5 +297,9 @@ router.patch('/liked', async (req, res) => {
 
   return res.status(200).send(updatedArticle);
 });
+
+router.get('/bookmark/:id', auth, ArticleController.bookmarkArticle);
+
+router.get('/unbookmark/:id', auth, ArticleController.unbookmarkArticle);
 
 module.exports = router;

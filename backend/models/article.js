@@ -18,7 +18,7 @@ let ArticleSchema = new Schema({
     //pending_article: {type: Schema.Types.ObjectId},      // Article that is currently pending
     // rejected_articles:[Schema.Types.ObjectId],      // Articles that has been rejected by the moderator
     // history_articles:[Schema.Types.ObjectId],       // A list of History versions
-
+    bookmarks: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     last_commented_at: {type: Date},
     comment_section:{type: Schema.Types.ObjectId, ref: 'Section'}
