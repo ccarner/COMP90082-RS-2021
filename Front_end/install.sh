@@ -15,7 +15,7 @@ echo "3. Install nginx."
 sudo apt install -y nginx
 sudo rm -rf /etc/nginx/sites-enabled/default
 
-if [ $CERT = true ]; then
+if [ $CERT != true ]; then
   sudo cp default /etc/nginx/sites-enabled
 else
   sudo cp default_ssl /etc/nginx/sites-enabled/
