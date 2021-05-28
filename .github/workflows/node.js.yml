@@ -5,43 +5,43 @@ name: Auto Deployment
 
 on:
   push:
-    branches: [ backend/develop ]
+    branches: [ master ]
   pull_request:
-    branches: [ backend/develop ]
+    branches: [ master ]
 
 jobs:
   deployment:
     runs-on: ubuntu-latest
 
     steps:
-      - name: HTTP Request
+      - name: Rebuild
         id: rebuild
         uses: fjogeleit/http-request-action@v1.8.0
         with:
-          url: 'http://api.cervidae.com.au:8000/rest/rebuild'
+          url: 'https://api.cervidae.com.au/cicd/rest/rebuild'
           method: 'GET'
-          timeout: 300000
+          timeout: 3000000
 
-      - name: Wait / Sleep
+      - name: Wait
         uses: jakejarvis/wait-action@v0.1.0
         with:
           time: '10s'
 
-      - name: HTTP Request
+      - name: Check Service Status
         id: check
         uses: fjogeleit/http-request-action@v1.8.0
         with:
-          url: 'http://api.cervidae.com.au:8000/rest/check'
+          url: 'https://api.cervidae.com.au/cicd/rest/check'
           method: 'GET'
 
       - name: Check Service Status
         run: if [ ${{ steps.check.outputs.response }} -eq 1 ]; then echo "service nominal"; else exit 1; fi
 
-      - name: HTTP Request
+      - name: Get Service Info
         id: info
         uses: fjogeleit/http-request-action@v1.8.0
         with:
-          url: 'http://api.cervidae.com.au:8000/rest/info'
+          url: 'https://api.cervidae.com.au/cicd/rest/info'
           method: 'GET'
 
       - name: Show Response
