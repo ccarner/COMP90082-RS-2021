@@ -2,6 +2,7 @@
 One is by using npm, and the other is by using Docker.
 Though docker is a promising technique for deploying system, most of the public space requires money.
 Therefore, we do not consider this method for deploying the system.
+Currently, the system has been deployed to The Melbourne Research Cloud (https://docs.cloud.unimelb.edu.au/) 
 
 
 ### 1. Setting up the backend system
@@ -34,10 +35,10 @@ By using this way, it is possible for the system not to execute the experimental
 There are 3 options currently: `development`, `production`, and `test`. Where production mode is used for running the release version of the system
 #### How to switch?
 ### Windows:
-in cmd, give command set NODE_ENV=development
+in cmd, give command set NODE_ENV=value. where value can be development, production, or test
 
 ### Linux, MacOS:
-in terminal, use export NODE_ENV= value. where value can be development, production, or test
+in terminal, use export NODE_ENV=value. where value can be development, production, or test
 
 
 #### Running integration test for the backend system
