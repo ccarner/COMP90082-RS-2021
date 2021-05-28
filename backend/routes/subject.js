@@ -12,10 +12,9 @@ const _ = require('lodash');
 // moderator creates a subject
 if (process.env.NODE_ENV !== 'production') {
   async function updateStudentSubjects(newSubject) {
-    const students = await User.find().and(
-      {is_moderator: false},
-      {is_admin: false}
-    );
+    
+
+
     const subjects = students[0].subscribed_subjects;
     students.forEach(async (student) => {
       await User.findByIdAndUpdate(student._id, {
@@ -61,8 +60,16 @@ if (process.env.NODE_ENV !== 'production') {
       await subject_creator.save();
       await subject.save();
 
-      // add the new added subject to the existed students
-      await updateStudentSubjects(subject);
+      const students = await User.find().and(
+        {is_moderator: false},
+        {is_admin: false}
+      );
+
+      if(students.length > 0){
+        // add the new added subject to the existed students
+        await updateStudentSubjects(subject, students);
+      }
+
 
       return res.status(200).send(subject);
     } catch (e) {

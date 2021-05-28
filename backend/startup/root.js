@@ -8,8 +8,11 @@ module.exports = async function(res){
         account: "admin2",
         password: "admin2",
         student_number: 1111111,
+        articles: [],
+        subscribed_subjects: [],
+        moderated_subjects: [],
         is_moderator: true,
-        is_admin: true
+        is_admin: true,
     }
 
     try {
