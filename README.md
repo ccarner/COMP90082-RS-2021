@@ -6,7 +6,7 @@ The Software Training Repository was built to address the issue of the rapid evo
 
 The Software Training Repository seeks to provide students and individuals with access to a centralized, reliable, and up to date source of information. The core of the system aims to be a community-driven hub, with students and staff being able to contribute their understanding and knowledge of various frameworks, technologies, and tools through articles and discussion forums. New articles are able to be published by students with students also being able to modify existing articles by adding new or editing outdated information.
 
-- Working demo: [https://api.cervidae.com.au/](https://api.cervidae.com.au/)
+- Working demo: [https://api.cervidae.com.au/](https://api.cervidae.com.au/) (For admin login, the username and password are both "admin2")
 - Documentations: [Confluence](https://confluence.cis.unimelb.edu.au:8443/display/COMP900822021SM1RR)
 
 ## Installation Guide
