@@ -204,6 +204,7 @@ The database model are defined in the [backend/Back_end/models/](backend/Back_en
 - [models/subject.js](backend/Back_end/models/subject.js): Defines the Subject mongoose model and some functions auto-triggered functions related to the model.
 - [models/tool.js](backend/Back_end/models/tool.js): Defines the Tool model and some functions auto-triggered functions related to the model.
 - [models/user.js](backend/Back_end/models/user.js): Defines the User mongoose model.
+- [models/redis.js](backend/Back_end/models/redis.js): Defines redis structure and functions for further use.
 
 The document details of previous project are shown in the diagram below:
 
