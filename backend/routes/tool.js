@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const toolController = require('../controllers/tool')
-const verify = require('../middlewares/verifyToken');
 const subject = require('../models/subject');
 const auth = require('../middlewares/auth');
-
-
 
 // moderator creates a tool
 router.post('/add', auth,toolController.NewAndSave)

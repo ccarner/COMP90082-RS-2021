@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const subjectController = require('../controllers/subject');
-const verify = require('../middlewares/verifyToken');
 const auth = require('../middlewares/auth');
 const mongoose = require('mongoose');
 const {Subject} = require('../models/subject');

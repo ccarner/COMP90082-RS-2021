@@ -6,7 +6,6 @@ const {Article, PendingArticle} = require('../models/article');
 const {User} = require('../models/user');
 const ArticleController = require('../controllers/article');
 const auth = require('../middlewares/auth');
-const verify = require('../middlewares/verifyToken');
 const _ = require('lodash');
 const Joi = require('joi');
 

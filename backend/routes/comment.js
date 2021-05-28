@@ -2,11 +2,6 @@ const express = require('express');
 const router = express.Router();
 const commentController = require('../controllers/comment');
 const auth = require('../middlewares/auth');
-const verify = require('../middlewares/verifyToken');
-
-
-
-
 
 // user writes a comment
 router.post('/add', auth, commentController.NewAndSave)
