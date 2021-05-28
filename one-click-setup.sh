@@ -23,7 +23,7 @@ if [ -t 1 ]; then
   RESET=$(printf '\033[m')
 fi
 
-printf "%sA. Configuring firewall.%s" $RED $RESET
+printf "%sA. Configuring firewall.%s\n" $RED $RESET
 iptables -I INPUT -p tcp --dport 8000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 4000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
@@ -42,7 +42,7 @@ ufw allow 27017
 ufw allow 443
 
 printf "\n\n"
-printf "%s%sB. Cloning from Github source.%s" $RED $BOLD $RESET
+printf "%s%sB. Cloning from Github source.%s\n" $RED $BOLD $RESET
 git clone https://github.com/ccarner/COMP90082-RS-2021.git
 mv COMP90082-RS-2021 node
 cd node|| exit
@@ -50,7 +50,7 @@ git checkout backend/develop
 
 
 printf "\n\n"
-printf "%s%sC. Installing dependencies.%s" $RED $BOLD $RESET
+printf "%s%sC. Installing dependencies.%s\n" $RED $BOLD $RESET
 apt update && apt -y install npm && apt -y install python3
 npm install --global yarn
 sudo apt install snapd
@@ -68,28 +68,28 @@ sudo systemctl enable mongod
 
 
 printf "\n\n"
-echo "%s%sD. Installing admin API.%s" $RED $BOLD $RESET
+echo "%s%sD. Installing admin API.%s\n" $RED $BOLD $RESET
 cd ServerAdminAPI|| exit
 chmod +x install.sh
 sh install.sh
 
 
 printf "\n\n"
-echo "%s%sE. Installing backend service.%s" $RED $BOLD $RESET
+echo "%s%sE. Installing backend service.%s\n" $RED $BOLD $RESET
 cd ../backend|| exit
 chmod +x install.sh
 sh install.sh
 
 
 printf "\n\n"
-echo "%s%sF. Installing frontend service.%s" $RED $BOLD $RESET
+echo "%s%sF. Installing frontend service.%s\n" $RED $BOLD $RESET
 cd ../Front_end|| exit
 chmod +x install.sh
 sh install.sh
 
 
 printf "\n\n"
-echo "%s%sAll Done!%s" $RED $BOLD $RESET
+echo "%s%sAll Done!%s\n" $RED $BOLD $RESET
 printf "\n"
 systemctl status rsadmin | cat
 printf "\n\n"
