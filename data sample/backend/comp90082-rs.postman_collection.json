@@ -1,0 +1,515 @@
+{
+	"info": {
+		"_postman_id": "1a5f0a10-0a25-445b-a1d3-0af6ab616aae",
+		"name": "comp90082-rs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "log in the system-admin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account\" : \"admin2\",\r\n    \"password\" : \"admin2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "log in the system-user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account\" : \"chaoweic\",\r\n    \"password\" : \"abc123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "log in the system-student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account\" : \"cching\",\r\n    \"password\" : \"abc123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query all subjects",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDgyN2JlOWMxOTU3NDRiYTBlNGM2YjAiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTk0OTA5MDF9.vlPB5iAPCdFDoNczV73ehv2mrmBM7lqto_-jStaGzBQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\" :{\r\n        \"_moderator\" : true\r\n    }\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/subject/all",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"subject",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query all search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDVkOGEzZmQ4NjFmYjA3N2NmNjUyZGQiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTY4OTc0ODZ9.XQdw2ODizn0YC7wGhkf7MWVjkLrB5emysSxCNxrvB5A",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/subject/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"subject",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all tools",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDVkOGEzZmQ4NjFmYjA3N2NmNjUyZGQiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTY4OTc0ODZ9.XQdw2ODizn0YC7wGhkf7MWVjkLrB5emysSxCNxrvB5A",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/tool/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tool",
+						"all"
+					],
+					"query": [
+						{
+							"key": "auth-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDVkOGEzZmQ4NjFmYjA3N2NmNjUyZGQiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTY4OTc0ODZ9.XQdw2ODizn0YC7wGhkf7MWVjkLrB5emysSxCNxrvB5A",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register a new student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"jason\",\r\n    \"username\" : \"jason123\",\r\n    \"password\" :\"abc123\",\r\n    \"studentId\" : \"1102225\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add a new subject",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGEzODZkZDJiNmYxMDQyNWM1MjlmZjQiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE5NDgzMDV9.vkh1FjZV-44PdD-qYmuQXS5k_A_lDa0LuZHS9zePVPc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Software project\",\r\n    \"subject_code\" : \"comp90082\",\r\n    \"description\" : \"You need to have some experience\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/subject/add",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"subject",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add a new section",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDhhNzljZDkyNzlhODNhNTQwNDU2OWIiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTk3NzIyMTV9.XnkHnAsQgtASu7qstbmQa5UbDSnoXvLK_Zs2JJ_cKqY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"subject_code\": \"SUBJECT\",\r\n    \"type\":\"tagsxyz\",\r\n    \"owner\": \"608a79cd9279a83a5404569b\",\r\n    \"name\":\"section_testing\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/section/add",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"section",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "publish a new article",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGFkMjA4YTk5N2E2ZTFmYjRlMjdiYzciLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE5NTk5MzB9.1GJR3l90usgJohu9itEXJcmDKILUVuzERL9V_YPzPmM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"internal feature tests\",\r\n    \"tags\" : [\"systemTest\"],\r\n    \"content\" : \"this is for internal api test\",\r\n    \"subjects\" : [\"comp90082\"],\r\n    \"tools\" : [\"restful API\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/article/publish",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"article",
+						"publish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "press like to the article",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdkNWNkMzAxMjg5OTQzZWMwNzc4YzMiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTg5NzEzMTN9.0cI4916rYclm_MZ7yqOYgAbDv1bcpyeHHFqiY5e-K_0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"article_id\" : \"60adeb63b02fcb3114157e64\",\r\n    \"reader_id\" : \"60b08743e2aa4e17a02a3769\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/article/liked",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"article",
+						"liked"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "press unlike to the article",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDdkNWNkMzAxMjg5OTQzZWMwNzc4YzMiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTg5NzEzMTN9.0cI4916rYclm_MZ7yqOYgAbDv1bcpyeHHFqiY5e-K_0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"article_id\" : \"60ad0cd75cb99b3c8c724ed9\",\r\n    \"reader_id\" : \"60ad0bd15cb99b3c8c724ed8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/article/unliked",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"article",
+						"unliked"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get images",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY1ZGEyNDNkNmE4ODJlOGNkYjFlODYiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTgyOTUxNTB9.by-vH-aWfig1B1CD8R8Trvge-JyU-JMlPqhOo0u3Xko"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account\" : \"admin2\",\r\n    \"password\" : \"admin2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/images",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"images"
+					],
+					"query": [
+						{
+							"key": "auth-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY1ZGEyNDNkNmE4ODJlOGNkYjFlODYiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTgyOTM1NzV9.w5fbP9ySgSib-OYoq1aEeUUe5_JgD2ZeapVEqyRB684",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get an article by param",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY1ZGEyNDNkNmE4ODJlOGNkYjFlODYiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTgyOTUxNTB9.by-vH-aWfig1B1CD8R8Trvge-JyU-JMlPqhOo0u3Xko"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account\" : \"admin2\",\r\n    \"password\" : \"admin2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/user/images",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"images"
+					],
+					"query": [
+						{
+							"key": "auth-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY1ZGEyNDNkNmE4ODJlOGNkYjFlODYiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTgyOTM1NzV9.w5fbP9ySgSib-OYoq1aEeUUe5_JgD2ZeapVEqyRB684",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get a subject by code",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"type": "text",
+						"value": ""
+					}
+				],
+				"url": {
+					"raw": "localhost:4000/subject/comp90015",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"subject",
+						"comp90015"
+					],
+					"query": [
+						{
+							"key": "auth-token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDVkOGEzZmQ4NjFmYjA3N2NmNjUyZGQiLCJfbW9kZXJhdG9yIjp0cnVlLCJfYWRtaW4iOmZhbHNlLCJpYXQiOjE2MTY4OTc0ODZ9.XQdw2ODizn0YC7wGhkf7MWVjkLrB5emysSxCNxrvB5A",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
