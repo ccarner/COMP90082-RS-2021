@@ -66,7 +66,6 @@ git clone -c core.eol=lf -c core.autocrlf=false \
 }
 mv COMP90082-RS-2021 node
 cd node|| exit
-git checkout backend/develop
 find /var/node/Front_end/src -type f -exec sed -i "s/$ORIGIN/$BASE/g" {} +
 sed -i -- "s/$ORIGIN_DOMAIN/$DOMAIN/g" /var/node/Front_end
 
