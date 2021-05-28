@@ -82,14 +82,14 @@ sh install.sh
 
 
 printf "\n\n"
-echo "%s%sF. Installing frontend service.%s\n" $RED $BOLD $RESET
+printf "%s%sF. Installing frontend service.%s\n" $RED $BOLD $RESET
 cd ../Front_end|| exit
 chmod +x install.sh
 sh install.sh
 
 
 printf "\n\n"
-echo "%s%sAll Done!%s\n" $RED $BOLD $RESET
+printf "%s%sAll Done!%s\n" $RED $BOLD $RESET
 printf "\n"
 systemctl status rsadmin | cat
 printf "\n\n"
