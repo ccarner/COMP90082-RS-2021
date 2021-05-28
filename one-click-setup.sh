@@ -13,7 +13,6 @@ if [ -t 1 ]; then
     "$(printf '\033[38;5;093m')"
     "$(printf '\033[38;5;163m')"
   )
-
   RED=$(printf '\033[31m')
   GREEN=$(printf '\033[32m')
   YELLOW=$(printf '\033[33m')
