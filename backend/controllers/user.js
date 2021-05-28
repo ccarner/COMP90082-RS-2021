@@ -3,7 +3,7 @@ const {Subject} = require('../models/subject');
 const {User} = require('../models/user');
 const Tool = require('../proxies/tool');
 const jwt = require('jsonwebtoken');
-const TOKEN_SECRET = 'THIS_IS_SECRET'
+const TOKEN_SECRET = 'THIS_IS_SECRET';
 const Joi = require('joi');
 const aws = require('aws-sdk');
 const fs = require('fs');
@@ -26,17 +26,16 @@ exports.upload = function (req, res) {
   aws.config.update({
     accessKeyId: process.env.ACCESSKEYID,
     secretAccessKey: process.env.SECRETACCESSKEY,
-
   });
 
   const s3 = new aws.S3({
-    endpoint: spacesEndpoint
+    endpoint: spacesEndpoint,
   });
   let params = {
     ACL: 'public-read',
-    Bucket: "soft-repo-team",
+    Bucket: 'soft-repo-team',
     Body: fs.createReadStream(req.file.path),
-    Key: `${mtoken._id}/${req.file.originalname}`
+    Key: `${mtoken._id}/${req.file.originalname}`,
   };
 
   s3.upload(params, (err, data) => {
@@ -45,7 +44,6 @@ exports.upload = function (req, res) {
     }
 
     if (data) {
-
       fs.unlinkSync(req.file.path); // Empty temp folder
       const locationUrl = data.Location;
 
@@ -62,12 +60,12 @@ exports.upload = function (req, res) {
 
       responsejson = {
         success: true,
-        imageurl: locationUrl
+        imageurl: locationUrl,
       };
       res.json(responsejson);
     }
   });
-}
+};
 
 /**
 * get all uploaded images of current user
@@ -79,12 +77,11 @@ exports.getAllImages = function (req, res) {
   UserProxy.getUserById(req.user._id, function (err, user) {
     var responsejson = {
       success: true,
-      images: user.images
+      images: user.images,
     };
     res.json(responsejson);
-  })
-
-}
+  });
+};
 /**
  * get subscribed tools and subjects
  * @param req
@@ -95,17 +92,17 @@ exports.getAllImages = function (req, res) {
 exports.getUserHomePage = async function (req, res) {
   UserProxy.getUserHomePage(req.user._id, (err, result) => {
     if (err) {
-      return res.json({ success: false, error: err });
+      return res.json({success: false, error: err});
     } else {
-      return res.json({ success: true, user: result });
+      return res.json({success: true, user: result});
     }
-  })
-}
+  });
+};
 
 exports.getAllUsers = function (req, res) {
   UserProxy.getAllUsers(function (err, users) {
     if (err) {
-      res.json({ success: false, error: 'failed to get all users' });
+      res.json({success: false, error: 'failed to get all users'});
     } else {
       let userMap = {};
 
@@ -114,9 +111,8 @@ exports.getAllUsers = function (req, res) {
       });
       res.send(userMap);
     }
-  })
-
-}
+  });
+};
 
 exports.subscribe_subject = function (req, res) {
   let subjectid = req.body.subject_id;
@@ -168,41 +164,40 @@ exports.addUser = async function (req, res) {
 };
 
 exports.studentRegister = async function (req, res) {
-  if (process.env.NODE_ENV !== 'production') {
-    const schema = Joi.object().keys({
-      name: Joi.string(),
-      studentId: Joi.string().min(6).max(8).required(),
-      username: Joi.string().min(5).max(15).required(),
-      password: Joi.string().min(6).required(),
-      email: Joi.string().email().trim()
-    });
-    const { error } = schema.validate(req.body);
-    if (error) {
-      return res
-        .status(400)
-        .json({success: false, error_info: error.details[0].message});
-    }
+  const schema = Joi.object().keys({
+    name: Joi.string(),
+    studentId: Joi.string().min(6).max(8).required(),
+    username: Joi.string().min(5).max(15).required(),
+    password: Joi.string().min(6).required(),
+    email: Joi.string().email().trim(),
+  });
+  const {error} = schema.validate(req.body);
+  if (error) {
+    return res
+      .status(400)
+      .json({success: false, error_info: error.details[0].message});
   }
-    const users = await User.find().or([
-      {account: req.body.username},
-      {student_number: req.body.studentId},
-    ]);
 
-    if (users.length !== 0)
-      return res.status(400).send('Duplicate username or student id');
+  const users = await User.find().or([
+    {account: req.body.username},
+    {student_number: req.body.studentId},
+  ]);
 
-    const user = new User({
-      name: req.body.name,
-      account: req.body.username,
-      password: await hashfunction(req.body.password),
-      student_number: req.body.studentId,
-      is_moderator: false,
-      is_admin: false,
-      subscribed_subjects: _.map(await Subject.find(), '_id'),
-      email: req.body.email,
-    });
+  if (users.length !== 0)
+    return res.status(400).send('Duplicate username or student id');
 
-    await user.save();
+  const user = new User({
+    name: req.body.name,
+    account: req.body.username,
+    password: await hashfunction(req.body.password),
+    student_number: req.body.studentId,
+    is_moderator: false,
+    is_admin: false,
+    subscribed_subjects: _.map(await Subject.find(), '_id'),
+    email: req.body.email,
+  });
 
-    return res.status(200).json({success: true, user: user});
+  await user.save();
+
+  return res.status(200).json({success: true, user: user});
 };
