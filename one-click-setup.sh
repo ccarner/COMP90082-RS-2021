@@ -68,7 +68,7 @@ printf "\n\n"
 printf "%s%sC. Install dependencies%s\n" $RED $BOLD $RESET
 apt update && apt -y install npm && apt -y install python3
 npm install --global yarn
-sudo apt install snapd
+sudo apt install -y snapd
 sudo snap install core; sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
@@ -77,7 +77,7 @@ if [ "$CERT" = true ]; then
   sudo certbot certonly --nginx
 fi
 
-sudo apt-get install gnupg
+sudo apt-get install -y gnupg
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 sudo apt-get update
