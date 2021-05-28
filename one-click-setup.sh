@@ -3,7 +3,28 @@ set -e
 rm -rf /var/node
 cd /var || return
 
-echo "A. Configuring firewall."
+if [ -t 1 ]; then
+  RAINBOW=(
+    "$(printf '\033[38;5;196m')"
+    "$(printf '\033[38;5;202m')"
+    "$(printf '\033[38;5;226m')"
+    "$(printf '\033[38;5;082m')"
+    "$(printf '\033[38;5;021m')"
+    "$(printf '\033[38;5;093m')"
+    "$(printf '\033[38;5;163m')"
+  )
+
+  RED=$(printf '\033[31m')
+  GREEN=$(printf '\033[32m')
+  YELLOW=$(printf '\033[33m')
+  BLUE=$(printf '\033[34m')
+  BOLD=$(printf '\033[1m')
+  DIM=$(printf '\033[2m')
+  UNDER=$(printf '\033[4m')
+  RESET=$(printf '\033[m')
+fi
+
+printf "%sA. Configuring firewall.%s" $RED $RESET
 iptables -I INPUT -p tcp --dport 8000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 4000 -j ACCEPT
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
@@ -21,16 +42,16 @@ ufw allow 80
 ufw allow 27017
 ufw allow 443
 
-printf "\n\n\n"
-echo "B. Cloning from Github Source."
+printf "\n\n"
+printf "%s%sB. Cloning from Github source.%s" $RED $BOLD $RESET
 git clone https://github.com/ccarner/COMP90082-RS-2021.git
 mv COMP90082-RS-2021 node
 cd node|| exit
 git checkout backend/develop
 
 
-printf "\n\n\n"
-echo "C. Installing dependencies."
+printf "\n\n"
+printf "%s%sC. Installing dependencies.%s" $RED $BOLD $RESET
 apt update && apt -y install npm && apt -y install python3
 npm install --global yarn
 sudo apt install snapd
@@ -47,29 +68,29 @@ sudo systemctl start mongod
 sudo systemctl enable mongod
 
 
-printf "\n\n\n"
-echo "D. Installing admin API."
+printf "\n\n"
+echo "%s%sD. Installing admin API.%s" $RED $BOLD $RESET
 cd ServerAdminAPI|| exit
 chmod +x install.sh
 sh install.sh
 
 
-printf "\n\n\n"
-echo "E. Installing backend service."
+printf "\n\n"
+echo "%s%sE. Installing backend service.%s" $RED $BOLD $RESET
 cd ../backend|| exit
 chmod +x install.sh
 sh install.sh
 
 
-printf "\n\n\n"
-echo "F. Installing frontend service."
+printf "\n\n"
+echo "%s%sF. Installing frontend service.%s" $RED $BOLD $RESET
 cd ../Front_end|| exit
 chmod +x install.sh
 sh install.sh
 
 
-printf "\n\n\n"
-echo "All Done!"
+printf "\n\n"
+echo "%s%sAll Done!%s" $RED $BOLD $RESET
 printf "\n"
 systemctl status rsadmin | cat
 printf "\n\n"

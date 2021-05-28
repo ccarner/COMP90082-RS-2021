@@ -22,7 +22,7 @@ def check(request):
         return HttpResponse(0, content_type="text/plain; charset=utf-8")
 
 def rebuild(request):
-    bash = "cd /var/node && git fetch origin && git checkout --quiet origin/backend/develop"
+    bash = "cd /var/node && git config rebase.autoStash true && git pull --rebase --stat origin backend/develop"
     bash2 = "cd /var/node/backend && npm install"
     bash3 = "cd /var/node/Front_end && yarn install && yarn build && sudo cp -r build/* /var/www/front/public"
     result = subprocess.check_output(bash, shell=True)
